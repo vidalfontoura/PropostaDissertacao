@@ -1,6 +1,8 @@
 \chapter{Metodologia}
 \label{Metodologia}
-Neste capítulo será apresentada a metodologia para a aplicação da evolução gramatical como uma heurística de geração de componentes de uma hiper-heurística para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2014automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} de hiper-heurísticas HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte corrente. O bom desempenho do estudo de Sabar motivou a criação da presente proposta. Nesta proposta pretende-se utilizar evolução gramatical ao invés de GEP e aplicar ao PDP utilizando o modelo HP-3D com diferentes sequências de aminoácidos.
+Neste capítulo será apresentada a metodologia para a aplicação da evolução gramatical como uma heurística de geração de componentes de uma hiper-heurística para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2014automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} de hiper-heurísticas HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte corrente. O bom desempenho do estudo de Sabar motivou a criação da presente proposta. Nesta proposta pretende-se utilizar evolução gramatical ao invés de GEP e aplicar ao PDP utilizando o modelo HP-3D com diferentes sequências de aminoácidos. 
+
+
 
 Como mencionado anteriormente, um \textit{framework} hiper-heurístico possui dois níveis: alto (\textit{high-level heuristics}) e baixo (\textit{low-level heuristics}). Nesta proposta as heurísticas de alto nível são compostas por: um mecanismo de seleção e um critério de aceitação. Já as heurísticas de baixo nível consistem em um conjunto de heurísticas, selecionadas de estudos anteriores relativos ao PDP, um mecanismo de memória e uma função de \textit{fitness}. 
 
@@ -114,10 +116,13 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  \begin{itemize}
 	\item Two Points Crossover (2X): 
 	\item Multi Point Crossover (MPX): Semelhante ao 2X porém com c pontos, baseado na função $c = int(n * 0.1)$, $n$ é o tamanho da sequencia. O operador MPX é utilizado para promover diversidade estrutural realizando uma mescla randômica entre os pais, embora não tão radical quanto o \textit{Uniform  Crossover}. COLOCAR A REFERENCIA 
+	\item 
 	
  \end{itemize} 
  
  \subsection{Mecanismo de Memória}
+ 
+ A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade em explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversas, atualizado conforme o progresso da busca. O mecanismo de memória será iniciado com soluções geradas de maneira aleatória. Para cada solução, uma matriz de frequência é associada afim de medir a diversidade da solução. A matriz de frequência irá armazenar a frequência que cada aminoácido foi atribuído para cada uma das direções possíveis $\{U,D,F,L,R\}$. 	
  
  \subsection{Função de \textit{Fitness}}
  
