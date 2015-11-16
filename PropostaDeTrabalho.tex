@@ -1,0 +1,63 @@
+\chapter{Proposta de Trabalho}
+\label{Proposta de Trabalho}
+
+Este capítulo tem por objetivo apresentar as atividades necessárias para este trabalho, bem como o cronograma que será seguido. As atividades já realizadas são apresentadas na Seção \ref{Proposta de Trabalho:Atividades Realizadas}, as atividades que serão realizadas são apresentadas na Seção~\ref{Proposta de Trabalho:Atividades a Serem Realizadas} e o cronograma proposto para as atividades é apresentado na Seção~\ref{Proposta de Trabalho:Cronograma de Trabalho}.
+
+\section{Atividades Realizadas}
+\label{Proposta de Trabalho:Atividades Realizadas}
+
+A seguir são apresentadas as atividades que já foram realizadas durante o período de mestrado:
+
+\begin{enumerate}
+	\item \textbf{Pesquisa de Trabalhos Relacionados} -- Foi realizada uma pesquisa de trabalhos relacionados, a qual foi apresentada no Capítulo \ref{Trabalhos Relacionados};
+	\item \textbf{Busca por Estilos Arquiteturais a serem utilizados} -- Foi conduzida uma busca com o objetivo de encontrar alguns estilos arquiteturais para serem utilizados juntamente com LPS neste trabalho. A relação de alguns estilos arquiteturais encontrados com base em afirmações de autores foi apresentada no Capítulo~\ref{Trabalhos Relacionados};
+	\item \textbf{Análise de Operadores} -- Foi conduzida uma análise dos operadores apresentados na Seção~\ref{Search-based Software Design:Operadores} com o objetivo de verificar quais deles poderiam corromper um estilo arquitetural.
+	\item \textbf{Proposta de Operadores com Restrições} -- Baseando-se na análise realizada na Atividade 3, foram propostos operadores com restrições associados aos estilos arquiteturais. Os operadores com restrições foram criados para os estilos arquiteturais selecionados na Atividade 2. Os operadores com restrições propostos foram apresentados no Capítulo~\ref{Operadores de Mutacao e Estilos Arquiteturais} e serão implementados no módulo OPLA-Arch-Styles.
+\end{enumerate}
+
+Até o momento, apenas pseudocódigos para os operadores com restrições foram desenvolvidos, porém implementações concretas serão realizadas com o objetivo de validá-los. Com base nisso, algumas atividades a serem realizadas foram identificadas e são apresentadas na próxima seção.
+
+\section{Atividades a Serem Realizadas}
+\label{Proposta de Trabalho:Atividades a Serem Realizadas}
+
+As atividades a serem realizadas são apresentadas a seguir:
+
+\begin{enumerate}
+	\item \textbf{Implementação do módulo OPLA-Arch-Styles} -- O módulo OPLA-Arch-Styles apresentado na Seção \ref{Search-based Software Design:OPLA-Tool} deverá ser implementado do modo que foi apresentado na Figura~\ref{AspectosImplementacao:Figura:OPLA-Arch-Styles}. Os operadores com restrições de estilos arquiteturais propostos na Seção~\ref{Operadores de Mutacao e Estilos Arquiteturais} deverão ser implementados, de modo que a aplicação dos mesmos seja totalmente automática;
+	\item \textbf{Incorporação do módulo OPLA-Arch-Styles na ferramenta OPLA-Tool} -- O módulo OPLA-Arch-Styles deverá ser incorporado à ferramenta OPLA-Tool, realizando a integração com os demais módulos da ferramenta conforme ilustrado na Figura~\ref{Search-based Software Design:Figura:Modulos da OPLA-Tool};
+	\item \textbf{Validações Experimentais} -- O módulo OPLA-Arch-Styles deverá ser validado experimentalmente utilizando LPSs reais que sigam os estilos arquiteturais escolhidos. Um exemplo de LPS real que segue o estilo arquitetural em camadas é a AGM~\cite{seiAGM}, que foi apresentada no Capítulo~\ref{Operadores de Mutacao e Estilos Arquiteturais};
+	\item \textbf{Elaboração de Artigos Científicos} -- Após a Atividade 3, poderá ser realizada a redação de artigos científicos com o objetivo de publicar os resultados alcançados;
+	\item \textbf{Redação da Dissertação};
+	\item \textbf{Defesa da Dissertação}.
+\end{enumerate}
+
+
+\section{Cronograma de Trabalho}
+\label{Proposta de Trabalho:Cronograma de Trabalho}
+
+O tempo previsto para a realização das atividades apresentadas na Seção \ref{Proposta de Trabalho:Atividades a Serem Realizadas} é de 12 meses e o planejamento para esse período é apresentado na Tabela \ref{Proposta de Trabalho:Tabela:Cronorgrama de Atividades a Serem Realizadas}.
+
+\begin{table}[!htb]
+	\renewcommand{\arraystretch}{1.2}
+	\centering
+	\caption{Cronograma de Atividades a Serem Realizadas}
+	\label{Proposta de Trabalho:Tabela:Cronorgrama de Atividades a Serem Realizadas}
+	\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+		\toprule
+		\multirow{4}{*}{\textbf{Atividade}} & \multicolumn{10}{c}{\textbf{Ano}} \\ 
+		\cline{2-13} 
+		& \multicolumn{10}{c|}{\textbf{2014}} & \multicolumn{2}{c}{\textbf{2015}} \\ 
+		\cline{2-13} 
+		& \multicolumn{10}{c}{\textbf{Mês}} \\ 
+		\cline{2-13} 
+		& \textbf{03} & \textbf{04} & \textbf{05} & \textbf{06} & \textbf{07} & \textbf{08} & \textbf{09} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{01} & \textbf{02}\\ 
+		\bottomrule
+		\textbf{1} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & & & & & & & \\ \hline
+		\textbf{2} & & & & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & & & & & & \\ \hline
+		\textbf{3} & & & & & & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & & & \\ \hline
+		\textbf{4} & & & & & & & & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} \\ \hline
+		\textbf{5} & & & & & & & & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} & \cellcolor{darkgray} \\ \hline
+		\textbf{6} & & & & & & & & & & & & \cellcolor{darkgray} \\
+		\toprule
+	\end{tabular}
+\end{table}
