@@ -59,7 +59,7 @@ Segundo \cite{pedersen2000algorithms}, um modelo computacional deve possuir algu
 
 A próxima subseção irá discorrer sobre alguns modelos de representação de estruturas de proteínas.
 
-\subsection{Modelos de Representação de Proteínas}
+\section{Modelos de Representação de Proteínas}
 
 Em suma existem duas classes de modelos de representação de estruturas de proteínas: analítico (também conhecido como \textit{all atom}) e discreto (chamado também de \textit{coarse-grained}). Os modelos analíticos possuem uma descrição detalhada da estrutura tridimensional incluindo informações de todos os átomos que constituem uma proteína. Já os modelos discretos descrevem as proteínas com um nível bastante reduzido de detalhes. Os modelos discretos recentemente ganharam maior interesse, por conta de dois fatores: a simulação de modelos analíticos nem sempre é computacionalmente possível e modelos discretos possibilitam simulações biologicamente relevantes com melhor poder computacional \cite{benitez2015algoritmo}. Embora simulações utilizando modelos discretos ainda não possam ser consideradas tão preditivas quanto simulações analíticas, avanços notáveis tem sido alcançados, referente ao uso de metodologias mais rigorosas e criação de algoritmos para melhor explorar o espaço de busca \cite{tozzini2005coarse}. Esta proposta irá descrever apenas os modelos discretos pois visa a utilização do modelo hidrofóbico polar (HP) 3D.
 
@@ -68,6 +68,7 @@ Em suma existem duas classes de modelos de representação de estruturas de proteí
 Os modelos computacionais mais simples são os conhecidos como modelos de grade (\textit{lattice models}). Estes modelos consideram as estruturas de proteínas como um colar de esferas posicionado em uma grade. O grau de liberdade dos movimentos é restrito à estrutura da grade, que pode ser 2D (plano) ou 3D (espacial). Conformações válidas são aquelas que os aminoácidos adjacentes na sequência também são adjacentes na grade e cada aminoácido ocupe uma posição distinta na grade. Muitos modelos de grade têm sido propostos e aplicados ao PDP. Os modelos 2D-HP e 3D-HP são exemplos de modelos de grade.
 
 \subsubsection{Modelo Hidrofóbico-Polar HP}
+\label{subsubsection:modeloHP}
 
  No modelo HP os aminoácidos são classificados em 2 tipos: Hidrofílicos (Polar) e Hidrofóbico. Consequentemente, uma proteína é representada por uma string de caracteres definida por um alfabeto binário $\{H,P\}$. Este modelo considera que as interações entre aminoácidos hidrofóbicos (H) representam a contribuição mais importante para a energia livre de uma proteína. Portanto existe uma relação inversamente proporcional: quanto maior for a quantidade de interações hidrofóbicas (H-H), menor será a energia livre de uma proteína. Uma interação hidrofóbica (também conhecida como contato hidrofóbico) é definida como um par de aminoácidos do tipo H-H que não sejam consecutivos na sequência mas sejam adjacentes na grade.
  Como dito anteriormente uma conformação é dita válida: quando nenhuma posição da grade é ocupada por mais que um aminoácido. Conformações inválidas possuem colisões entre os aminoácidos. Dada uma conformação válida para o modelo HP e $n$ o número de interações hidrofóbicas. A energia da conformação pode ser facilmente calculada utilizando a equação \ref{equation:energyHp}: 
@@ -98,7 +99,22 @@ Os modelos computacionais mais simples são os conhecidos como modelos de grade (
  	\label{fig:exemploModeloHP}
  \end{figure}
  
+
+Diversos trabalhos aplicam algoritmos evolucionários e bio-inspirados ao problema de dobramento de proteínas utilizando o modelo HP-3D. Uma decisão comum a todos trabalhos que utilizam o modelo HP-3D é a: de como representar as variáveis de entrada. Na literatura é possível encontrar basicamente três representações \cite{krasnogor1999protein, lopes2008evolutionary}: 
+
+\begin{itemize}
+	 \item Coordenadas cartesianas: Este método  representa a posição de cada aminoácido utilizando suas coordenadas espaciais (x,y,z) no plano cartesiano 3D. Geralmente, sua utilização não é adequada para algoritmos baseados em população, pois estruturas idênticas ou semelhantes podem ter coordenadas totalmente diferentes  \cite{benitez2015algoritmo}; 
+	 \item Coordenadas internas: Nesta representação as conformações são representadas por conjuntos de movimentos que ditam como a estrutura final irá se parecer. Esta representação é a mais utilizada em abordagens com algoritmos evolucionários para o PDP \cite{benitez2015algoritmo}. Existem duas possibilidades de se representar conformações utilizando coordenadas internas:
+	 \begin{itemize}
+		\item Coordenadas absolutas: Este tipo de coordenada é baseado na orientação do eixo da grade onde a conformação esta contida. No caso de uma grade tridimensional os possíveis movimentos são: $\{N,S,L,O,F,T\}$ que correspondem aos movimentos norte,sul,leste,oeste,para frente, para trás.
+		\item Coordenadas relativas: Este tipo de representação defini a posição de cada aminoácido da cadeia em relação ao movimento do seu predecessor. O conjunto de movimentos possíveis é definido por: $\{F,C,B,E,D\}$, que correspondem aos movimentos: frente (continuar no mesmo sentindo do aminoácido anterior), à esquerda, à direita, para cima e para baixo. 
+	 \end{itemize}
+	 \item Matriz de distâncias: descreve a conformação de uma proteína através de uma matriz quadrada que representa a distância entre os aminoácidos. Este tipo de representação é raramente utilizado na literatura \cite{benitez2015algoritmo}.
+\end{itemize}
  
+ 
+ 
+ \subsubsection{Outros Modelos}
 
 
 Além do modelo HP outros modelos simples em grade são utilizados para representar a estrutura de proteínas em outros estudos da literatura. Por exemplo:
@@ -122,6 +138,7 @@ Além do modelo HP outros modelos simples em grade são utilizados para representa
 	
 \end{itemize}
 
+\
 
 
 \section{Considerações Finais}
