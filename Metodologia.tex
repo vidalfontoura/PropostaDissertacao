@@ -1,13 +1,13 @@
 \chapter{Metodologia}
 \label{Metodologia}
-Neste capítulo será apresentada a metodologia para a aplicação da evolução gramatical como uma heurística de geração de componentes de uma hiper-heurística para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2014automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} de hiper-heurísticas HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte corrente. O bom desempenho do estudo de Sabar motivou a criação da presente proposta. Nesta proposta pretende-se utilizar evolução gramatical ao invés de GEP e aplicar ao PDP utilizando o modelo HP-3D e a representação de coordenadas relativas, descrita na subseção \ref{subsubsection:modeloHP}. A decisão por utilizar coordenadas relativas foi tomada pois segundo o estudo realizado por Krasnogor et al. \cite{krasnogor1999protein} as coordenadas relativas apresentaram maior potencial em levar os algoritmos a resultados melhores. Para representar as soluções para o problema PDP utilizando as coordenadas relativas para o modelo HP-3D um esquema de codificação foi definido.  As coordenadas relativas são traduzidas em valores inteiros da seguinte maneira F->0, C->1, B->2, E->3 e D->4. Portanto o alfabeto utilizado para representar as soluções para o PDP é definido como $\{0,1,2,3,4\}$.
+Neste capítulo será apresentada a metodologia para a aplicação da evolução gramatical como uma heurística de geração de componentes de uma hiper-heurística para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2015automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} de hiper-heurísticas HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte. O bom desempenho do estudo de Sabar motivou a criação da presente proposta. Nesta proposta pretende-se utilizar evolução gramatical ao invés de GEP e aplicar ao PDP utilizando o modelo HP-3D e a representação de coordenadas relativas, descrita na subseção \ref{subsubsection:modeloHP}. A decisão por utilizar coordenadas relativas foi tomada pois segundo o estudo realizado por Krasnogor et al. \cite{krasnogor1999protein} as coordenadas relativas apresentaram maior potencial em levar os algoritmos a resultados melhores. Para representar as soluções para o problema PDP utilizando as coordenadas relativas para o modelo HP-3D um esquema de codificação foi definido.  As coordenadas relativas são traduzidas em valores inteiros da seguinte maneira F->0, C->1, B->2, E->3 e D->4. Portanto o alfabeto utilizado para representar as soluções para o PDP é definido como $\{0,1,2,3,4\}$.
 
 
 Como mencionado anteriormente, um \textit{framework} hiper-heurístico possui dois níveis: alto (\textit{high-level heuristics}) e baixo (\textit{low-level heuristics}). Nesta proposta as heurísticas de alto nível são compostas por: um mecanismo de seleção e um critério de aceitação. Já as heurísticas de baixo nível consistem em um conjunto de heurísticas, selecionadas de estudos anteriores relativos ao PDP, um mecanismo de memória e uma função de \textit{fitness}. 
 
 \section{\textit{High Level Heuristics}}
 \label{sec:highlevelheuristics}
-Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é selecionar, de um pool de heurísticas de baixo nível, a heurística que for mais adequada naquele momento. Geralmente, a escolha da heurística de baixo nível é crucial para uma boa exploração do espaço de busca, evitando que a busca fique confinada em uma região específica \cite{sabar2014automatic}. O objetivo do critério de aceitação é auxiliar o processo de busca a evitar mínimos locais assim como explorar diferentes regiões através do aceite ou rejeição de soluções geradas \cite{chakhlevitch2008hyperheuristics}. Esperasse que um bom critério de aceitação deve atingir um bom equilíbrio entre aceitar soluções melhores assim como soluções piores se a busca estiver presa em um mínimo local \cite{sabar2014automatic}. Isto posto a presente proposta projeta a geração online dos componentes de uma heurística de alto nível para um \textit{framework} hiper-heurístico (mecanismo de seleção e critério de aceitação). A figura \ref{fig:proposedFramework} apresenta uma figura do \textit{framework} proposto.
+Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é selecionar, de um pool de heurísticas de baixo nível, a heurística que for mais adequada naquele momento. Geralmente, a escolha da heurística de baixo nível é crucial para uma boa exploração do espaço de busca, evitando que a busca fique confinada em uma região específica \cite{sabar2015automatic}. O objetivo do critério de aceitação é auxiliar o processo de busca a evitar mínimos locais assim como explorar diferentes regiões através do aceite ou rejeição de soluções geradas \cite{chakhlevitch2008hyperheuristics}. Esperasse que um bom critério de aceitação deva atingir um bom equilíbrio entre aceitar soluções melhores assim como soluções piores se a busca estiver presa em um mínimo local \cite{sabar2015automatic}. Isto posto a presente proposta projeta a geração online dos componentes de uma heurística de alto nível para um \textit{framework} hiper-heurístico (mecanismo de seleção e critério de aceitação). A figura \ref{fig:proposedFramework} apresenta uma figura do \textit{framework} proposto.
 
  \begin{figure}[!htb]
  	\centering
@@ -39,10 +39,10 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  	| - 
 	| * 
 	| \%
- 	\label{ge-clustering-grammar}
+ 	 
  \end{grammar}
- \label{grammar:selectionGrammar}
  \caption{Gramática definida para gerar mecanismos de seleção de heurísticas.}
+ \label{grammar:selectionGrammar}
  \end{Grammar}
  
  O conjunto de funções e terminais apresentado na gramática \ref{grammar:selectionGrammar} foi desenvolvido baseado nos conjuntos  propostos por Sabar em seu trabalho \cite{sabar2014automatic}. Uma explicação detalhada de cada terminal é apresentada em seguida:
@@ -116,13 +116,13 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  \begin{itemize}
 	\item \textit{Two Points Crossover} (2X): Este operador seleciona, de maneria aleatória, 2 pontos de cruzamento dividindo os indivíduos em 3 partes. Os genes entre as posições selecionadas são trocados entre os pais de modo a gerar dois novos filhos \cite{benitez2015algoritmo}, conforme apresentado na figura \ref{fig:twopointscrossover}.
 	
-
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics{Imagens/TwoPointsCrossover.png}
-		\caption{Exemplo de aplicação do operador 2x. \\Fonte Autoria Própria}
-		\label{fig:twopointscrossover}
-	\end{figure}
+%
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics{Imagens/TwoPointsCrossover.png}
+%		\caption{Exemplo de aplicação do operador 2x. \\Fonte Autoria Própria}
+%		\label{fig:twopointscrossover}
+%	\end{figure}
 	
 			
 
@@ -130,20 +130,20 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item \textit{Multi Points Crossover} (MPX): Semelhante ao 2X porém com c pontos, baseado na função $c = int(n * 0.1)$, $n$ é o tamanho da sequencia. O operador MPX é utilizado para promover diversidade estrutural realizando uma mescla randômica entre os pais, embora não tão radical quanto o \textit{Uniform  Crossover} \cite{sabar2014automatic}. Um exemplo de aplicação do operador MPX é apresentado na imagem \ref{fig:multipointscrossover}
 	
 	
-		\begin{figure}[!htb]
-			\centering
-			\includegraphics{Imagens/MultiPointsCrossover.png}
-			\caption{Exemplo de aplicação do operador MPX. \\Fonte Autoria Própria}
-			\label{fig:multipointscrossover}
-		\end{figure}
+%		\begin{figure}[!htb]
+%			\centering
+%			\includegraphics{Imagens/MultiPointsCrossover.png}
+%			\caption{Exemplo de aplicação do operador MPX. \\Fonte Autoria Própria}
+%			\label{fig:multipointscrossover}
+%		\end{figure}
 	\item \textit{Segment Mutation} (SMUT): Altera um número aleatório (5 a 7) de genes consecutivos para direções distintas. Esta heurística introduz grandes mudanças na conformação, e tem um grande probabilidade de criar colisões. Um mecanismo de reparação simples é aplicado no descendente gerado. A imagem \ref{fig:segmentMutation} apresenta um exemplo da aplicação do SMUT.
 	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics{Imagens/segmentMutation.png}
-		\caption{Exemplo de aplicação do operador SMUT. \\Fonte Autoria Própria}
-		\label{fig:segmentMutation}
-	\end{figure}
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics{Imagens/segmentMutation.png}
+%		\caption{Exemplo de aplicação do operador SMUT. \\Fonte Autoria Própria}
+%		\label{fig:segmentMutation}
+%	\end{figure}
 	
 	
 	\item \textit {Exhaustive Search Mutation} (EMUT): Esta heurística seleciona um gene aleatório e testa todas as outras direções possíveis e irá manter a alteração que conseguir aumentar a qualidade da conformação. O \textit{tradeoff} deste operador: é demandar 4 avaliações de \textit{fitness}, as quais devem ser levadas em consideração. Esta heurística tem grande potencial de melhorar o \textit{fitness} de uma conformação. 
@@ -151,34 +151,34 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	
 	\item \textit{Local Move Operator} (LM): Esta heurística troca direções entre dois genes aleatórios consecutivos. Existem algumas condições para que esta heurística possa ser executada, por exemplo, as novas direções não podem criar movimentos redundantes. Este operador introduz um "movimento de esquina". A figura \ref{fig:localMoveOperator} apresenta um exemplo da aplicação do operador LM. 
 	
-	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics{Imagens/LocalMoveOperator.png}
-		\caption{Exemplo de aplicação do operador LM. \\Fonte Autoria Própria}
-		\label{fig:localMoveOperator}
-	\end{figure}
-	
+%	
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics{Imagens/LocalMoveOperator.png}
+%		\caption{Exemplo de aplicação do operador LM. \\Fonte Autoria Própria}
+%		\label{fig:localMoveOperator}
+%	\end{figure}
+%	
 	
 	\item \textit{Loop Move Operator} (LPM): Da mesma maneira que a heurística LM esta heurística troca direções entre dois genes que estão há 5 genes de distância na sequência criando um movimento de \textit{loop}. A figura  \ref{fig:loopMoveOperator} apresenta um exemplo da aplicação do operador LPM.
 
 	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics{Imagens/LoopMoveOperator.png}
-		\caption{Exemplo de aplicação do operador LPM. \\Fonte Autoria Própria}
-		\label{fig:loopMoveOperator}
-	\end{figure}
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics{Imagens/LoopMoveOperator.png}
+%		\caption{Exemplo de aplicação do operador LPM. \\Fonte Autoria Própria}
+%		\label{fig:loopMoveOperator}
+%	\end{figure}
 	
 	\item \textit{Opposite Mutation} (OM): Esta heurística troca as direções, para direção oposta, de uma sequência de genes entre dois genes $(i,j)$ selecionados de maneira aleatória. A direção 0 ($F$) não possui oposta, portanto é mantida. Para exemplificar suponha esta solução hipotética para uma sequência de 5 aminoácidos: $\{0,3,3,1,2\}$ se tornaria $\{0,4,4,2,1\}$. A figura \ref{fig:oppositeMutation} apresenta um exemplo da aplicação do operador OM.
 	
-	
-	\begin{figure}[!htb]
-		\centering
-		\includegraphics{Imagens/OppositeMutation.png}
-		\caption{Exemplo de aplicação do operador OM. \\Fonte Autoria Própria}
-		\label{fig:oppositeMutation}
-	\end{figure}
+%	
+%	\begin{figure}[!htb]
+%		\centering
+%		\includegraphics{Imagens/OppositeMutation.png}
+%		\caption{Exemplo de aplicação do operador OM. \\Fonte Autoria Própria}
+%		\label{fig:oppositeMutation}
+%	\end{figure}
 	
 
 	
@@ -194,12 +194,12 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  
  A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. Blum et al. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade em explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversas, atualizado conforme o progresso da busca. Nesta proposta o mecanismo de memória tem a responsabilidade de armazenar soluções para o problema PDP utilizando a representação de coordenadas relativas para o modelo HP-3D. Tradicionalmente a utilização de coordenadas relativas tende a gerar muitas soluções que possuem colisões, quando inicializadas de maneira aleatória. Isto geralmente  ocasiona perda de tempo de processamento, por conta de muitas conformações inválidas, antes que bons resultados sejam obtidos. Diante disto Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população, de seu algoritmo genético, dividida em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial do algoritmo genético proposto por Benítez el al. \cite{benitez2015algoritmo}. Para garantir que os indivíduos não possuam colisões uma estratégia deve ser utilizada \textit{backtracking}. Nesta proposta pretende-se utilizar uma estratégia similar adaptada ao modelo HP-3D. As possíveis conformações podem ser representadas por um caminho em grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o ultimo sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor. A figura \ref{fig:backtrackInit}  apresenta um fragmento do espaço de busca para uma cadeia hipotética com 5 aminoácidos. O espaço de busca completo é grande totalizando  $5^4=625$ possibilidades, e não pode ser apresentado por questões de visualização.
  
- 	\begin{figure}[!htb]
- 		\centering
- 		\includegraphics[scale=0.8]{Imagens/BacktrackingInit.png}
- 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
- 		\label{fig:backtrackInit}
- 	\end{figure}
+% 	\begin{figure}[!htb]
+% 		\centering
+% 		\includegraphics[scale=0.8]{Imagens/BacktrackingInit.png}
+% 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
+% 		\label{fig:backtrackInit}
+% 	\end{figure}
  	
  	Na figura \ref{fig:backtrackInit} o caminho apresentado pelas setas azuis representa uma solução que gera uma conformação válida (sem colisões). A seta vermelha demonstra que se caso o ultimo passo fosse alterado de 0 para 1. Esta alteração causaria uma conformação inválida, pois posicionaria o ultimo aminoácido na posição 0,1,1 a qual já havia sido ocupada no segundo passo. 
  	A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem o movimentos marcados como más escolhas). Caso todos os movimentos sejam marcados como más escolhas a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como um má escolha. A estratégia de \textit{backtracking} termina quando gerar um caminho na árvore que não gere .
