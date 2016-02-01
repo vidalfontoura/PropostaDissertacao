@@ -51,7 +51,7 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item RC (Reward Credit): Este terminal representa a recompensa que uma determinada heurística de baixo nível deve receber baseado no seu desempenho durante o processo de busca. Quando a i-ésima heurística é aplicada a melhoria para a solução é computada. O cálculo da melhoria é dado por: $M(i) = (|f1 -f2|/f1) *100$ se $f2$< $f1$. Onde $f1$ é a qualidade da solução corrente e $f2$ é a qualidade da solução resultante após a aplicação da i-ésima heurística. 
 	A melhoria obtida é salva em uma janela deslizante (FIFO) de tamanho W. O crédito de qualquer heurística de baixo nível é então atribuído como o máximo valor na janela deslizante correspondente. A ideia por trás deste terminal é: heurísticas de baixo nível que não são usadas com frequência mas que alteram a solução com grandes melhorias tendem a ter mais preferência do que aquelas que geram pequenas melhorias. Portanto as heurísticas que trazem frequentes, mas pequenas melhorias irão ter menos probabilidade de serem selecionadas.
 	\item $C_{best}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a melhor solução conhecida. Este terminal favorece as heurísticas de baixo nível que obtiveram êxito em melhorar a melhor solução conhecida até o momento. Este terminal é útil para sistematicamente melhorar o atual mínimo local.
-	\item $C_{current}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a solução atual. Este terminal favorece as heurísticas de baixo nível que obtém êxito em atualizar a solução corrente. Este terminal serve para deixar a busca concentrada próxima a solução corrente.
+	\item $C_{current}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a solução atual. Este terminal favorece as heurísticas de baixo nível que obtém êxito em atualizar a solução corrente. Este terminal serve para deixar a busca concentrada próxima à solução corrente.
 	\item $C_{accept}$: Número de vezes que a solução gerada pela i-ésima heurística de baixo nível foi aceita pelo critério de aceitação. Este terminal favorece heurísticas de baixo nível que podem ajudar a escapar de um mínimo local.
 	\item $C_{ava}$: A média de melhorias anteriores da i-ésima heurística de baixo nível durante o progresso da busca. Este terminal favorece heurísticas de baixo nível que realizaram grandes melhorias em média.
 	\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.  
@@ -67,6 +67,39 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  \end{itemize}
  
  Uma gramática para o critério de aceitação também foi definida e é apresentada na gramática BLAH. 
+ 
+ 
+  \begin{Grammar}
+  	\begin{grammar}
+  		<hh-selection> ::= <selection-mechanism> <acceptance-criterion> 
+  		
+  		<selection-mechanism> :==  <selection-terminal>   
+  		\alt <selection-mechanism> <selection-function> <selection-mechanism> 
+  		\alt (<selection-mechanism> <selection-function> <selection-mechanism>) 
+  		
+  		<selection-terminal> :== 
+  		RC 
+  		| Cbest 
+  		| Ccurrent 
+  		| Caccept 
+  		| Cava 
+  		| Cr
+  		
+  		<selection-function> :== + 
+  		| - 
+  		| * 
+  		| \%
+  		
+  		<acceptance-criterion> ::== <acceptance-terminal> 
+  		\alt <acceptance-criterion> <accpetance-function>
+  		<acceptance-criterion>
+  			\alt (<acceptance-criterion>  <accpetance-function> <acceptance-criterion>) 
+  		
+  		
+  	\end{grammar}
+  	\caption{Gramática definida para gerar mecanismos de seleção de heurísticas.}
+  	\label{grammar:acceptanceGrammar}
+  \end{Grammar}
  
  BOTAR GRAMATICA.
  
