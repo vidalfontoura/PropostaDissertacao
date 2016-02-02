@@ -7,7 +7,7 @@ Como mencionado anteriormente, um \textit{framework} hiper-heurístico possui doi
 
 \section{\textit{High Level Heuristics}}
 \label{sec:highlevelheuristics}
-Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é selecionar, de um pool de heurísticas de baixo nível, a heurística que for mais adequada naquele momento. Geralmente, a escolha da heurística de baixo nível é crucial para uma boa exploração do espaço de busca, evitando que a busca fique confinada em uma região específica \cite{sabar2015automatic}. O objetivo do critério de aceitação é auxiliar o processo de busca a evitar mínimos locais assim como explorar diferentes regiões através do aceite ou rejeição de soluções geradas \cite{chakhlevitch2008hyperheuristics}. Esperasse que um bom critério de aceitação deva atingir um bom equilíbrio entre aceitar soluções melhores assim como soluções piores se a busca estiver presa em um mínimo local \cite{sabar2015automatic}. Isto posto a presente proposta projeta a geração online dos componentes de uma heurística de alto nível para um \textit{framework} hiper-heurístico (mecanismo de seleção e critério de aceitação). A figura \ref{fig:proposedFramework} apresenta uma figura do \textit{framework} proposto.
+Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é selecionar, de um pool de heurísticas de baixo nível, a heurística que for mais adequada naquele momento. Geralmente, a escolha da heurística de baixo nível é crucial para uma boa exploração do espaço de busca, evitando que a busca fique confinada em uma região específica \cite{sabar2015automatic}. O objetivo do critério de aceitação é auxiliar o processo de busca a evitar mínimos locais assim como explorar diferentes regiões através do aceite ou rejeição de soluções geradas \cite{chakhlevitch2008hyperheuristics}. Esperasse que um bom critério de aceitação deva atingir um bom equilíbrio entre aceitar soluções melhores assim como soluções piores se a busca estiver presa em um mínimo local \cite{sabar2015automatic}. Isto posto, a presente proposta projeta a geração online dos componentes de uma heurística de alto nível (mecanismo de seleção e critério de aceitação) para um \textit{framework} hiper-heurístico. A figura \ref{fig:proposedFramework} apresenta uma figura do \textit{framework} proposto.
 
  \begin{figure}[!htb]
  	\centering
@@ -17,35 +17,47 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  \end{figure}
  
  Como mencionado na subseção \ref{subsubsection:EvolucaoGramatical}, a evolução gramatical utiliza vetores de valores inteiros com tamanho variável para representar seus indivíduos. Dessa maneira, a EG junta as vantagens tanto de algoritmos genéticos como de programação genética para evoluir populações de programas de computador.
- Duas gramaticas específicas foram definidas para decodificar os vetores inteiros em algoritmos. A gramática apresentada em \ref{grammar:selectionGrammar} foi definida para gerar mecanismos de seleção. 
+ Duas gramaticas específicas foram definidas para decodificar os vetores inteiros em algoritmos. A gramática apresentada em \ref{grammar:proposedGrammar} foi definida para gerar mecanismos de seleção e critérios de aceitação. 
+ 
  
  \begin{Grammar}
- \begin{grammar}
-	<hh-selection> ::= <selection-mechanism> <acceptance-criterion> 
-	
-	<selection-mechanism> :==  <selection-terminal>   
-	\alt <selection-mechanism> <selection-function> <selection-mechanism> 
-	\alt (<selection-mechanism> <selection-function> <selection-mechanism>) 
-
- 	<selection-terminal> :== 
- 	 RC 
- 	| Cbest 
- 	| Ccurrent 
- 	| Caccept 
- 	| Cava 
- 	| Cr
- 	
- 	<selection-function> :== + 
- 	| - 
-	| * 
-	| \%
- 	 
- \end{grammar}
- \caption{Gramática definida para gerar mecanismos de seleção de heurísticas.}
- \label{grammar:selectionGrammar}
+ 	\begin{grammar}
+ 		<hh-selection> ::= <selection-mechanism> <acceptance-criterion> 
+ 		
+ 		<selection-mechanism> :==  <selection-terminal>   
+ 		\alt <selection-mechanism> <selection-function> <selection-mechanism> 
+ 		\alt (<selection-mechanism> <selection-function> <selection-mechanism>) 
+ 		
+ 		<selection-terminal> :== 
+ 		RC 
+ 		| Cbest 
+ 		| Ccurrent 
+ 		| Caccept 
+ 		| Cava 
+ 		| Cr
+ 		
+ 		<selection-function> :== + 
+ 		| - 
+ 		| * 
+ 		| \%
+ 		
+ 		<acceptance-criterion> ::== <acceptance-terminal> 
+ 		\alt <acceptance-criterion> <accpetance-function>
+ 		<acceptance-criterion>
+ 		\alt (<acceptance-criterion>  <accpetance-function> <acceptance-criterion>) 
+ 		
+ 		<acceptance-terminal> :== PF | CF | CI | TI
+ 		
+ 		<acceptance-function> :== + | - | * | \% | $e^x$
+ 		
+ 		
+ 	\end{grammar}
+ 	\caption{Gramática definida para gerar componentes de uma heurística de alto nível}
+ 	\label{grammar:proposedGrammar}
  \end{Grammar}
  
- O conjunto de funções e terminais apresentado na gramática \ref{grammar:selectionGrammar} foi desenvolvido baseado nos conjuntos  propostos por Sabar em seu trabalho \cite{sabar2014automatic}. Uma explicação detalhada de cada terminal é apresentada em seguida:
+ O conjunto de funções e terminais apresentado na gramática \ref{grammar:proposedGrammar} foi desenvolvido baseado nos conjuntos  propostos no  trabalho relacionado \cite{sabar2014automatic}. Uma explicação detalhada de cada terminal para mecanismos de seleção $(selection-terminal)$ é apresentada em seguida:
+
  
  \begin{itemize}
 	\item RC (Reward Credit): Este terminal representa a recompensa que uma determinada heurística de baixo nível deve receber baseado no seu desempenho durante o processo de busca. Quando a i-ésima heurística é aplicada a melhoria para a solução é computada. O cálculo da melhoria é dado por: $M(i) = (|f1 -f2|/f1) *100$ se $f2$< $f1$. Onde $f1$ é a qualidade da solução corrente e $f2$ é a qualidade da solução resultante após a aplicação da i-ésima heurística. 
@@ -57,7 +69,7 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.  
  \end{itemize} 
  
- O conjunto de funções é apresentado abaixo:
+ O conjunto de funções para mecanismos de seleção $(selection-function)$ é apresentado abaixo:
   
  \begin{itemize}
 	\item +: Adiciona as duas entradas.
@@ -66,45 +78,9 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item \%: Divisão protegida, isto é, se o denominador for 0 o altera para 0,001.
  \end{itemize}
  
- Uma gramática para o critério de aceitação também foi definida e é apresentada na gramática BLAH. 
  
  
-  \begin{Grammar}
-  	\begin{grammar}
-  		<hh-selection> ::= <selection-mechanism> <acceptance-criterion> 
-  		
-  		<selection-mechanism> :==  <selection-terminal>   
-  		\alt <selection-mechanism> <selection-function> <selection-mechanism> 
-  		\alt (<selection-mechanism> <selection-function> <selection-mechanism>) 
-  		
-  		<selection-terminal> :== 
-  		RC 
-  		| Cbest 
-  		| Ccurrent 
-  		| Caccept 
-  		| Cava 
-  		| Cr
-  		
-  		<selection-function> :== + 
-  		| - 
-  		| * 
-  		| \%
-  		
-  		<acceptance-criterion> ::== <acceptance-terminal> 
-  		\alt <acceptance-criterion> <accpetance-function>
-  		<acceptance-criterion>
-  			\alt (<acceptance-criterion>  <accpetance-function> <acceptance-criterion>) 
-  		
-  		
-  	\end{grammar}
-  	\caption{Gramática definida para gerar mecanismos de seleção de heurísticas.}
-  	\label{grammar:acceptanceGrammar}
-  \end{Grammar}
- 
- BOTAR GRAMATICA.
- 
- 
- O conjunto terminal para critérios de aceitação é apresentado em seguida:
+ O conjunto terminal $(acceptance-terminal)$ para critérios de aceitação é apresentado em seguida:
  
  \begin{itemize}
 	\item Delta: A mudança da qualidade da solução.
@@ -114,7 +90,7 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item TI: Número de iterações.
  \end{itemize}
  
- O conjunto de funções para critérios de aceitação é bastante similar ao dos mecanismos de seleção e é apresentado abaixo:
+ O conjunto de funções para critérios de aceitação $(acceptance-function)$ é apresentado abaixo:
  
  \begin{itemize}
 	\item +: Adiciona as duas entradas.
@@ -124,19 +100,19 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 	\item \%: Divisão protegida, isto é, se o denominador for 0 o altera para 0,001.
  \end{itemize}
  
- Utilizando as gramáticas apresentadas e vetores de inteiros é possível gerar mecanismos de seleção e critérios de aceitação. Os conjuntos terminais de ambas as gramáticas apresentaram estatísticas sobre as heurísticas de baixo nível e estes são a matéria prima para a construção dos componentes das heurísticas de alto nível. 
+ Utilizando a gramática apresentada e vetores de inteiros é possível gerar mecanismos de seleção e critérios de aceitação. Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de baixo nível e estes são a matéria prima para a construção dos componentes das heurísticas de alto nível de um \textit{framework} hiper-heurístico. 
  
- O próximo passo é evoluir uma população de vetores de inteiro, gerados de maneira aleatória, utilizando o processo evolutivo descrito na subseção \ref{subsubsection:EvolucaoGramatical}. A figura BLAH apresenta o processo geral da evolução gramatical proposta.
+ O próximo passo consiste em evoluir uma população de vetores de inteiro, gerados de maneira aleatória, utilizando o processo evolutivo descrito na subseção \ref{subsubsection:EvolucaoGramatical}. A figura BLAH apresenta o processo geral da evolução gramatical proposta.
  
 
  \subsection{Função de \textit{Fitness}}
  
- Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados pelo indivíduo em questão. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico. Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada, $Nh$ representa o número de indivíduos da EG e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calcula: $Ph[i] = Ph[i] + \sigma $ onde $\sigma = (f_i - f_b)/(f_i + f_b)$. Os demais indivíduos $j \in \{1, ..., Nh\} ~e~ j \neq i$ são penalizados: $Ph[j] = Ph[j] - (\sigma / (Nh - 1))$. Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo: $Ph[i] = Ph[i] - |\sigma \times \alpha|$ onde $\alpha =$ iteração corrente $/$ número total de iterações. Os demais indivíduos $j \neq = i$ recebem uma recompensa: $Ph[j] = 
-  Ph[j] + (|\sigma| \times \alpha / (Nh -1))$. A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada: decodificando o respectivo mecanismo de seleção e aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
+ Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico. Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada, $Nh$ representa o número de indivíduos da EG e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calcula: $Ph[i] = Ph[i] + \sigma $ onde $\sigma = (f_i - f_b)/(f_i + f_b)$. Os demais indivíduos $j \in \{1, ..., Nh\} ~e~ j \neq i$ são penalizados: $Ph[j] = Ph[j] - (\sigma / (Nh - 1))$. Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo: $Ph[i] = Ph[i] - |\sigma \times \alpha|$ onde $\alpha =$ iteração corrente $/$ número total de iterações. Os demais indivíduos $j \neq = i$ recebem uma recompensa: $Ph[j] = 
+  Ph[j] + (|\sigma| \times \alpha / (Nh -1))$. A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada: decodificando o  respectivo mecanismo de seleção e criério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
  
  \subsection{Critério de Parada}
  
- Para terminar o processo da EG um número máximo de iterações que não obtêm melhora será utilizado como condição de parada.
+ Para terminar o processo da EG um número máximo de iterações que não obtêm melhora será utilizado como condição de parada. Note que este critério de parada é referente a parada do processo da EG e não das execuções dos indivíduos dentro do \textit{framework} hiper-heurístico, que ocorrem durante o progresso da EG. 
  
  \section{\textit{Low Level Heuristics}} 
  
@@ -225,7 +201,7 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  
  \subsection{Mecanismo de Memória}
  
- A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. Blum et al. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade em explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversas, atualizado conforme o progresso da busca. Nesta proposta o mecanismo de memória tem a responsabilidade de armazenar soluções para o problema PDP utilizando a representação de coordenadas relativas para o modelo HP-3D. Tradicionalmente a utilização de coordenadas relativas tende a gerar muitas soluções que possuem colisões, quando inicializadas de maneira aleatória. Isto geralmente  ocasiona perda de tempo de processamento, por conta de muitas conformações inválidas, antes que bons resultados sejam obtidos. Diante disto Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população, de seu algoritmo genético, dividida em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial do algoritmo genético proposto por Benítez el al. \cite{benitez2015algoritmo}. Para garantir que os indivíduos não possuam colisões uma estratégia deve ser utilizada \textit{backtracking}. Nesta proposta pretende-se utilizar uma estratégia similar adaptada ao modelo HP-3D. As possíveis conformações podem ser representadas por um caminho em grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o ultimo sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor. A figura \ref{fig:backtrackInit}  apresenta um fragmento do espaço de busca para uma cadeia hipotética com 5 aminoácidos. O espaço de busca completo é grande totalizando  $5^4=625$ possibilidades, e não pode ser apresentado por questões de visualização.
+ A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. Blum et al. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade em explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversas, atualizado conforme o progresso da busca. Nesta proposta o mecanismo de memória tem a responsabilidade de armazenar soluções para o problema PDP utilizando a representação de coordenadas relativas para o modelo HP-3D. Utilizar esta representação significa estar sujeito a geração de soluções inválidas, que possuem colisões, quando inicializadas de maneira aleatória. Isto geralmente  ocasiona perda de tempo de processamento, por conta de muitas conformações inválidas, antes que bons resultados sejam obtidos. Diante disto Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população, de seu algoritmo genético, dividida em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial do algoritmo genético proposto por Benítez el al. \cite{benitez2015algoritmo}. Para garantir que os indivíduos não possuam colisões uma estratégia de \textit{backtracking} deve ser utilizada. Nesta proposta, pretende-se utilizar uma estratégia similar adaptada ao modelo HP-3D. As possíveis conformações podem ser representadas por um caminho em um grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o ultimo sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor. A figura \ref{fig:backtrackInit}  apresenta um fragmento do espaço de busca para uma cadeia hipotética com 5 aminoácidos. O espaço de busca completo é grande totalizando  $5^4=625$ possibilidades, e não pode ser apresentado por questões de visualização.
  
 % 	\begin{figure}[!htb]
 % 		\centering
@@ -235,13 +211,13 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 % 	\end{figure}
  	
  	Na figura \ref{fig:backtrackInit} o caminho apresentado pelas setas azuis representa uma solução que gera uma conformação válida (sem colisões). A seta vermelha demonstra que se caso o ultimo passo fosse alterado de 0 para 1. Esta alteração causaria uma conformação inválida, pois posicionaria o ultimo aminoácido na posição 0,1,1 a qual já havia sido ocupada no segundo passo. 
- 	A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem o movimentos marcados como más escolhas). Caso todos os movimentos sejam marcados como más escolhas a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como um má escolha. A estratégia de \textit{backtracking} termina quando gerar um caminho na árvore que não gere .
+ 	A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem o movimentos marcados como más escolhas). Caso todos os movimentos sejam marcados como má escolha a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como um má escolha. A estratégia de \textit{backtracking} termina quando gerar um caminho na árvore que não possua colisões.
  	
  	
- 	e selecionando de maneira aleatória o movimento para o próximo 
- 	
- 	
- 	aminoácido. Caso este movimento cause uma colisão (seja posicionado em uma região da grade que já havia um aminoácido) o \textit{backtracking} entra em cena percorrendo a árvore de maneira recursiva 
+% 	e selecionando de maneira aleatória o movimento para o próximo 
+% 	
+% 	
+% 	aminoácido. Caso este movimento cause uma colisão (seja posicionado em uma região da grade que já havia um aminoácido) o \textit{backtracking} entra em cena percorrendo a árvore de maneira recursiva 
  	 
   
  
