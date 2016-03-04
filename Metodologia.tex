@@ -221,35 +221,39 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  	 
   
  
- Para cada solução, uma matriz de frequência é associada afim de medir a diversidade da solução. A matriz de frequência irá armazenar a frequência que cada aminoácido foi atribuído para cada uma das direções possíveis $\{0,1,2,3,4\}$. A figura \ref{fig:frequencyMatrix} apresenta um exemplo de uma matriz de frequência para uma cadeia hipotética $HPPHHHP$ de 7 aminoácidos. Observando a figura  \ref{fig:frequencyMatrix} é possível notar que o aminoácido 0 foi atribuído a direção E (3), que significa esquerda, duas vezes, três vezes para a direção D (4), que significa direita e nenhuma vez para as direções F(0), D(1) e B(2). 
+% Para cada solução, uma matriz de frequência é associada afim de medir a diversidade da solução. A matriz de frequência irá armazenar a frequência que cada aminoácido foi atribuído para cada uma das direções possíveis $\{0,1,2,3,4\}$. A figura \ref{fig:frequencyMatrix} apresenta um exemplo de uma matriz de frequência para uma cadeia hipotética $HPPHHHP$ de 7 aminoácidos. Observando a figura  \ref{fig:frequencyMatrix} é possível notar que o aminoácido 0 foi atribuído a direção E (3), que significa esquerda, duas vezes, três vezes para a direção D (4), que significa direita e nenhuma vez para as direções F(0), D(1) e B(2). 
  
  
- 	\begin{figure}[!htb]
- 		\centering
- 		\includegraphics[scale=0.8]{Imagens/FrequencyMatrix.png}
- 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
- 		\label{fig:frequencyMatrix}
- 	\end{figure}
+% 	\begin{figure}[!htb]
+% 		\centering
+% 		\includegraphics[scale=0.8]{Imagens/FrequencyMatrix.png}
+% 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
+% 		\label{fig:frequencyMatrix}
+% 	\end{figure}
+%
+ 
+ A cada iteração a heurística de alto nível irá selecionar de maneira aleatória uma solução do mecanismo de memória; aplicar a heurística de baixo nível, selecionada pelo mecanismo de seleção. %, e atualizará a matriz de frequência associada à solução %. 
+ Em seguida a qualidade e a diversidade da solução gerada precisam ser calculadas. A qualidade de uma solução para o PDP utilizando o modelo HP-3D: é inversamente proporcional à quantidade de interações entre aminoácidos hidrofóbicos. Portanto a qualidade de uma solução é dada pela quantidade de iterações H-H multiplicada por -1, conforme descrito na subseção \ref{subsubsection:modeloHP}.  As soluções geradas que tiverem a qualidade maior que todas as soluções contidas no mecanismo de memória substituirão a solução que tiver menor similaridade segundo a distância de \textit{Hamming} \cite{hamming1950error}. Se a qualidade de uma solução gerada não for maior que todas as soluções, mas melhor em relação a um sub-conjunto do mecanismo de memória, está substituirá a solução que tiver menor qualidade e menor similaridade do sub-conjunto. E por fim se a qualidade da solução gerada for pior que todas contidas no mecanismo de memória esta é descartada. A similaridade é considerada afim de manter a diversidade entre as soluções.  
  
  
- A cada iteração a heurística de alto nível irá selecionar de maneira aleatória uma solução do mecanismo de memória; aplicar a heurística de baixo nível, selecionada pelo mecanismo de seleção, e atualizará a matriz de frequência associada à solução. Em seguida a qualidade e a diversidade da solução gerada precisam ser calculadas. A qualidade de uma solução para o PDP utilizando o modelo HP-3D: é inversamente proporcional à quantidade de interações entre aminoácidos hidrofóbicos. Portanto a qualidade de uma solução é dada pela quantidade de iterações H-H multiplicada por -1, conforme descrito na subseção \ref{subsubsection:modeloHP}. Para avaliar a diversidade será utilizada a entropia da informação.  As equações \ref{equation:entropy1} e \ref{equation:entropy2} exemplificam o cálculo de entropia.
+ %Para avaliar a diversidade será utilizada a entropia da informação.  As equações \ref{equation:entropy1} e \ref{equation:entropy2} exemplificam o cálculo de entropia.
  
- \begin{equation}
-	 \label{equation:entropy1}
- 	 \epsilon_i = \frac{\sum\limits_{i=1}^e \frac{e_{ij}}{m}  . \log \frac{e_{ij}}{m}}{-log~e}
- \end{equation}
- 
-  \begin{equation}
-  	 \label{equation:entropy2}
-  \epsilon = \frac{\sum\limits_{i=1}^e \epsilon_i}{e}
-  \end{equation}
-  
-	 \noindent$e_{ij}$ é a frequência de alocação do aminoácido $i$ para a direção $j$; \\
-	 $m$ é o número de objetos; \\
-	 $\epsilon_i$ representa a entropia para o aminoácido $i$;
-	 $\epsilon$ representa a entropia para uma solução completa (todos os aminoácidos) ($0 <= \epsilon_i <= 1$). 
- 
-  As novas soluções geradas são adicionadas no mecanismo de memória considerando a qualidade da solução assim como sua diversidade.
+% \begin{equation}
+%	 \label{equation:entropy1}
+% 	 \epsilon_i = \frac{\sum\limits_{i=1}^e \frac{e_{ij}}{m}  . \log \frac{e_{ij}}{m}}{-log~e}
+% \end{equation}
+% 
+%  \begin{equation}
+%  	 \label{equation:entropy2}
+%  \epsilon = \frac{\sum\limits_{i=1}^e \epsilon_i}{e}
+%  \end{equation}
+%  
+%	 \noindent$e_{ij}$ é a frequência de alocação do aminoácido $i$ para a direção $j$; \\
+%	 $m$ é o número de objetos; \\
+%	 $\epsilon_i$ representa a entropia para o aminoácido $i$;
+%	 $\epsilon$ representa a entropia para uma solução completa (todos os aminoácidos) ($0 <= \epsilon_i <= 1$). 
+% 
+
   
   
 \section{Processo geral} 
