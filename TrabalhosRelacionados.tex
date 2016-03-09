@@ -1,12 +1,23 @@
 \chapter{Trabalhos Relacionados}
 \label{Trabalhos Relacionados}
 
+Este capítulo irá apresentar alguns trabalhados relacionados com a presente proposta. Serão apresentados trabalhos que buscam construir/adaptar estratégicas heurísticas para encontrar melhores soluções ao PDP utilizando o modelo HP. Também será apresentado um trabalho que trata do \textit{design} automático de heurísticas de alto nível para um \textit{framework}  hiper-heurístico aplicado a problemas de \textit{benchmark} disponibilizados pelo \textit{software} HyFlex \cite{ochoa2012hyflex}.
+
+Unger e Moult em seu trabalho de grande influencia \cite{unger1993genetic} foram percussores ao aplicar um algoritmo genético ao PDP com o modelo HP, utilizando operadores de cruzamento e mutação aprimorados. Os resultados apresentados superam um número significativo de estratégias tradicionais anteriores que utilizam métodos Monte Carlo para explorar as conformações. 
+
+Um algoritmo genético multi memético foi proposto por Krasnogor et al. \cite{krasnogor2002multimeme}. Esta estrategia combina um algoritmo genético e busca locais selecionando a busca local que mais se adequar com a instancia (sequencia) sendo otimizada. Mais tarde este trabalho foi aprimorado com um estrategia \text{fuzzy} para as buscas locais. Dessa maneira produzindo melhores resultados para o PDP.
+
+Em \cite{hsu2003growth}, os autores utilizam um algoritmo de crescimento de cadeia, chamado \textit{pruned-enriched Rosenbluth method} (PERM). Esta estratégia se baseia em iterativamente construir uma conformação adicionando os aminoácidos um a um. 
+
+A otimização de colonia de formigas também foi aplicada para o PDP nos trabalhos \cite{shmygelska2002ant,shmygelska2003improved}. Estas abordagens utilizam formigas artificiais com objetivo de construir as conformações para o modelo HP. Uma busca local também foi introduzida com objetivo de melhorar e manter a qualidade das soluções. 
+
+Santana el al. \cite{santanna2008} propõem a aplicação de diferentes algoritmos de estimação de distribuição (AED) para o PDP. Os AEDs são capazes de aprender a explorar as regularidades do espaço de busca utilizando modelos de dependência probabilísticos. Os autores compararam os resultados com as abordagens descritas anteriormente neste capítulo e constataram que a sua abordagem conseguiu atingir os valores ótimos para várias sequências de aminoácidos.
+
+O trabalho desenvolvido por Sabar et al. \cite{sabar2014automatic} propõe uma estratégia, utilizando \text{Gene Expression Programming} (GEP), de geração de heurísticas de alto nível para um \textit {framework} hiper-heurístico  (TODO: Colocar uma referencia para o capitulo de hiper heuristica) aplicado a diversos problemas de \textit{benchmark} contidos no \text{framework} HyFlex \cite{ochoa2012hyflex}. Este trabalho se difere dos apresentados anteriormente pois foi aplicado a domínios de problemas diferentes do PDP. Este trabalho motivou a presente proposta pois os resultados apresentados se mostraram promissores. A aplicação de uma vertente de programação genética para geração de heurísticas tem uma maior capacidade de explorar espaços de busca complexos (com muitos mínimos locais) e com muitas restrições.
+
+A presente proposta visa aplicar evolução gramatical (EG) pois apesar de possuir as mesmas características da GEP ela torna mais amigável a manipulação dos indivíduos. Isto ocorre pelo fato de representá-los utilizando vetores de inteiros enquanto a GEP utiliza vetores de strings para representação. Dessa maneira, a EG facilita a manipulação dos indivíduos por operadores genéticos (cruzamento de mutação). A principal diferença entre esta proposta e os outros trabalhos relacionados \cite{santanna2008,shmygelska2002ant,shmygelska2003improved,hsu2003growth, krasnogor2002multimeme,krasnogor2002multimeme,unger1993genetic} é que este irá trabalhar em um nível acima: gerando heurísticas de alto nível para um \textit{framework} hiper heurístico que será aplicado ao PDP enquanto os outros trabalham aplicando meta-heurísticas diretamente ao PDP. 
+
 
 
 \section{Considerações Finais}
 \label{TrabalhosRelacionados:ConsideracoesFinais}
-A maioria dos trabalhos apresenta métodos manuais de seleção e aplicação de estilos arquiteturais adequados com base em um domínio específico de \gls{LPS}. Portanto, nenhuma das abordagens apresentadas nos 7 trabalhos selecionados se aplica a este trabalho, uma vez que nenhuma delas está relacionada com a área de \textit{Search-Based Software Engineering} ou algoritmos genéticos. As abordagens não apresentam nenhum conteúdo relacionado com a aplicação automática de restrições para estilos arquiteturais em arquiteturas de software. 
-
-Gomaa~\cite{gomaa2011livro} afirma que os estilos arquiteturais em camadas e cliente/servidor são os mais adequados para o contexto de LPS. Por esse motivo, esses estilos arquiteturais foram escolhidos para serem utilizados neste trabalho. O próximo capítulo apresenta as restrições impostas aos operadores de mutação com base nos estilos arquiteturais selecionados.
-
-

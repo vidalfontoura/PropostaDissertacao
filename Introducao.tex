@@ -1,7 +1,16 @@
 \chapter{Introdução}
 \label{Introducao}
 
-BLAH
+Proteínas exercem um papel fundamental na natureza, participando em muitas funções importantes das células vivas. Proteínas são estruturas que garantem o correto funcionamento de um amplo número de entidades biológicas. As estruturas são resultados de um processo chamado dobramento de proteínas, o qual uma cadeia de aminoácidos inicialmente desdobrada irá ser transformada em sua estrutura final, que também pode ser chamada de nativa. A predição de estruturas de proteínas possui um campo amplo de aplicações biotecnológicas e médicas. Por exemplo: design de novas proteínas e dobramentos \cite{wang2012structural, rothlisberger2008kemp}, síntese de novas drogas baseada em estruturas \cite{qian2004improvement, krieger2009improving}  e obtenção experimental de estruturas a partir de dados incompletos de ressonância magnética nuclear \cite{shen2009novo}.  
+A determinação da estrutura nativa de proteínas é uma tarefa desafiadora até mesmo para modernos super computadores. Isto ocorre por conta do imenso espaço de busca para testar todas as possíveis configurações que uma dada proteínas pode adotar. Diferentes formas de representação das estruturas/conformações de proteínas existem e podem ser utilizados para simular o processo de dobramento. Embora existam modelos extremamente detalhados, estas representações são computacionalmente muito custosas. Consequentemente muitos autores \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} utilizam modelos simplificados para representar as estruturas de proteínas. Um modelo bastante conhecido para este proposito, criado por Lau and Dill \cite{lau1989lattice}, é o modelo Hidrofóbico-Polar (HP). Generalizando os aminoácidos que compõem as proteínas em apenas dois tipos H ou P. Este modelo utiliza um \cite{grid} 2D ou cubo 3D para representar as possíveis conformações que uma dada proteína pode obter a partir do seu processo de dobramento. Para avaliar as estruturas representadas por este modelo é preciso computar o valor de energia associado a uma data conformação. Para isto, é necessário considerar as interações entre os aminoácidos existem três tipos HP, HH e PP mas apenas as interações do tipo HP influenciam o valor de energia de uma conformação. A questão que surge é como buscar, dentre as possíveis conformações, aquela que a energia seja minima.
+Diferentes estratégias heurísticas tem sido desenvolvidas para diminuir a complexidade para encontrar conformações utilizando modelos simplificados onde a energia seja ótima. Estas abordagens utilizam técnicas como algoritmos genéticos, otimização de colônia de formigas, algoritmos de estimação de distribuição, otimização por enxame de partículas, algoritmos evolucionários multiobjetivos dentre outras. 
+Esta proposta visa a aplicação de uma estratégia de geração automática do componentes de alto nível para um \textit{framework} hiper-heurístico, utilizando uma técnica de programação genética (PG). Pretende-se utilizar a técnica de evolução gramatical para gerar mecanismos de seleção e critérios de aceitação para um \textit{framework} hiper-heurístico aplicado ao problema de dobramento de proteínas (PDP).
+
+ 
+ 
+
+
+
 
 \section{Organização do Texto}
 \label{Introducao:Organizacao do Texto}
