@@ -32,7 +32,7 @@ As proteínas são polímeros compostos por sequências de aminoácidos (também chama
 
 É o processo em que cada cadeia polipeptídica é transformada em uma estrutura compacta que realiza alguma função biológica \cite{grantcharova2001mechanisms}. Estas funções incluem controle e regulação de processos químicos essenciais para os organismos vivos \cite{branden1999introduction}. A estrutura tridimensional mais estável é chamada de conformação nativa e é a qual permite que a proteína exerça corretamente sua função biológica \cite{lodish2000molecular, pedersen2000algorithms}.
 
-Experimentos conduzidos por Anfinsen et al. \cite{sela1957reductive, anfinsen1972studies, anfinsen1961kinetics}, mostraram que as proteínas possuem apenas uma conformação nativa e que as informações essenciais que codificam a estrutura estão contidas na sequência de aminoácidos. A conformação tridimensional nativa é dada pela estrutura primária (sequência) de uma proteína.
+Experimentos conduzidos por Anfinsen et al. \cite{sela1957reductive, anfinsen1972studies, anfinsen1961kinetics}, mostraram que as proteínas possuem apenas uma conformação nativa e que as informações essenciais que codificam a estrutura estão contidas na sequência de aminoácidos. A conformação tridimensional nativa é dada pela estrutura primária (sequência de aminoácidos) de uma proteína.
 
 Muitas proteínas podem desnaturar por modificações no ambiente em que estão inseridas conforme demonstrado por \cite{sela1957reductive, anfinsen1972studies, anfinsen1961kinetics}. Durante o processo de desnaturação as proteínas perdem sua forma nativa (desdobram) e, consequentemente, perdem sua função. O exemplo mais conhecido de desnaturação proteica é o da clara do ovo. A clara do ovo é composta por água e albumina. A albumina é uma proteína polar, portanto solúvel em 
 água. Ao fritar ou cozinhar o ovo eleva-se a temperatura levando à desnaturação da albumina que, mesmo ao retornar à temperatura original, não consegue voltar à sua conformação nativa. Além de se desdobrarem é possível que ocorram erros de dobramento na formação das proteínas causando com que a proteína não exerça sua função biológica corretamente. Estudos tentam identificar causas para os erros de dobramento das proteínas pois muitas enfermidades são causadas pelo mal dobramento de proteínas como, por exemplo, mal de Alzheimer \cite{hutton2001analysis, selkoe2001clearing}, alguns tipos de câncer \cite{bell2002p53, dawson2003n, ishimaru2003fibrillar}, fibrose cística \cite{thomas1992altered}, arteriosclerose
@@ -47,7 +47,7 @@ Na biologia computacional existem dois problemas que tratam sobre o dobramento d
 
 A ciência da computação desempenha um papel importante nisto, propondo e desenvolvendo modelos e soluções computacionais para o estudo de ambos os problemas PSP e PDP \cite{lopes2008evolutionary}. Muitas estratégias computacionais descrevem modelos de predição de estruturas de proteínas com diferentes níveis de detalhamento e complexidade mas que permitem uma representação fidedigna da estrutura tridimensional, sem perda de viabilidade computacional \cite{benitez2015algoritmo}. Dessa maneira  evitasse a obrigatoriedade do uso de métodos caros, aumentando a competitividade e auxiliando na consolidação de centros de pesquisa que desenvolvem estudos nesta área \cite{dill2000polymer}.
 
-Acredita-se que a conformação nativa de uma proteína é a sua estrutura mais estável, estando em um estado de energia livre mínima, o que gerou a chamada hipótese da termodinâmica \cite{pedersen2000algorithms}. Os modelos de predição de estruturas normalmente são baseados nas leis da termodinâmica onde o problema é modelado como um problema de minimização da energia livre a respeito das possíveis conformações que uma proteína pode assumir \cite{benitez2015algoritmo}. A minimização da energia livre é assumida como o principal fator para a formação da estrutura da proteína. Portanto, a conformação nativa de uma proteína é dada por aquela que possuir o menor valor de energia livre.
+Acredita-se que a conformação nativa de uma proteína é a sua estrutura mais estável, adquirindo um estado de energia livre mínima, o que gerou a chamada hipótese da termodinâmica \cite{pedersen2000algorithms}. Os modelos de predição de estruturas normalmente são baseados nas leis da termodinâmica onde o problema é modelado como um problema de minimização da energia livre a respeito das possíveis conformações que uma proteína pode assumir \cite{benitez2015algoritmo}. A minimização da energia livre é assumida como o principal fator para a formação da estrutura da proteína. Portanto, a conformação nativa de uma proteína é dada por aquela que possuir o menor valor de energia livre.
 
 Segundo \cite{pedersen2000algorithms}, um modelo computacional deve possuir algumas características:
 
@@ -61,7 +61,7 @@ A próxima subseção irá discorrer sobre alguns modelos de representação de estrut
 
 \section{Modelos de Representação de Proteínas}
 
-Em suma existem duas classes de modelos de representação de estruturas de proteínas: analítico (também conhecido como \textit{all atom}) e discreto (chamado também de \textit{coarse-grained}). Os modelos analíticos possuem uma descrição detalhada da estrutura tridimensional incluindo informações de todos os átomos que constituem uma proteína. Já os modelos discretos descrevem as proteínas com um nível bastante reduzido de detalhes. Os modelos discretos recentemente ganharam maior interesse, por conta de dois fatores: a simulação de modelos analíticos nem sempre é computacionalmente possível e modelos discretos possibilitam simulações biologicamente relevantes com melhor poder computacional \cite{benitez2015algoritmo}. Embora simulações utilizando modelos discretos ainda não possam ser consideradas tão preditivas quanto simulações analíticas, avanços notáveis tem sido alcançados, referente ao uso de metodologias mais rigorosas e criação de algoritmos para melhor explorar o espaço de busca \cite{tozzini2005coarse}. Esta proposta irá descrever apenas os modelos discretos pois visa a utilização do modelo hidrofóbico polar (HP) 3D.
+Em suma existem duas classes de modelos de representação de estruturas de proteínas: analítico (também conhecido como \textit{all atom}) e discreto (chamado também de \textit{coarse-grained}). Os modelos analíticos possuem uma descrição detalhada da estrutura tridimensional incluindo informações de todos os átomos que constituem uma proteína. Já os modelos discretos descrevem as proteínas com um nível bastante reduzido de detalhes. Os modelos discretos recentemente ganharam maior interesse, por conta de dois fatores: a simulação de modelos analíticos nem sempre é computacionalmente possível e modelos discretos possibilitam simulações biologicamente relevantes com melhor aproveitamento  computacional \cite{benitez2015algoritmo}. Embora simulações utilizando modelos discretos ainda não possam ser consideradas tão preditivas quanto simulações analíticas, avanços notáveis tem sido alcançados, referente ao uso de metodologias mais rigorosas e criação de algoritmos para melhor explorar o espaço de busca \cite{tozzini2005coarse}. Esta proposta irá descrever apenas os modelos discretos pois visa a utilização do modelo hidrofóbico polar (HP) 2D.
 
 \subsection{Modelos Discretos}
 
@@ -90,24 +90,24 @@ Os modelos computacionais mais simples são os conhecidos como modelos de grade (
 	\item Muitas regiões com conformações inválidas.
  \end{itemize}
  
- A figura\ref{fig:exemploModeloHP} apresenta um exemplo para os modelos HP (2D e 3D). Os pontos pretos são aminoácidos do tipo H e os brancos são aminoácidos do tipo P. As linhas pontilhadas representam as interações hidrofóbicas.
+ A figura \ref{fig:exemploModeloHP} apresenta um exemplo para os modelos HP (2D e 3D). Os pontos pretos são aminoácidos do tipo H e os brancos são aminoácidos do tipo P. As linhas pontilhadas representam as interações hidrofóbicas.
  
  \begin{figure}[!htb]
  	\centering
  	\includegraphics[scale=.9]{modeloHP/modeloHPExemplo.png}
- 	\caption{Exemplos de representação de proteínas utilizando os modelos HP 2DHP (a) e 3DHP (b). \\ Fonte: Adaptado de \cite{benitez2015algoritmo}}
+ 	\caption{Exemplos de representação de proteínas utilizando os modelos HP 2D-HP (a) e 3D-HP (b). \\ Fonte: Adaptado de \cite{benitez2015algoritmo}}
  	\label{fig:exemploModeloHP}
  \end{figure}
  
 
-Diversos trabalhos aplicam algoritmos evolucionários e bio-inspirados ao problema de dobramento de proteínas utilizando o modelo HP-3D. Uma decisão comum a todos trabalhos que utilizam o modelo HP-3D é a: de como representar as variáveis de entrada. Na literatura é possível encontrar basicamente três representações \cite{krasnogor1999protein, lopes2008evolutionary}: 
+Diversos trabalhos aplicam algoritmos evolucionários e bio-inspirados ao problema de dobramento de proteínas utilizando o modelo HP. Uma decisão comum a todos trabalhos que utilizam o modelo HP é a: de como representar as variáveis de entrada. Na literatura é possível encontrar basicamente três representações \cite{krasnogor1999protein, lopes2008evolutionary}: 
 
 \begin{itemize}
-	 \item Coordenadas cartesianas: Este método  representa a posição de cada aminoácido utilizando suas coordenadas espaciais (x,y,z) no plano cartesiano 3D. Geralmente, sua utilização não é adequada para algoritmos baseados em população, pois estruturas idênticas ou semelhantes podem ter coordenadas totalmente diferentes  \cite{benitez2015algoritmo}; 
+	 \item Coordenadas cartesianas: Este método  representa a posição de cada aminoácido utilizando suas coordenadas espaciais (x,y) no plano cartesiano 2D ou (x,y,z) no plano cartesiano 3D. Geralmente, sua utilização não é adequada para algoritmos baseados em população, pois estruturas idênticas ou semelhantes podem ter coordenadas totalmente diferentes  \cite{benitez2015algoritmo}; 
 	 \item Coordenadas internas: Nesta representação as conformações são representadas por conjuntos de movimentos que ditam como a estrutura final irá se parecer. Esta representação é a mais utilizada em abordagens com algoritmos evolucionários para o PDP \cite{benitez2015algoritmo}. Existem duas possibilidades de se representar conformações utilizando coordenadas internas:
 	 \begin{itemize}
-		\item Coordenadas absolutas: Este tipo de coordenada é baseado na orientação do eixo da grade onde a conformação esta contida. No caso de uma grade tridimensional os possíveis movimentos são: $\{N,S,L,O,F,T\}$ que correspondem aos movimentos norte,sul,leste,oeste,para frente, para trás.
-		\item Coordenadas relativas: Este tipo de representação defini a posição de cada aminoácido da cadeia em relação ao movimento do seu predecessor. O conjunto de movimentos possíveis é definido por: $\{F,C,B,E,D\}$, que correspondem aos movimentos: frente (continuar no mesmo sentindo do aminoácido anterior), à esquerda, à direita, para cima e para baixo. 
+		\item Coordenadas absolutas: Este tipo de coordenada é baseado na orientação do eixo da grade onde a conformação esta contida. No caso de uma grade bidimensional os possíveis movimentos são: $\{N,S,L,O\}$ norte,sul,leste e oeste. Já em uma grade 3D os possíveis movimentos são: $\{N,S,L,O,F,T\}$ que correspondem aos mesmos movimentos no caso 2D porém com dois movimentos a mais: para frente e para trás.
+		\item Coordenadas relativas: Este tipo de representação defini a posição de cada aminoácido da cadeia em relação ao movimento do seu predecessor. O conjunto de movimentos possíveis para o grade 2D é definido por: $\{F,E,D\}$, que correspondem aos movimentos: frente (continuar no mesmo sentindo do aminoácido anterior), à esquerda e à direita. Em uma grade 3D os possíveis movimentos são $\{F,E,D,C,B,\}$ possuindo dois movimentos a mais: para cima e para baixo. 
 	 \end{itemize}
 	 \item Matriz de distâncias: descreve a conformação de uma proteína através de uma matriz quadrada que representa a distância entre os aminoácidos. Este tipo de representação é raramente utilizado na literatura \cite{benitez2015algoritmo}.
 \end{itemize}
@@ -117,7 +117,7 @@ Diversos trabalhos aplicam algoritmos evolucionários e bio-inspirados ao problem
  \subsubsection{Outros Modelos}
 
 
-Além do modelo HP outros modelos simples em grade são utilizados para representar a estrutura de proteínas em outros estudos da literatura. Por exemplo:
+Além do modelo HP outros modelos simples em grade são utilizados para representar a estrutura de proteínas em outros estudos encontrados na literatura. Por exemplo:
 
 \begin{itemize}
 	\item Modelo PH (\textit{Perturbed Homopolymer}): Proposto por Shakhnovich et al. \cite{shakhnovich1993engineering}, as reações entre aminoácidos hidrofóbicos não são levadas em consideração, mas as interações entre aminoácidos do mesmo tipo são favorecidas, ou seja, H-H e P-P, desfavorecendo ligações H-P \cite{benitez2015algoritmo}.
@@ -131,22 +131,22 @@ Além do modelo HP outros modelos simples em grade são utilizados para representa
 	\item Modelo HPNX: modelo proposto por Bornberg-Bauer \cite{bornberg1997chain}. Divide
 	os 20 aminoácidos em 3 classes: hidrofóbicos (H), positivos (P), negativos
 	(N) e neutros (X). Este modelo, assim como o modelo hp, utiliza uma grade. Interações entre aminoácidos hidrofóbicos (H-H) representam
-	interações de atração e decrescem a energia da conformação em 4.0,
+	interações de atração e diminuiu a energia da conformação em 4.0,
 	as interações entre positivos (P-P) e negativos (N-N) representam interações de repulsão e aumentam a energia livre em 1,0 e as interações entre N e P decrescem a energia em 1,0. O objetivo também consiste em minimizar a energia livre. Da mesma maneira que o modelo HP, quanto mais interações hidrofóbicas melhor será o dobramento. Porém este modelo não desconsidera o valor das demais interações \cite{benitez2015algoritmo}.
 	\item Modelo HP-helicoidal (Helical-HP): este modelo proposto por Thomas e Dill \cite{thomas1993local} considera apenas uma grade bidimensional e inclui dois tipos de interação: interações não-locais através de energia de contatos hidrofóbicos e interações locais representadas por uma tendência à formação de a-hélices (chamada de propensão hélica) \cite{benitez2015algoritmo}.
 	\item Modelo \textit{off-lattice} AB: este modelo proposto por Stillinger et al. \cite{stillinger1993toy} divide os aminoácidos em duas classes de acordo com sua polaridade: Hidrofóbicos (A) e Hidrofílicos (ou polares  B). Inicialmente, este modelo foi aplicado em duas dimensões (2D AB \textit{off-lattice}) e posteriormente aplicado para três dimensões (3D AB \textit{off-lattice}). Os aminoácidos não consecutivos interagem através de um potencial modificado de Lennard-Jones. Os ângulos de torsão entre ligações sucessivas também contribuem no cálculo da função de energia \cite{benitez2015algoritmo}.
 	
 \end{itemize}
 
-\
+
 
 
 \section{Considerações Finais}
 \label{Problema de Dobramento de Proteínas:Consideracoes Finais}
 
-O modelo 3D HP é o modelo computacional mais simples para o PDP. Porém apesar da simplicidade se apresenta como um problema $NP$-completo. Este modelo será utilizado nesta proposta por conta de sua simplicidade de implementação, assim como o baixo custo computacional necessário para realizar simulações.
+O modelo HP é o modelo computacional mais simples para o PDP. Porém apesar da simplicidade se apresenta como um problema $NP$-completo. Este modelo será utilizado nesta proposta por conta de sua simplicidade de implementação, assim como o baixo custo computacional necessário para realizar simulações.
 
 
-Como Melhorar as Considerações FINAIS.
+TODO: Como Melhorar as Considerações FINAIS.
  
 
