@@ -10,12 +10,15 @@ A seguir são apresentadas as atividades que já foram realizadas durante o períod
 
 \begin{enumerate}
 	\item \textbf{Pesquisa de Trabalhos Relacionados} -- Foi realizada uma pesquisa de trabalhos relacionados, a qual foi apresentada no Capítulo \ref{Trabalhos Relacionados};
-	\item \textbf{Busca por Estilos Arquiteturais a serem utilizados} -- Foi conduzida uma busca com o objetivo de encontrar alguns estilos arquiteturais para serem utilizados juntamente com LPS neste trabalho. A relação de alguns estilos arquiteturais encontrados com base em afirmações de autores foi apresentada no Capítulo~\ref{Trabalhos Relacionados};
-	\item \textbf{Análise de Operadores} -- Foi conduzida uma análise dos operadores apresentados na Seção~\ref{Search-based Software Design:Operadores} com o objetivo de verificar quais deles poderiam corromper um estilo arquitetural.
-	\item \textbf{Proposta de Operadores com Restrições} -- Baseando-se na análise realizada na Atividade 3, foram propostos operadores com restrições associados aos estilos arquiteturais. Os operadores com restrições foram criados para os estilos arquiteturais selecionados na Atividade 2. Os operadores com restrições propostos foram apresentados no Capítulo~\ref{Operadores de Mutacao e Estilos Arquiteturais} e serão implementados no módulo OPLA-Arch-Styles.
+
+	\item \textbf{Análise de Hiper Heurísticas} -- Foi conduzida uma análise sobre abordagens hiper-heurísticas aplicadas a outros domínios de problema na literatura. Esta analise foi feita para avaliar qual abordagem tem maior potencial de obter melhores resultados para o PDP.
+	
+	\item \textbf{Busca por Heurísticas de Baixo Nível} -- Foi conduzida uma busca com o objetivo de encontrar um conjunto de heurísticas de baixo nível para o PDP. Estas  irão compor um \textit{pool} de heurísticas   e foram apresentadas no Capítulo \ref{Metodologia}.
+	
+	\item \textbf{Criação de Código Fonte Base} -- A criação do código fonte base foi iniciada e já possui as funcionalidades para 	interpretar e avaliar soluções ao PDP. Um interpretador para a gramática apresentada no capítulo \ref{Metodologia} também foi implementado. Mecanismos auxiliares de visualização das conformações também já foram implementados e serão úteis 
 \end{enumerate}
 
-Até o momento, apenas pseudocódigos para os operadores com restrições foram desenvolvidos, porém implementações concretas serão realizadas com o objetivo de validá-los. Com base nisso, algumas atividades a serem realizadas foram identificadas e são apresentadas na próxima seção.
+
 
 \section{Atividades a Serem Realizadas}
 \label{Proposta de Trabalho:Atividades a Serem Realizadas}
@@ -23,10 +26,17 @@ Até o momento, apenas pseudocódigos para os operadores com restrições foram dese
 As atividades a serem realizadas são apresentadas a seguir:
 
 \begin{enumerate}
-	\item \textbf{Implementação do módulo OPLA-Arch-Styles} -- O módulo OPLA-Arch-Styles apresentado na Seção \ref{Search-based Software Design:OPLA-Tool} deverá ser implementado do modo que foi apresentado na Figura~\ref{AspectosImplementacao:Figura:OPLA-Arch-Styles}. Os operadores com restrições de estilos arquiteturais propostos na Seção~\ref{Operadores de Mutacao e Estilos Arquiteturais} deverão ser implementados, de modo que a aplicação dos mesmos seja totalmente automática;
-	\item \textbf{Incorporação do módulo OPLA-Arch-Styles na ferramenta OPLA-Tool} -- O módulo OPLA-Arch-Styles deverá ser incorporado à ferramenta OPLA-Tool, realizando a integração com os demais módulos da ferramenta conforme ilustrado na Figura~\ref{Search-based Software Design:Figura:Modulos da OPLA-Tool};
-	\item \textbf{Validações Experimentais} -- O módulo OPLA-Arch-Styles deverá ser validado experimentalmente utilizando LPSs reais que sigam os estilos arquiteturais escolhidos. Um exemplo de LPS real que segue o estilo arquitetural em camadas é a AGM~\cite{seiAGM}, que foi apresentada no Capítulo~\ref{Operadores de Mutacao e Estilos Arquiteturais};
-	\item \textbf{Elaboração de Artigos Científicos} -- Após a Atividade 3, poderá ser realizada a redação de artigos científicos com o objetivo de publicar os resultados alcançados;
+
+
+	\item \textbf{Implementação de um interpretador de EG};
+
+
+\item \textbf{Implementação do \textit{framework} hiper-heurístico} -- Este \textit{framework}  irá receber as heurísticas de alto nível que serão geradas pela EG. 
+
+
+TODO: Descrever as outras atividades
+%\item \textbf{Validações Experimentais} -- O módulo OPLA-Arch-Styles deverá ser validado experimentalmente utilizando LPSs reais que sigam os estilos arquiteturais escolhidos. Um exemplo de LPS real que segue o estilo arquitetural em camadas é a AGM~\cite{seiAGM}, que foi apresentada no Capítulo~\ref{Operadores de Mutacao e Estilos Arquiteturais};
+	%\item \textbf{Elaboração de Artigos Científicos} -- Após a Atividade 3, poderá ser realizada a redação de artigos científicos com o objetivo de publicar os resultados alcançados;
 	\item \textbf{Redação da Dissertação};
 	\item \textbf{Defesa da Dissertação}.
 \end{enumerate}
