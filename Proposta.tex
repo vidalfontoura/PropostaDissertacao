@@ -46,6 +46,47 @@
 \usepackage{syntax}
 \grammarindent 80pt
 
+\usepackage{etoolbox} % for patching
+\makeatletter
+% define the main command on the model of the original one
+% we add stepping the counter and typesetting the number
+\def\gr@implnumbereditem<#1> #2 {%
+	\stepcounter{grammarline}%
+	\sbox\z@{\hskip\labelsep\grammarlabel{#1}{#2}}
+	\strut\@@par%
+	\vskip-\parskip%
+	\vskip-\baselineskip%
+	\hrule\@height\z@\@depth\z@\relax%
+	\item[%
+	\rlap{\hskip\dimexpr\linewidth+\grammarindent\relax %% add the number
+		\llap{(\thegrammarline)}}%
+	\unhbox\z@]%
+	\catcode`\<\active%
+}
+% copy the grammar environment under a new name
+\let\numberedgrammar\grammar
+\let\endnumberedgrammar\endgrammar
+% now patch the new environment
+\pretocmd\numberedgrammar{\setcounter{grammarline}{0}}{}{}
+\patchcmd\numberedgrammar
+{\gr@implitem}
+{\gr@implnumbereditem}
+{}{}
+\patchcmd\numberedgrammar
+{\def\alt{\\\llap{\textbar\quad}}}
+{\let\alt\alt@num}
+{}{}
+
+% the command for numbering the \alt lines
+\def\alt@num{\\\relax
+	\stepcounter{grammarline}%
+	\rlap{\hskip\dimexpr\linewidth-\labelwidth+\grammarindent-\labelsep\relax
+		\llap{(\thegrammarline)}}% add the number
+	\llap{\textbar\quad}}
+
+\newcounter{grammarline}
+\makeatother
+
 \usepackage{newfloat}
 % declare the floating environment {Grammar}
 % this will also define \listofGrammars:
