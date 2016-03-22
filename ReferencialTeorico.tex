@@ -207,10 +207,11 @@ Operadores genéticos tradicionais (cruzamento e mutação) podem ser utilizados em
 		Executa os $programas$\;
 		Atribui valor de \textit{fitness} para as soluções  of $populacao$ de acordo com a saída obtida pelos respectivos programas decodificados\;
 		\While{Condição de parada não atingida}{
-			$matingPopulation \gets $ Select parents\;
-			$offspring \gets$ Recombine $matingPopulation$\;
-			Apply gene prune operator to the solutions of $offspring$\;
-			Apply gene duplication operator to the solutions of $offspring$\;
+			$pais \gets $ Seleção dos indivíduos pais\;
+			$filhos \gets$ Cruzamento $pais$\;
+			$filhos \gets$ Mutação $filhos$\;
+		    Aplica o operator \text{Prune} nas soluções geradas $filhos$\;
+			Aplica o operador \textit{Duplicate} nas soluções geradas $filhos$\;
 			Apply mutation operator to the solutions of $offspring$\;
 			$programs \gets$ Map $offspring$ to programs using $GF$\;
 			Execute $programs$\;
