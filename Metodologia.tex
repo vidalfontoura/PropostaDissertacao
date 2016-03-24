@@ -1,13 +1,10 @@
 \chapter{Metodologia}
 \label{Metodologia}
-Neste capítulo será apresentada a metodologia para aplicação da EG para geração de heurísticas de alto nível para um \textit{framework} hiper-heurístico  para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2015automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} hiper-heurístico HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte. Nesta proposta pretende-se utilizar EG ao invés de GEP e aplicar ao PDP utilizando o modelo HP-2D. A representação de coordenadas relativas, descrita na subseção \ref{subsubsection:modeloHP}, será utilizada pois segundo o estudo realizado por Krasnogor et al. \cite{krasnogor1999protein} apresentam um maior potencial em conduzir os algoritmos a resultados melhores. Para representar as soluções ao problema PDP utilizando coordenadas relativas um esquema de codificação foi definido.  As coordenadas são traduzidas em valores inteiros da seguinte maneira F->0, E->1 e D->2. Portanto o alfabeto utilizado para representar as soluções é definido como $\{0,1,2\}$.
-
-
-Como mencionado anteriormente, um \textit{framework} hiper-heurístico possui dois níveis: alto (\textit{high-level heuristics}) e baixo (\textit{low-level heuristics}). Nesta proposta as heurísticas de alto nível são compostas por: um mecanismo de seleção e um critério de aceitação. Já as heurísticas de baixo nível consistem em um conjunto de heurísticas, selecionadas de estudos anteriores, um mecanismo de memória e uma função de \textit{fitness}. 
+Neste capítulo será apresentada a metodologia para aplicação da EG para geração de heurísticas de alto nível para um \textit{framework} hiper-heurístico  para o problema de dobramento de proteínas. Esta proposta é baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2015automatic}, o qual  utilizou GEP (\textit{gene expression programming}) com objetivo de gerar os componentes de um \textit{framework} hiper-heurístico para diversos domínios de problemas. Os testes de generalidade realizados por Sabar, utilizando os 6 domínios providos pelo \textit{framework} hiper-heurístico HyFlex, apresentaram bons resultados em relação às outras estratégias hiper-heurísticas do estado da arte. Nesta proposta pretende-se utilizar EG ao invés de GEP e aplicar ao PDP utilizando o modelo HP-2D. A representação de coordenadas relativas, descrita na subseção \ref{subsubsection:modeloHP}, será utilizada pois segundo o estudo realizado por Krasnogor et al. \cite{krasnogor1999protein} apresentam um maior potencial em conduzir os algoritmos a resultados melhores. Para representar as soluções ao problema PDP utilizando coordenadas relativas um esquema de codificação precisa ser definido. Esta representação utiliza um conjunto de movimentos para cada aminoácido baseado no seu predecessor. Os movimentos permitidos para o modelo HP-2D são: frente (F), esquerda(E) e direita(D). Dessa maneira, foi definido o seguinte esquema de codificação utilizando valores inteiros F->0, E->1 e D->2. Portanto o alfabeto utilizado para representar as soluções é definido como $\{0,1,2\}$. Como mencionado anteriormente, um \textit{framework} hiper-heurístico possui dois níveis: alto (\textit{high-level heuristics}) e baixo (\textit{low-level heuristics}). Nesta proposta as heurísticas de alto nível são compostas por: um mecanismo de seleção e um critério de aceitação. Já as heurísticas de baixo nível consistem em um conjunto de heurísticas, selecionadas de estudos anteriores, um mecanismo de memória e uma função de \textit{fitness}. 
 
 \section{\textit{Heurísticas de alto nível}}
 \label{sec:highlevelheuristics}
-Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é selecionar, de um \textit{pool} de heurísticas de baixo nível, a heurística que for mais adequada naquele momento. Geralmente, a escolha da heurística de baixo nível é crucial para uma boa exploração do espaço de busca, evitando que a busca fique confinada em uma região específica \cite{sabar2015automatic}. O objetivo do critério de aceitação é auxiliar o processo de busca a evitar mínimos locais assim como explorar diferentes regiões através do aceite ou rejeição de soluções geradas \cite{chakhlevitch2008hyperheuristics}. Espera-se que um bom critério de aceitação deva atingir um bom equilíbrio entre aceitar soluções melhores assim como soluções diversificadas se a busca estiver presa em um mínimo local \cite{sabar2015automatic}. Isto posto, a presente proposta projeta a geração \textit{online} dos componentes de uma heurística de alto nível (mecanismo de seleção e critério de aceitação) para um \textit{framework} hiper-heurístico. A figura \ref{fig:proposedFramework} apresenta o \textit{framework} proposto.
+  A presente proposta projeta a geração \textit{online} dos componentes de uma heurística de alto nível (mecanismo de seleção e critério de aceitação) para um \textit{framework} hiper-heurístico. A figura \ref{fig:proposedFramework} apresenta o \textit{framework} proposto.
 
  \begin{figure}[!htb]
  	\centering
@@ -16,9 +13,19 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  	\label{fig:proposedFramework}
  \end{figure}
  
- Como mencionado na subseção \ref{subsubsection:EvolucaoGramatical}, a EG utiliza vetores de valores inteiros com tamanho variável para representar seus indivíduos. Dessa maneira, a EG junta as vantagens tanto de algoritmos genéticos como de programação genética para evoluir populações de programas de computador.
- Uma gramática específica foi definida para decodificar os vetores inteiros em  heurísticas de alto nível. A gramática apresentada em \ref{grammar:proposedGrammar} foi definida para gerar mecanismos de seleção e critérios de aceitação. 
- \\
+  
+    
+	Heurísticas de alto nível geralmente levam em consideração uma ou mais informações referentes ao histórico das aplicações das heurísticas de baixo nível para tomar suas decisões. Tradicionalmente, informações tais como desempenho (capacidade de melhorar soluções), tempo (desde a última aplicação de uma dada heurística) e intervalo de confiança (no caso de estratégias que utilizam MAB) são utilizadas como base de conhecimento. Sabar et al. \cite{sabar2015automatic} propõem a utilização de vários critérios para avaliar as heurísticas de baixo nível. A razão disto se dá pelo fato de que cada critério irá favorecer a seleção de uma heurística de baixo nível a partir de uma perspectiva diferente. Por exemplo, algumas heurísticas de baixo nível podem ter bom desempenho apenas no início da busca, enquanto outras podem obter melhores resultados apenas ao final. Estes critérios propostos por Sabar et al. \cite{sabar2015automatic} são genéricos o suficiente para serem aplicados ao PDP e combinados com funções matemáticas simples compõem a \autoref{gram:gramatica}.
+	
+
+ 
+ 
+ % TODO: Talvez levar isso para seçao de EG
+ %Como mencionado na subseção \ref{subsubsection:EvolucaoGramatical}, a EG utiliza vetores de valores inteiros com tamanho variável para representar seus indivíduos. Dessa maneira, a EG junta as vantagens tanto de algoritmos genéticos como de programação genética para evoluir populações de programas de computador.
+ 
+ 
+ 
+
  
  \begin{Grammar}
  	\begin{grammar}
@@ -58,7 +65,8 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  
  
  
- O conjunto de funções e terminais apresentado na gramática \ref{grammar:proposedGrammar} foi desenvolvido baseado nos conjuntos  propostos no  trabalho relacionado \cite{sabar2014automatic}. Uma explicação detalhada de cada terminal para os mecanismos de seleção $(selection-terminal)$ é apresentada em seguida:
+ %O conjunto de funções e terminais apresentado na gramática \ref{grammar:proposedGrammar} foi desenvolvido baseado nos conjuntos  propostos no  trabalho relacionado \cite{sabar2014automatic}. 
+ Uma explicação detalhada de cada terminal para os mecanismos de seleção $(selection-terminal)$ é apresentada em seguida:
 
  
  \begin{itemize}
@@ -111,17 +119,18 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  \subsection{Função de \textit{Fitness}}
  
  Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico. Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada, $Nh$ representa o número de indivíduos da EG e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calculada como: $Ph[i] = Ph[i] + \sigma $ onde $\sigma = (f_i - f_b)/(f_i + f_b)$. Os demais indivíduos $j \in \{1, ..., Nh\} ~e~ j \neq i$ são penalizados: $Ph[j] = Ph[j] - (\sigma / (Nh - 1))$. Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo: $Ph[i] = Ph[i] - |\sigma \times \alpha|$ onde $\alpha =$ iteração corrente $/$ número total de iterações. Os demais indivíduos $j \neq i$ recebem uma recompensa: $Ph[j] = 
-  Ph[j] + (|\sigma| \times \alpha / (Nh -1))$. A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e criério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
+  Ph[j] + (|\sigma| \times \alpha / (Nh -1))$. A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e critério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
  
  \subsection{Critério de Parada}
+ \label{sub:criterioParada}
  
  Para terminar o processo da EG um número máximo de iterações que não obtêm melhora será utilizado como condição de parada. Note que este critério de parada é referente à parada do processo da EG e não das execuções dos indivíduos dentro do \textit{framework} hiper-heurístico, que ocorrem durante o progresso da EG. 
  
- \section{\textit{Low Level Heuristics}} 
+ \section{\textit{Heurísticas de baixo nível}} 
  
  Nas heurísticas de baixo nível o \textit{framework} proposto possui 2 componentes principais: um conjunto de heurísticas de baixo nível e um mecanismo de memória.
  
- \subsection{Conjunto de \textit{Low Level Heuristics}}
+ \subsection{Conjunto de heurísticas de baixo nível}
  Um conjunto de heurísticas de baixo nível foi selecionado a partir de uma revisão bibliográfica dos trabalhos mais recentes referentes ao PDP utilizando o modelo HP-2D. 
  
  
@@ -198,48 +207,77 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
  
  
  
+ \section{Processo geral da EG proposta} 
  
+ As principais etapas da EG proposta serão apresentadas nesta seção.
+ Inicialmente uma população de indivíduos (heurísticas de alto nível: mecanismos de seleção e critérios de aceitação) é gerada de maneira aleatória. O \textit{fitness} da população é calculado inserindo os indivíduos em um \textit{framework} hiper-heurístico e o executando por um certo número de iterações. E de maneira iterativa selecionar indivíduos pais e aplicar os operadores de cruzamento, \textit{prune}, mutação, e \textit{duplicate} para gerar descendentes. Para avaliar os descendentes, os seguintes passos são executados:
  
+ \begin{enumerate}
+ 	\item Cada indivíduo é decodificado em um mecanismo de seleção e um critério de aceitação (heurística de alto nível). Os valores, descritos 	para o conjunto terminal na seção \ref{sec:highlevelheuristics}, de cada heurística de baixo nível serão utilizados como entrada para o mecanismo de seleção.
+ 	\item Execução do mecanismo de seleção com objetivo de ordenar o conjunto de heurísticas de baixo nível. As heurísticas de baixo nível são ordenadas da maior para a menor baseando-se no resultado da expressão referente ao mecanismo de seleção. 
+ 	\item Selecionar de maneira aleatória uma solução do mecanismo de memória, o qual será detalhado na \autoref{sub:MecanismoDeMemoria}. Aplicar a heurística de baixo nível classificada com o maior valor e calcular a qualidade da solução gerada.
+ 	\item Se a solução gerada for melhor do que a atual, a atual é substituída. Caso contrário a expressão referente ao critério de aceitação é executada. A solução gerada pela heurística de baixo nível é aceita caso o exponencial natural do valor, retornado pelo critério de aceitação, seja menor ou igual a 0.5 (a função $e^x$ retorna valores entre 0 e 1). Sabar et al. \cite{sabar2014automatic} menciona que este valor de 0.5 é sugerido pela literatura. 
+ 	\item Aplicar a heurística de baixo nível, que foi selecionada pelo mecanismo de seleção, repetidamente até que não ocorram mais melhorias.
+ 	\item Se não houverem mais melhorias, troca-se a heurística de baixo nível atual pela segunda melhor classificada, baseando-se no valor retornado pelo mecanismo de seleção.
+ 	\item Se o \textit{framework} chegar ao fim da lista de heurísticas de baixo nível, é executado o mecanismo de seleção novamente e a lista de heurísticas de baixo nível é reordenada. A busca reinicia agora utilizando a heurística de baixo nível com maior valor para a expressão referente ao mecanismo de seleção.
+ 	\item O \textit{framework} proposto continuará utilizando os componentes da heurística de alto nível (mecanismo de seleção e critério de aceitação) por um tempo pré-determinado de iterações.
+ 	\item A solução gerada ao final da busca do \textit{framework} hiper-heurístico  será avaliada para entrar ou não no mecanismo de memória.
+ \end{enumerate}
  
+ O processo da EG irá parar apenas quando o critério de parada discutido na \autoref{sub:criterioParada} for atingido e será retornado o indivíduo (heurística de alto nível) que possuir o maior valor de \textit{fitness}. Também será retornada a solução ao PDP que tiver maior qualidade no mecanismo de memória.
+  
  
  \subsection{Mecanismo de Memória}
+ \label{sub:MecanismoDeMemoria}
  
- A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. Blum et al. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade de explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversificadas, atualizado conforme o progresso da busca. Nesta proposta o mecanismo de memória tem a responsabilidade de armazenar soluções para o problema PDP utilizando a representação de coordenadas relativas para o modelo HP-2D. Esta representação possibilita a geração de soluções inválidas, que possuem colisões. Tradicionalmente algoritmos evolutivos inicializam suas populações iniciais de maneira aleatória, por conta disto  muitas soluções inválidas ao problema PDP, podem ser geradas na inicialização. Isto geralmente  ocasiona perda de tempo de processamento, por conta da grande quantidade de conformações inválidas antes que bons resultados sejam obtidos. Diante disto,  Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população de seu algoritmo genético, dividido-a em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial. Para garantir que os indivíduos não possuam colisões, uma estratégia de \textit{backtracking} deve ser utilizada. Nesta proposta, pretende-se utilizar uma estratégia similar, adaptada ao modelo HP-2D. As possíveis conformações podem ser representadas por um caminho em um grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o último sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor.
+ A maioria dos \textit{frameworks} hiper-heurísticos propostos na literatura operam sobre uma única solução \cite{chakhlevitch2008hyperheuristics, burke2013hyper}. Blum et al. \cite{blum2011hybrid} menciona que utilizar uma única solução pode restringir a capacidade de explorar um espaço de busca grande e restrito. Dessa maneira, Sabar et al. \cite{sabar2014automatic} propôs uma abordagem que utiliza um mecanismo de memória, assim como Talbi el al. \cite{talbi2006cosearch}, o qual contém um conjunto de soluções com alta qualidade e diversificadas, atualizado conforme o progresso da busca. Nesta proposta o mecanismo de memória tem a responsabilidade de armazenar soluções para o problema PDP utilizando a representação de coordenadas relativas para o modelo HP-2D. 
+ 
+ \subsubsection{Inicialização do Mecanismo de Memória}
+ 
+  Tradicionalmente algoritmos evolutivos inicializam suas populações iniciais de maneira aleatória, por conta disto  muitas soluções inválidas ao problema PDP, podem ser geradas na inicialização. Isto geralmente  ocasiona perda de tempo de processamento, por conta da grande quantidade de conformações inválidas antes que bons resultados sejam obtidos. Diante disto,  Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população de seu algoritmo genético, dividido-a em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial. Para garantir que os indivíduos não possuam colisões, uma estratégia de \textit{backtracking} deve ser utilizada. Nesta proposta, pretende-se utilizar uma estratégia similar, adaptada ao modelo HP-2D.  A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem os movimentos marcados como más escolhas). Caso todos os movimentos estejam marcados como má escolha, a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como uma má escolha. A estratégia de \textit{backtracking} termina quando gerar uma conformação que não possua colisões.
+ 
+   %As possíveis conformações podem ser representadas por um caminho em um grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o último sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor.
+  
+
+ 
+ \subsubsection{Atualização do Mecanismo de Memória}
+ Para cada indivíduo (heurística de alto nível) será selecionada de maneira aleatória uma solução do mecanismo de memória e a busca irá iniciar em torno desta solução, quando o \text{framework} hiper-heurístico atingir o seu número máximo de iterações a solução final tem que ser avaliada para verificar sua qualidade e diversidade. A qualidade de uma solução para o PDP utilizando o modelo HP é inversamente proporcional à quantidade de interações entre aminoácidos hidrofóbicos. Portanto a qualidade de uma solução é dada pela quantidade de iterações H-H multiplicada por -1, conforme descrito na subseção \ref{subsubsection:modeloHP}.  As soluções geradas que tiverem a qualidade maior que todas as soluções contidas no mecanismo de memória substituirão a solução que tiver menor similaridade segundo a distância de \textit{Hamming} \cite{hamming1950error}. Se a qualidade de uma solução gerada não for maior que todas as soluções, mas melhor em relação a um sub-conjunto do mecanismo de memória, esta substituirá a solução que tiver menor qualidade e menor similaridade do sub-conjunto. E por fim se a qualidade da solução gerada for pior que todas contidas no mecanismo de memória, esta é descartada. A similaridade é considerada a fim de manter a diversidade entre as soluções.  
+ 
+ 
+ 
+ 
+% Esta representação possibilita a geração de soluções inválidas, que possuem colisões. Tradicionalmente algoritmos evolutivos inicializam suas populações iniciais de maneira aleatória, por conta disto  muitas soluções inválidas ao problema PDP, podem ser geradas na inicialização. Isto geralmente  ocasiona perda de tempo de processamento, por conta da grande quantidade de conformações inválidas antes que bons resultados sejam obtidos. Diante disto,  Benítez et al. \cite{benitez2015algoritmo} propôs uma estratégia especializada de inicialização. Benítez et al. \cite{benitez2015algoritmo} inicializou a população de seu algoritmo genético, dividido-a em duas partes. Uma gerada aleatoriamente, com indivíduos que potencialmente possuem colisões. E uma segunda parte onde todos os indivíduos são livres de colisões. Uma configuração é utilizada para definir a proporção entre as duas partes da população inicial. Para garantir que os indivíduos não possuam colisões, uma estratégia de \textit{backtracking} deve ser utilizada. Nesta proposta, pretende-se utilizar uma estratégia similar, adaptada ao modelo HP-2D. As possíveis conformações podem ser representadas por um caminho em um grafo orientado estruturado como uma árvore. Consequentemente, cada nó da árvore representa uma solução candidata parcial $c$, desde o primeiro aminoácido até o último sendo considerado. Portanto, um caminho até um nó folha representa uma conformação completa. As arestas do grafo representam o movimento de cada aminoácido relativo a seu predecessor.
  
  % A figura \ref{fig:backtrackInit}  apresenta um fragmento do espaço de busca para uma cadeia hipotética com 5 aminoácidos. O espaço de busca completo é grande totalizando  $5^4=625$ possibilidades, e não pode ser apresentado por questões de visualização.
  
-% 	\begin{figure}[!htb]
-% 		\centering
-% 		\includegraphics[scale=0.8]{Imagens/BacktrackingInit.png}
-% 		\caption{Fragmento do espaço de busca para o modelo HP. \\Fonte Autoria Própria}
-% 		\label{fig:backtrackInit}
-% 	\end{figure}
- 	
-% 	Na figura \ref{fig:backtrackInit} (TODO: arrumar imagem e explicação para o HP-2D) o caminho apresentado pelas setas azuis representa uma solução que gera uma conformação válida (sem colisões). A seta vermelha demonstra que se caso o ultimo passo fosse alterado de 0 para 1. Esta alteração causaria uma conformação inválida, pois posicionaria o ultimo aminoácido na posição 0,1,1 a qual já havia sido ocupada no segundo passo. 
- 	A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem os movimentos marcados como más escolhas). Caso todos os movimentos estejam marcados como má escolha, a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como uma má escolha. A estratégia de \textit{backtracking} termina quando gerar uma conformação que não possua colisões.
- 	
- 	
-% 	e selecionando de maneira aleatória o movimento para o próximo 
-% 	
-% 	
-% 	aminoácido. Caso este movimento cause uma colisão (seja posicionado em uma região da grade que já havia um aminoácido) o \textit{backtracking} entra em cena percorrendo a árvore de maneira recursiva 
- 	 
-  
+ % 	\begin{figure}[!htb]
+ % 		\centering
+ % 		\includegraphics[scale=0.8]{Imagens/BacktrackingInit.png}
+ % 		\caption{Fragmento do espaço de busca para o modelo HP. \\Fonte Autoria Própria}
+ % 		\label{fig:backtrackInit}
+ % 	\end{figure}
  
-% Para cada solução, uma matriz de frequência é associada afim de medir a diversidade da solução. A matriz de frequência irá armazenar a frequência que cada aminoácido foi atribuído para cada uma das direções possíveis $\{0,1,2,3,4\}$. A figura \ref{fig:frequencyMatrix} apresenta um exemplo de uma matriz de frequência para uma cadeia hipotética $HPPHHHP$ de 7 aminoácidos. Observando a figura  \ref{fig:frequencyMatrix} é possível notar que o aminoácido 0 foi atribuído a direção E (3), que significa esquerda, duas vezes, três vezes para a direção D (4), que significa direita e nenhuma vez para as direções F(0), D(1) e B(2). 
+ % 	Na figura \ref{fig:backtrackInit} (TODO: arrumar imagem e explicação para o HP-2D) o caminho apresentado pelas setas azuis representa uma solução que gera uma conformação válida (sem colisões). A seta vermelha demonstra que se caso o ultimo passo fosse alterado de 0 para 1. Esta alteração causaria uma conformação inválida, pois posicionaria o ultimo aminoácido na posição 0,1,1 a qual já havia sido ocupada no segundo passo. 
+% A estratégia de inicialização com \textit{backtracking} irá começar posicionando o primeiro aminoácido na posição 0,0. Para posicionar o próximo aminoácido, um movimento é selecionado de maneira aleatória. Caso o movimento cause uma colisão, este movimento será marcado como uma má escolha e um novo movimento é selecionado aleatoriamente (do conjunto que restou sem os movimentos marcados como más escolhas). Caso todos os movimentos estejam marcados como má escolha, a estratégia de \textit{backtracking} irá retornar de maneira recursiva para o aminoácido anterior e marcar a escolha em questão como uma má escolha. A estratégia de \textit{backtracking} termina quando gerar uma conformação que não possua colisões.
  
  
-% 	\begin{figure}[!htb]
-% 		\centering
-% 		\includegraphics[scale=0.8]{Imagens/FrequencyMatrix.png}
-% 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
-% 		\label{fig:frequencyMatrix}
-% 	\end{figure}
-%
+ % 	e selecionando de maneira aleatória o movimento para o próximo 
+ % 	
+ % 	
+ % 	aminoácido. Caso este movimento cause uma colisão (seja posicionado em uma região da grade que já havia um aminoácido) o \textit{backtracking} entra em cena percorrendo a árvore de maneira recursiva 
  
- A cada iteração a heurística, de alto nível irá selecionar de maneira aleatória uma solução do mecanismo de memória; aplicar a heurística de baixo nível, selecionada pelo mecanismo de seleção. %, e atualizará a matriz de frequência associada à solução %. 
- Em seguida a qualidade e a diversidade da solução gerada precisam ser avaliadas. A qualidade de uma solução para o PDP utilizando o modelo HP é inversamente proporcional à quantidade de interações entre aminoácidos hidrofóbicos. Portanto a qualidade de uma solução é dada pela quantidade de iterações H-H multiplicada por -1, conforme descrito na subseção \ref{subsubsection:modeloHP}.  As soluções geradas que tiverem a qualidade maior que todas as soluções contidas no mecanismo de memória substituirão a solução que tiver menor similaridade segundo a distância de \textit{Hamming} \cite{hamming1950error}. Se a qualidade de uma solução gerada não for maior que todas as soluções, mas melhor em relação a um sub-conjunto do mecanismo de memória, esta substituirá a solução que tiver menor qualidade e menor similaridade do sub-conjunto. E por fim se a qualidade da solução gerada for pior que todas contidas no mecanismo de memória, esta é descartada. A similaridade é considerada a fim de manter a diversidade entre as soluções.  
  
+ 
+ % Para cada solução, uma matriz de frequência é associada afim de medir a diversidade da solução. A matriz de frequência irá armazenar a frequência que cada aminoácido foi atribuído para cada uma das direções possíveis $\{0,1,2,3,4\}$. A figura \ref{fig:frequencyMatrix} apresenta um exemplo de uma matriz de frequência para uma cadeia hipotética $HPPHHHP$ de 7 aminoácidos. Observando a figura  \ref{fig:frequencyMatrix} é possível notar que o aminoácido 0 foi atribuído a direção E (3), que significa esquerda, duas vezes, três vezes para a direção D (4), que significa direita e nenhuma vez para as direções F(0), D(1) e B(2). 
+ 
+ 
+ % 	\begin{figure}[!htb]
+ % 		\centering
+ % 		\includegraphics[scale=0.8]{Imagens/FrequencyMatrix.png}
+ % 		\caption{Fragmento BLAH. \\Fonte Autoria Própria}
+ % 		\label{fig:frequencyMatrix}
+ % 	\end{figure}
+ %
  
  %Para avaliar a diversidade será utilizada a entropia da informação.  As equações \ref{equation:entropy1} e \ref{equation:entropy2} exemplificam o cálculo de entropia.
  
@@ -261,25 +299,7 @@ Nas heurísticas de alto nível, a responsabilidade do mecanismo de seleção é sele
 
   
   
-\section{Processo geral} 
 
-As principais etapas do \textit{framework} proposto serão apresentadas nesta seção.
-Inicialmente uma população de indivíduos (heurísticas de alto nível: mecanismos de seleção e critérios de aceitação) é gerada de maneira aleatória. O \textit{fitness} da população é calculado inserindo os indivíduos em um \textit{framework} hiper-heurístico e o executando por um certo número de iterações. E de maneira iterativa selecionar indivíduos pais e aplicar os operadores de cruzamento, mutação, \textit{prune} e \textit{duplicate} para gerar descendentes. Para avaliar os descendentes, os seguintes passos são executados:
-
-\begin{enumerate}
-	\item Cada indivíduo é decodificado em um mecanismo de seleção e um critério de aceitação. Os valores, descritos 	para o conjunto terminal na seção \ref{sec:highlevelheuristics}, de cada heurística de baixo nível serão utilizados como entrada para o mecanismo de seleção.
-	\item Execução do mecanismo de seleção com objetivo de ordenar o conjunto de heurísticas de baixo nível. As heurísticas de baixo nível são ordenadas da maior para a menor baseando-se no resultado da expressão referente ao mecanismo de seleção. 
-	\item Selecionar uma solução do mecanismo de memória. Aplicar a heurística de baixo nível classificada com o maior valor e calcular a qualidade da solução gerada.
-	\item Se a solução gerada for melhor do que a atual, a atual é substituída. Caso contrário a expressão referente ao critério de aceitação é executada. A solução gerada pela heurística de baixo nível é aceita caso o exponencial natural do valor, retornado pelo critério de aceitação, seja menor ou igual a 0.5 (a função $e^x$ retorna valores entre 0 e 1). Sabar et al. \cite{sabar2014automatic} menciona que este valor de 0.5 é sugerido pela literatura. 
-	\item Aplicar a heurística de baixo nível, que foi selecionada pelo mecanismo de seleção, repetidamente até que não ocorram mais melhorias.
-	\item Se não houverem mais melhorias, troca-se a heurística de baixo nível atual pela segunda melhor classificada, baseando-se no valor retornado pelo mecanismo de seleção.
-	\item Se o \textit{framework} chegar ao fim da lista de heurísticas de baixo nível, é executado o mecanismo de seleção novamente e a lista de heurísticas de baixo nível é reordenada. A busca reinicia agora utilizando a heurística de baixo nível com maior valor para a expressão referente ao mecanismo de seleção.
-	\item O \textit{framework} proposto continuará utilizando os componentes da heurística de alto nível (mecanismo de seleção e critério de aceitação) por um tempo pré-determinado de iterações.
-	
-\end{enumerate}
- 
- 
- 
  
  
  
@@ -297,5 +317,5 @@ Inicialmente uma população de indivíduos (heurísticas de alto nível: mecanismos 
 \label{Metodologia:ConsideracoesFinais}
 
 
-TODO: Escrever algo aqui :)
+
 
