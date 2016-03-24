@@ -6,6 +6,9 @@ A determinação da estrutura nativa de proteínas é uma tarefa desafiadora até mes
 Diferentes estratégias heurísticas têm sido desenvolvidas para diminuir a complexidade para encontrar conformações onde a energia seja mínima utilizando modelos simplificados. Estas abordagens utilizam técnicas como algoritmos genéticos \cite{unger1993genetic}, otimização de colônia de formigas \cite{shmygelska2002ant,shmygelska2003improved}, algoritmos de estimação de distribuição \cite{santanna2008} e algoritmos evolucionários multiobjetivos \cite{gabriel2012algoritmos} dentre outras. 
 
 %TODO: Melhorar motivacao
+Apesar de existirem diferentes estratégias já propostas para o PDP ainda existe dificuldades em manter o desempenho desta estratégias ao aumentar o tamanho das sequência de aminoácidos nas simulações. Este fato continua motivando pesquisadores a buscar novas heurísticas e meta-heurísticas que consigam manter um bom desempenho quando submetidas a sequência de aminoácidos maiores. Geralmente as heurísticas propostas precisam passar por um processo de configuração fina para obterem bons resultados. Diferentes parâmetros devem ser escolhidos e nem sempre estas escolhas são triviais. É nesse contexto que as hiper-heurísticas geralmente são aplicadas e vem apresentados bons resultados \cite{burke2013hyper}. Entretanto, não existem muitas abordagens que visam o \textit{design} automático de novas heurísticas ou automatização da seleção de heurísticas existentes para o PDP.
+
+
 
 Esta proposta visa a aplicação de uma estratégia de geração automática dos componentes de alto nível para um \textit{framework} hiper-heurístico, utilizando evolução gramatical (EG) que trata-se de uma técnica de programação genética (PG). Pretende-se utilizar a EG para gerar mecanismos de seleção e critérios de aceitação para um \textit{framework} hiper-heurístico aplicado ao problema de dobramento de proteínas (PDP).
 
