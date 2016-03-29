@@ -1,11 +1,14 @@
 \chapter{Trabalhos Relacionados}
 \label{Trabalhos Relacionados}
 
-Este capítulo irá apresentar alguns trabalhados relacionados com a presente proposta. Serão apresentados trabalhos que buscam construir/adaptar estratégicas heurísticas para encontrar melhores soluções ao PDP utilizando o modelo HP. Também será apresentado um trabalho que trata do \textit{design} automático de heurísticas de alto nível para um \textit{framework}  hiper-heurístico aplicado a problemas de \textit{benchmark} disponibilizados pelo \textit{software} HyFlex \cite{ochoa2012hyflex}.
+Este capítulo irá apresentar alguns trabalhados relacionados com a presente proposta. Serão apresentados trabalhos que buscam construir/adaptar estratégicas heurísticas para encontrar melhores soluções ao PDP utilizando o modelo HP. Também serão apresentados alguns trabalhos que utilizam técnicas de programação genética para gerar heurísticas para diferentes problemas.
+
+
+%Também será apresentado um trabalho que trata do \textit{design} automático de heurísticas de alto nível para um \textit{framework}  hiper-heurístico aplicado a problemas de \textit{benchmark} disponibilizados pelo \textit{software} HyFlex \cite{ochoa2012hyflex}.
 
 Unger e Moult em seu trabalho de grande influência \cite{unger1993genetic} foram percussores ao aplicar um algoritmo genético ao PDP com o modelo HP, utilizando operadores de cruzamento e mutação aprimorados. Os resultados apresentados superam um número significativo de estratégias tradicionais anteriores que utilizam métodos Monte Carlo para explorar as conformações. 
 
-Um algoritmo genético multi memético foi proposto por Krasnogor et al. \cite{krasnogor2002multimeme}. Esta estratégia combina um algoritmo genético e buscas locais selecionando a busca local que mais se adequar com a instância (sequência) sendo otimizada. Mais tarde este trabalho foi aprimorado com um estrategia \text{fuzzy} para as buscas locais, d essa maneira produzindo melhores resultados para o PDP.
+Um algoritmo genético multi memético foi proposto por Krasnogor et al. \cite{krasnogor2002multimeme}. Esta estratégia combina um algoritmo genético e buscas locais selecionando a busca local que mais se adequar com a instância (sequência) sendo otimizada. Mais tarde este trabalho foi aprimorado com um estrategia \text{fuzzy} para as buscas locais, dessa maneira produzindo melhores resultados para o PDP.
 
 Em \cite{hsu2003growth}, os autores utilizam um algoritmo de crescimento de cadeia, chamado \textit{pruned-enriched Rosenbluth method} (PERM). Esta estratégia se baseia em iterativamente construir uma conformação adicionando os aminoácidos um a um. 
 
@@ -13,14 +16,25 @@ A otimização de colônia de formigas também foi aplicada para o PDP nos trabalhos
 
 Santana el al. \cite{santanna2008} propõem a aplicação de diferentes algoritmos de estimação de distribuição (AED) para o PDP. Os AEDs são capazes de aprender a explorar as regularidades do espaço de busca utilizando modelos de dependência probabilísticos. Os autores compararam os resultados com as abordagens descritas anteriormente neste capítulo e constataram que a sua abordagem conseguiu atingir os valores ótimos para várias sequências de aminoácidos.
 
+O estudo desenvolvido por Lin et al. \cite{lin2011protein} utiliza um algoritmo genético híbrido combinando um operador de mutação baseado na otimização por exame de partículas. Os resultados apresentados por Lin et al. se mostraram superiores aos apresentados por outros estudos, da época, que utilizam algoritmos evolutivos. Este trabalho também utiliza operadores de buscas locais que serão utilizados como heurísticas de baixo nível na presente proposta. 
+
+
+Custódio et al. \cite{custodio2014multiple} desenvolveram um metodologia que consistiu modificar um algoritmo genético para selecionar os operadores de cruzamento e mutação de maneira dinâmica. Além disso, utilizarão um mecanismo baseado em \textit{crowding}  para manter a diversidade durante o processo de busca. Este trabalho apresentou bons resultados em relação a outros estudos que exploram algoritmos evolutivos. Os operadores genéticos utilizados deste trabalho também serão implementados como heurísticas de baixo nível nesta proposta. 
+
+
+Lourenço et al. \cite{lourencco2012evolving} desenvolveram uma estratégia utilizando evolução gramatical para geração e \textit{tuning} automático de algoritmos evolutivos. Neste trabalho uma gramática foi desenvolvida e contém os principais componentes de algoritmos evolutivos. Os resultados apresentados por Lourenço et al. provaram a habilidade da abordagem para evoluir algoritmos evolutivos. Os resultados obtidos pelos algoritmos evolutivos gerados pela evolução gramatical são competitivos com outras abordagens padrão.
+
+
 O trabalho desenvolvido por Sabar et al. \cite{sabar2014automatic} propõe uma estratégia, utilizando \text{Gene Expression Programming} (GEP), de geração de heurísticas de alto nível para um \textit {framework} hiper-heurístico aplicado a diversos problemas de \textit{benchmark} contidos no \text{framework} HyFlex \cite{ochoa2012hyflex}. Este trabalho se difere dos apresentados anteriormente pois foi aplicado a domínios de problemas diferentes do PDP. Este trabalho motivou a presente proposta pois os resultados apresentados se mostraram promissores. A aplicação de uma vertente de programação genética para geração de heurísticas tem uma maior capacidade de explorar espaços de busca complexos (com muitos mínimos locais) e com muitas restrições.
 
-A presente proposta visa aplicar evolução gramatical (EG) pois apesar de possuir as mesmas características da GEP ela torna mais amigável a manipulação dos indivíduos. Isto ocorre pelo fato de representá-los utilizando vetores de inteiros enquanto a GEP utiliza vetores de strings para representação. Dessa maneira, a EG facilita a manipulação dos indivíduos por operadores genéticos (cruzamento de mutação). A principal diferença entre esta proposta e os outros trabalhos relacionados \cite{santanna2008,shmygelska2002ant,shmygelska2003improved,hsu2003growth, krasnogor2002multimeme,krasnogor2002multimeme,unger1993genetic} é que este irá trabalhar em um nível acima: gerando heurísticas de alto nível para um \textit{framework} hiper heurístico que será aplicado ao PDP enquanto os outros trabalham aplicando meta-heurísticas diretamente ao PDP. 
+
+%TODO: Melhorar essa parte em conjunto com as consideracoes finais
+A presente proposta visa aplicar evolução gramatical (EG) pois apesar de possuir as mesmas características da GEP ela torna mais amigável a manipulação dos indivíduos. Isto ocorre pelo fato de representá-los utilizando vetores de inteiros enquanto a GEP utiliza vetores de strings para representação. Dessa maneira, a EG facilita a manipulação dos indivíduos por operadores genéticos (cruzamento de mutação). A principal diferença entre esta proposta e os outros trabalhos relacionados \cite{santanna2008,shmygelska2002ant,shmygelska2003improved,hsu2003growth, krasnogor2002multimeme,krasnogor2002multimeme,unger1993genetic} é que este irá trabalhar em um nível acima: gerando heurísticas de alto nível para um \textit{framework} hiper-heurístico que será aplicado ao PDP enquanto os outros trabalham aplicando meta-heurísticas diretamente ao PDP. 
 
 
 
 \section{Considerações Finais}
 \label{TrabalhosRelacionados:ConsideracoesFinais}
 
-
-TODO: Descrever aqui talvez as diferencas melhor entre a proposta e os trabalhos relacionados tentnado puxar o lado para a minha proposta
+%TODO: Melhorar essa parte
+Neste capítulo foram discutidos alguns estudos que utilizam algoritmos de busca para explorar o espaço de busca do PDP utilizando o modelo HP. Também foram discutidos trabalhos que aplicam PG como hiper-heurística de geração de heurísticas. Foram mencionadas diferentes estratégias de busca para o PDP algumas destas estrategias servem de base para alguns componentes que esta proposta possui. Os operadores genéticos utilizados \cite{custodio2014multiple} e \cite{lin2011protein} servirão de matéria prima para as heurísticas de baixo nível desta proposta. O trabalho desenvolvido pro Sabar et al. \cite{sabar2015automatic} será utilizado como base na implementação da presente proposta pois obteve bons resultados dessa maneira, demonstrando a habilidade do \textit{framework} proposto generalizar bem entre diferentes domínios de problemas.
