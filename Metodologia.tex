@@ -311,12 +311,50 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 % 
 
  
+\section{Avaliação da Abordagem Proposta}
+\label{Metodologia:Avaliacao}
+
+Um conjunto de experimentos serão executados utilizando várias sequências de aminoácidos utilizadas para avaliar estratégias heurísticas para o PDP utilizando o modelo HP. Estas sequências foram  utilizadas em outros trabalhos \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} que também exploram o PDP utilizando o modelo HP. A \autoref{tab:sequences} 
+
+\begin{table}[!htb]
+	\begin{center}
+		\caption{HP instances used in the experiments. The search space of each instance is $2^n$ where $n$ is the size of
+			the instance.}
+		\label{tab:sequences}
+		{$\begin{array}{c r r l}
+			\text{inst.} & \text{size} &  \multicolumn{1}{ c }{H({\bf{x}}^*)} & \multicolumn{1}{c}{\text{sequence}} \\ \hline
+			s1 &20 &-9 & HPHPPHHPHHPHPHHPPHPH \\
+			s2 &24 &-9 & HHPPHPPHPPHPPHPPHPPHPPHH \\
+			s3 &25 &-8 & PPHPPHHP^4HHP^4HHP^4HH \\
+			s4 &36 &-14 &  P^3HHPPHHP^5H^7PPHHP^4HHPPHPP\\
+			s5 &48 &-23 &  PPHPPHHPPHHP^5H^{10}P^6 \\
+			&   &    &  HHPPHHPPHPPH^5 \\
+			s6 &50 &-21 &  HHPHPHPHPH^4PHP^3HP^3HP^4 \\
+			&   &    & HP^3HP^3HPH^4{\{PH\}}^4H\\
+			s7 &60 &-36 &  PPH^3PH^8P^3H^{10}PHP^3\\
+			&   &    &  H^{12}P^4H^6PHHPHP\\
+			s8 &64 &-42 &   H^{12}PHPH{\{PPHH\}}^2PPH{\{PPHH\}}^2\\
+			&   &    &  PPH{\{PPHH\}}^2PPHPHPH^{12}\\
+			s9  &85   &-53  & H^4P^4H^{12}P^6 H^{12} P^3 H^{12} P^3 \\
+			&   &    &    H^{12} P^3  H P^2 H^2    P^2 H^2  P^2 H P H  \\
+			s10  &100  &-48  &  P^6HPH^{2}P^5H^{3}PH^5PH^{2} P^4 H^{2} \\
+			&   &    &   P^2  H^2 P  H^5  P H^{10} P H^{2} P H^{7}  \\
+			&   &    &  P^{11} H^{7} P^2  H P   H^3  P^{6} H P H \\
+			s11 &100  &-50  &  P^3H^{2}P^2H^{4}P^2H^{3}PH^{2} PH^{2}PH^{4} \\
+			&   &    & P^8 H^6 P^{2} H^{6} P^{9} H P H^{2} P  H^{11} P^2  \\
+			&   &    &H^3 P  H^{2} P H P^2  H P H^3 P^6 H^3\\ \hline
+			\end{array}$}
+	\end{center}
+\end{table}
+
+
+
 
 
 
 \section{Considerações Finais}
 \label{Metodologia:ConsideracoesFinais}
 
-Neste capítulo foram discutidos os principais aspectos relativos a metodologia para aplicar a evolução gramatical com objetivo de gerar heurísticas de alto nível de um \text{framework} hiper-heurístico para o PDP. Inicialmente foi discutido que esquema de codificação utilizado para representar as soluções ao PDP serão coordenadas relativas. Em seguida, foi apresentada a gramática desenvolvida para gerar as heurísticas de alto nível. Os componentes terminais da gramática representam diferentes aspectos estatísticos referente ao histórico das aplicações das heurísticas de baixo nível. Funções matemáticas simples também compõem a gramática e combinadas com os aspectos estatísticos gerarão diferentes heurísticas de alto nível. Posteriormente, a função de \textit{fitness} para avaliar as heurísticas de alto nível e o critério de parada foram da EG foram introduzidos. As heurísticas de baixo nível também foram apresentadas. E finalmente o processo geral desta proposta foi apresentado incluindo os aspectos referente ao mecanismo de memória. 
+Neste capítulo foram discutidos os principais aspectos relativos a metodologia para aplicar a evolução gramatical com objetivo de gerar heurísticas de alto nível de um \text{framework} hiper-heurístico para o PDP. Inicialmente foi discutido que esquema de codificação utilizado para representar as soluções ao PDP serão coordenadas relativas. Em seguida, foi apresentada a gramática desenvolvida para gerar as heurísticas de alto nível. Os componentes terminais da gramática representam diferentes aspectos estatísticos referente ao histórico das aplicações das heurísticas de baixo nível. Funções matemáticas simples também compõem a gramática e combinadas com os dados estatísticos gerarão diferentes heurísticas de alto nível. Posteriormente, a função de \textit{fitness} para avaliar as heurísticas de alto nível e o critério de parada foram da EG foram introduzidos. As heurísticas de baixo nível também foram apresentadas. E finalmente o processo geral desta proposta foi apresentado incluindo os aspectos referente ao mecanismo de memória. 
 O próximo capítulo apresenta as atividades já realizadas e as atividades a serem realizadas assim como, um cronograma para realização das atividades restantes.
 
