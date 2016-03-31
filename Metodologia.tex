@@ -314,15 +314,14 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 \section{Avaliação da Abordagem Proposta}
 \label{Metodologia:Avaliacao}
 
-Um conjunto de experimentos serão executados utilizando várias sequências de aminoácidos utilizadas para avaliar estratégias heurísticas para o PDP utilizando o modelo HP. Estas sequências foram  utilizadas em outros trabalhos \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} que também exploram o PDP utilizando o modelo HP. A \autoref{tab:sequences} 
+Um conjunto de experimentos serão executados utilizando várias sequências de aminoácidos utilizadas para avaliar estratégias heurísticas para o PDP utilizando o modelo HP. Estas sequências foram  utilizadas em outros trabalhos \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} que também exploram o PDP utilizando o modelo HP. A \autoref{tab:sequences} apresenta o id de cada sequência, o seu tamanho (quantidade de aminoácidos), o valor ótimo conhecido da respectiva sequência e a ultima coluna apresenta a sequência propriamente dita. 
 
 \begin{table}[!htb]
 	\begin{center}
-		\caption{HP instances used in the experiments. The search space of each instance is $2^n$ where $n$ is the size of
-			the instance.}
+		\caption{Sequências que serão utilizadas para avaliar e comparar os resultados obtidos pela abordagem proposta}
 		\label{tab:sequences}
 		{$\begin{array}{c r r l}
-			\text{inst.} & \text{size} &  \multicolumn{1}{ c }{H({\bf{x}}^*)} & \multicolumn{1}{c}{\text{sequence}} \\ \hline
+			\text{Id} & \text{Tamanho} &  \multicolumn{1}{c}{\text{Valor ótimo}} & \multicolumn{1}{c}{\text{Sequência}} \\ \hline
 			s1 &20 &-9 & HPHPPHHPHHPHPHHPPHPH \\
 			s2 &24 &-9 & HHPPHPPHPPHPPHPPHPPHPPHH \\
 			s3 &25 &-8 & PPHPPHHP^4HHP^4HHP^4HH \\
