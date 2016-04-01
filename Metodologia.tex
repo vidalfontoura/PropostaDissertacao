@@ -131,8 +131,47 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 
  \subsection{Função de \textit{Fitness}}
  
- Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico. Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada, $Nh$ representa o número de indivíduos da EG e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calculada como: $Ph[i] = Ph[i] + \sigma $ onde $\sigma = (f_i - f_b)/(f_i + f_b)$. Os demais indivíduos $j \in \{1, ..., Nh\} ~e~ j \neq i$ são penalizados: $Ph[j] = Ph[j] - (\sigma / (Nh - 1))$. Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo: $Ph[i] = Ph[i] - |\sigma \times \alpha|$ onde $\alpha =$ iteração corrente $/$ número total de iterações. Os demais indivíduos $j \neq i$ recebem uma recompensa: $Ph[j] = 
-  Ph[j] + (|\sigma| \times \alpha / (Nh -1))$. A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e critério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
+ Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico.
+ 
+ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calculada utilizando a \autoref{eq:fitnessFunction}.
+ 
+ \begin{equation} {}
+	 \label{eq:fitnessFunction}
+	 Ph[i] = Ph[i] + \sigma 
+ \end{equation}
+ 
+ Onde $\sigma = (f_i - f_b)/(f_i + f_b)$. 
+ 
+ E os demais indivíduos são penalizados utilizando a \autoref{eq:fitnessPenalizeFunction}
+
+ \begin{equation} {}
+ \label{eq:fitnessPenalizeFunction}
+	Ph[j] = Ph[j] - (\sigma / (Nh - 1))
+ \end{equation}
+ 
+ Tal que  $j \in \{1, ..., Nh\} ~e~ j \neq i$. E $Nh$  o número de indivíduos da EG.
+ 
+  Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo utilizando a \autoref{eq:fitnessBadFunction}.
+  
+   \begin{equation} {}
+    \label{eq:fitnessBadFunction}
+   Ph[i] = Ph[i] - |\sigma \times \alpha|
+    \end{equation}
+   
+   Onde $\alpha =$ iteração corrente $/$ número total de iterações.
+   
+  Os demais indivíduos $j \neq i$ recebem uma recompensa utilizando a \autoref{eq:fitnessOtherFunction} 
+  
+   \begin{equation} {}
+   \label{eq:fitnessOtherFunction}
+   Ph[j] = Ph[j] + (|\sigma| \times \alpha / (Nh -1))
+   \end{equation}
+   
+    Tal que  $j \in \{1, ..., Nh\} ~e~ j \neq i$. Onde $Nh$ = número de indivíduos da EG e $\alpha =$ iteração corrente $/$ número total de iterações. 
+   
+ 
+  
+  A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e critério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
  
  \subsection{Critério de Parada}
  \label{sub:criterioParada}
