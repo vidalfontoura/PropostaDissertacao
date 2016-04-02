@@ -28,11 +28,11 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 	\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.  
 \end{itemize} 
 
-	Da mesma maneira Sabar et al. \cite{sabar2015automatic} propõem o uso de dados referentes ao histórico de aplicações das heurísticas de baixo nível para compor critérios de aceitação que irão definir um limites para aceitar soluções com qualidade inferior. Dessa forma, um conjunto de fatores também foi proposto e será detalhado em seguida:
+	Da mesma maneira Sabar et al. \cite{sabar2015automatic} propõem o uso de dados referentes ao histórico de aplicações das heurísticas de baixo nível para compor critérios de aceitação que irão definir limites para aceitar soluções com qualidade inferior. Dessa forma, um conjunto de fatores também foi proposto e será detalhado em seguida:
 	
 	
 	 \begin{itemize}
-	 	\item Delta: A diferença da qualidade entre  solução corrente e a solução descendente.
+	 	\item Delta: A diferença da qualidade entre a solução corrente e a solução descendente.
 	 	\item PF: A qualidade da solução anterior.
 	 	\item CF: A qualidade da solução atual.
 	 	\item CI: Iteração corrente.
@@ -40,7 +40,7 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 	 \end{itemize}
 	 
 	 
-	Estes dados serão inicializados com valores neutros dessa maneira evitando qualquer comportamento tendencioso. Os dados  serão atualizados conforme o desempenho e estado das heurísticas de baixo nível durante o progresso da busca.   
+Estes dados serão inicializados com valores neutros para evitar qualquer comportamento tendencioso. Os dados  serão atualizados conforme o desempenho e estado das heurísticas de baixo nível durante o progresso da busca.   
 
 	Utilizando estes dados estatísticos e um conjunto de funções matemáticas simples, tais como soma, subtração, multiplicação e divisão, uma gramática foi desenvolvida para suportar a geração das heurísticas de alto nível. A gramática desenvolvida para gerar mecanismos de seleção e critérios de aceitação é apresentada na \autoref{grammar:proposedGrammar}. 
 	
@@ -123,7 +123,7 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 %	\item \%: Divisão protegida, isto é, se o denominador for 0 o altera para 0,001.
 % \end{itemize}
 
- Utilizando a \autoref{grammar:proposedGrammar} e vetores de inteiros é possível gerar heurísticas de alto nível. Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de baixo nível e estas são a matéria prima para a construção dos componentes das heurísticas de alto nível de um \textit{framework} hiper-heurístico. 
+ Utilizando a \autoref{grammar:proposedGrammar} e vetores de inteiros é possível gerar heurísticas de alto nível. Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de baixo nível e estas são a matéria-prima para a construção dos componentes das heurísticas de alto nível de um \textit{framework} hiper-heurístico. 
  
  O próximo passo consiste em evoluir uma população de vetores de inteiro, gerados de maneira aleatória, utilizando o processo evolutivo descrito na subseção 
  \ref{subsubsection:EvolucaoGramatical}. %A figura BLAH apresenta o processo geral da evolução gramatical proposta.
@@ -131,9 +131,9 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 
  \subsection{Função de \textit{Fitness}}
  
- Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. O objetivo da função é avaliar as heurísticas de alto nível geradas (indivíduos). A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico.
+ Para avaliar os indivíduos gerados durante o processo de busca da evolução gramatical, uma função de \textit{fitness} foi desenvolvida baseada na função proposta por Sabar el al. \cite{sabar2014automatic}. A probabilidade de selecionar um determinado indivíduo é alterada de acordo com a qualidade da melhor solução retornada pela execução do \textit{framework} hiper-heurístico, composto pelo mecanismo de seleção e critério de aceitação codificados por um dado indivíduo. A qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como entrada para o \textit{framework} hiper-heurístico.
  
- Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o array de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calculada utilizando a \autoref{eq:fitnessFunction}.
+ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o vetor de probabilidades de seleção dos indivíduos da EG. Agora suponha que ao aplicar o $i$-ésimo indivíduo e obtido uma melhoria na qualidade da solução, a retribuição para o $i$-ésimo indivíduo é calculada utilizando a \autoref{eq:fitnessFunction}.
  
  \begin{equation} {}
 	 \label{eq:fitnessFunction}
@@ -171,7 +171,7 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
    
  
   
-  A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e critério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um tempo determinado de iterações.
+  A motivação por trás de  diminuir a probabilidade de outros indivíduos é reduzir as chances destes serem selecionados. Inicialmente, a probabilidade de cada indivíduo é calculada, decodificando o  respectivo mecanismo de seleção e critério de aceitação e o executando dentro de um \textit{framework} hiper-heurístico por um número determinado de iterações.
  
  \subsection{Critério de Parada}
  \label{sub:criterioParada}
@@ -347,13 +347,13 @@ Neste capítulo será apresentada a metodologia para aplicação da EG para geração 
 %	 $m$ é o número de objetos; \\
 %	 $\epsilon_i$ representa a entropia para o aminoácido $i$;
 %	 $\epsilon$ representa a entropia para uma solução completa (todos os aminoácidos) ($0 <= \epsilon_i <= 1$). 
-% 
+% c yyyy 
 
  
 \section{Avaliação da Abordagem Proposta}
 \label{Metodologia:Avaliacao}
 
-Um conjunto de experimentos serão executados com sequências de aminoácidos, utilizadas como \textit{benchmark}, para avaliar estratégias heurísticas para o PDP com o modelo HP. Estas sequências foram  utilizadas em outros trabalhos \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} que também exploram o PDP utilizando o modelo HP. A \autoref{tab:sequences} apresenta o Id de cada sequência, o seu tamanho (quantidade de aminoácidos), o valor ótimo conhecido da respectiva sequência e a ultima coluna apresenta a formula da sequência propriamente dita. 
+Um conjunto de experimentos serão executados com sequências de aminoácidos, utilizadas como \textit{benchmark}, para avaliar estratégias heurísticas para o PDP com o modelo HP. Estas sequências foram  utilizadas em outros trabalhos \cite{custodio2004investigation,hsu2003growth,lin2011protein,unger1993genetic,santanna2008,custodio2014multiple, garza2012locality} que também exploram o PDP utilizando o modelo HP. A \autoref{tab:sequences} apresenta o Id de cada sequência, o seu tamanho (quantidade de aminoácidos), o valor ótimo conhecido da respectiva sequência e por fim, fórmula da sequência propriamente dita. 
 
 \begin{table}[!htb]
 	\begin{center}
@@ -393,6 +393,6 @@ Um conjunto de experimentos serão executados com sequências de aminoácidos, util
 \section{Considerações Finais}
 \label{Metodologia:ConsideracoesFinais}
 
-Neste capítulo foram discutidos os principais aspectos relativos a metodologia para aplicar a evolução gramatical com objetivo de gerar heurísticas de alto nível de um \text{framework} hiper-heurístico para o PDP. Inicialmente foi discutido que esquema de codificação utilizado para representar as soluções ao PDP serão coordenadas relativas. Em seguida, foi apresentada a gramática desenvolvida para gerar as heurísticas de alto nível. Os componentes terminais da gramática representam diferentes aspectos estatísticos referente ao histórico das aplicações das heurísticas de baixo nível. Funções matemáticas simples também compõem a gramática e combinadas com os dados estatísticos gerarão diferentes heurísticas de alto nível. Posteriormente, a função de \textit{fitness} para avaliar as heurísticas de alto nível e o critério de parada foram da EG foram introduzidos. As heurísticas de baixo nível também foram apresentadas. E finalmente o processo geral desta proposta foi apresentado incluindo os aspectos referente ao mecanismo de memória. 
+Neste capítulo foram discutidos os principais aspectos relativos à metodologia para aplicar a evolução gramatical com objetivo de gerar heurísticas de alto nível de um \text{framework} hiper-heurístico para o PDP. Inicialmente foi discutido por que o esquema de codificação utilizado para representar as soluções ao PDP serão coordenadas relativas. Em seguida, foi apresentada a gramática desenvolvida para gerar as heurísticas de alto nível. Os componentes terminais da gramática representam diferentes aspectos estatísticos referente ao histórico das aplicações das heurísticas de baixo nível. Funções matemáticas simples também compõem a gramática e combinadas com os dados estatísticos gerarão diferentes heurísticas de alto nível. Posteriormente, a função de \textit{fitness} para avaliar as heurísticas de alto nível e o critério de parada foram da EG foram introduzidos. As heurísticas de baixo nível também foram apresentadas. E finalmente o processo geral desta proposta foi apresentado, incluindo os aspectos referentes ao mecanismo de memória. 
 O próximo capítulo apresenta as atividades já realizadas e as atividades a serem realizadas assim como, um cronograma para realização das atividades restantes.
 
