@@ -7,7 +7,7 @@
    \begin{block}{Metodologia}
       	\begin{itemize}
       	 \item Esta proposta visa a aplicação da EG para geração de heurísticas
-      	 de alto nível para uma plataforma hiper-heurística para o PDP.
+      	 de alto nível para uma plataforma hiper-heurística para o PDP (HyPDP).
       	 \item Baseada no trabalho desenvolvido por Sabar et al. \cite{sabar2015automatic}.
       	 \item No contexto desta proposta:
       	   \begin{itemize}
@@ -35,6 +35,117 @@
 		
 	\end{block}
 }
+
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{Gramática Proposta}
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=.6]{figuras/ProposedGramatica.png}
+			\caption{Gramática para converter vetores de inteiros em heurísticas de alto nível.}
+			\label{fig:proposedGrammar}
+		\end{figure}
+		
+	\end{block}
+}
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{Terminais para gerar mecanismos de seleção}
+		\begin{itemize}
+			\item RC (\textit{Reward Credit}): Recompensa que uma determinada heurística de baixo nível deve receber baseado no seu desempenho. O cálculo da melhoria é dado por: $M(i) = (|f1 -f2|/f1) *100$ se $f2 < f1$, onde $f1$ é a qualidade da solução corrente e $f2$ é a qualidade da solução resultante. 
+			A melhoria obtida é salva em uma janela deslizante (FIFO) de tamanho W. O crédito de qualquer heurística de baixo nível é então atribuído como o máximo valor na janela deslizante correspondente. 
+			%A ideia por trás deste critério é: heurísticas de baixo nível que não são usadas com frequência mas que alteram a solução com grandes melhorias tendem a ter mais preferência do que aquelas que geram pequenas melhorias. Portanto as heurísticas que trazem frequentes, mas pequenas melhorias irão ter menos probabilidade de serem selecionadas.
+			\item \textbf{$C_{best}$}: Número de vezes que a i-ésima heurística de baixo nível atualizou a melhor solução conhecida. Este critério favorece as heurísticas de baixo nível que obtiveram êxito em melhorar a melhor solução conhecida até o momento. Este critério é útil para sistematicamente melhorar o atual mínimo local.
+		  
+		\end{itemize} 
+		
+		
+	\end{block}
+}
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{Terminais para gerar mecanismos de seleção (cont.)}
+		\begin{itemize}
+			\item $C_{current}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a solução atual. Este critério favorece as heurísticas de baixo nível que obtém êxito em atualizar a solução corrente. Este critério serve para deixar a busca concentrada próxima à solução corrente.
+			\item $C_{accept}$: Número de vezes que a solução gerada pela i-ésima heurística de baixo nível foi aceita pelo critério de aceitação. Irá favorecer heurísticas de baixo nível que podem ajudar a escapar de um mínimo local.
+			\item $C_{ava}$: A média de melhorias anteriores da i-ésima heurística de baixo nível. Este critério favorece heurísticas de baixo nível que realizaram grandes melhorias em média.
+			\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.
+			
+		\end{itemize} 
+		
+		
+	\end{block}
+}
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{Terminais para gerar critérios de aceitação}
+		 \begin{itemize}
+		 	\item Delta: A diferença da qualidade entre a solução corrente e a solução descendente.
+		 	\item PF: A qualidade da solução anterior.
+		 	\item CF: A qualidade da solução atual.
+		 	\item CI: Iteração corrente.
+		 	\item TI: Número de iterações.
+		 \end{itemize}
+		
+		
+	\end{block}
+}
+
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{Funções matemáticas para gerar as heurísticas de alto nível}
+		 \begin{itemize}
+		 	\item +: Adiciona as duas entradas.
+		 	\item -: Subtrai a segunda entrada da primeira.
+		 	\item *: Multiplica as duas entradas.
+		 	\item \%: Divisão protegida, isto é, se o denominador for 0, o altera para 0,001.
+		 \end{itemize}
+		
+		
+	\end{block}
+}
+
+
+\subsection{Método Proposto}
+\frame{
+	\frametitle{Método Proposto}
+	
+	\begin{block}{}
+		\begin{itemize}
+			\item Utilizando a gramática apresentada e vetores de inteiros é possível gerar heurísticas de alto
+			nível. Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de
+			baixo nível e estas são a matéria-prima para a construção dos componentes das heurísticas
+			de alto nível para o HyPDP.
+			
+			\item O próximo passo consiste em evoluir uma população de vetores de inteiro, gerados de
+			maneira aleatória, utilizando o processo evolutivo descrito anteriormente.
+		\end{itemize}
+		
+		
+	\end{block}
+}
+
 
 \subsection{Objetivos}
 \frame{
