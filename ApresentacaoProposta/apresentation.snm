@@ -5,4 +5,8 @@
 \beamer@slide {fig:pseudocodigoEG}{21}
 \beamer@slide {fig:proposedFramework}{23}
 \beamer@slide {fig:proposedGrammar}{24}
-\beamer@slide {table:population}{33}
+\beamer@slide {eq:fitnessFunction1}{31}
+\beamer@slide {eq:fitnessPenalizeFunction1}{32}
+\beamer@slide {eq:fitnessPenalizeFunction2}{32}
+\beamer@slide {eq:fitnessBadFunction1}{33}
+\beamer@slide {table:population}{37}

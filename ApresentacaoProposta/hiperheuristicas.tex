@@ -6,7 +6,7 @@
 \frame{
 	\frametitle{Hiper Heurísticas}
 	
-	\begin{block}{}
+
 		\begin{itemize}
 			\item   Apesar do sucesso de meta-heurísticas e outros métodos de busca ainda existem dificuldades de generalização destas estratégias. 
 			\item  Esta dificuldade surge  da necessidade de selecionar
@@ -19,7 +19,7 @@
 		\end{itemize}
 		
 		
-	\end{block}
+
 }
 
 
@@ -28,7 +28,7 @@
 \frame{
 	\frametitle{Hiper Heurísticas}
 	
-	\begin{block}{}
+
 		\begin{itemize}
 		\item Operam sobre o
 		espaço de busca de heurísticas que operam sobre o espaço de busca  de um determinado problema.
@@ -39,14 +39,14 @@
 		\end{itemize}
 		
 		
-	\end{block}
+	
 }
 
 \subsection{Hiper Heurísticas}
 \frame{
-	\frametitle{}
+	\frametitle{Hiper Heurísticas}
 	
-	\begin{block}{}
+
 		\begin{itemize}
 			
 
@@ -60,46 +60,45 @@
 	dependendo da modelagem do framework hiper-heurístico, podem assumir o papel de
 	heurísticas de baixo nível.
 			\end{itemize}
-	\end{block}
+
 }
 
 
 
 
-\subsection{Hiper Heurísticas}
+\subsection{Framework Geral Hiper Heurísticas}
 \frame{
-	\frametitle{}
-	
-	\begin{block}{}
-			\begin{figure}[!htb]
-				\centering
-				\includegraphics[scale=.6]{figuras/HiperHeuristicas.png}
-				\caption{Framework Geral Hiper-Heurístico. Adaptado de \cite{sabar2015automatic}}
-				\label{img:hiperheuristico}
-			\end{figure}
-	\end{block}
+	\frametitle{\textit{Framework} Geral Hiper Heurísticas}
+
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=.6]{figuras/HiperHeuristicas.png}
+			\caption{\textit{Framework} Geral Hiper-Heurístico. Adaptado de \cite{sabar2015automatic}}
+			\label{img:hiperheuristico}
+		\end{figure}
+
 }
 
 \subsection{Classificação Hiper Heurísticas}
 \frame{
 	\frametitle{Classificação Hiper Heurísticas}
 	
-	\begin{block}{}
+
 		\begin{figure}[!htb]
 			\centering
-			\includegraphics[scale=.4]{figuras/ClassificacaoHiperHeuristica.png}
+			\includegraphics[scale=.5]{figuras/ClassificacaoHiperHeuristica.png}
 			\caption{Classificação Hiper Heurísticas}
 			\label{fig:classificacaoHH}
 		\end{figure}
-	\end{block}
+
 }
 
 
 \subsection{Hiper Heurísticas de Seleção}
 \frame{
-	\frametitle{}
+	\frametitle{Hiper Heurísticas de Seleção}
 	
-	\begin{block}{Hiper Heurísticas de Seleção}
+
 		\begin{itemize}
 			\item \textbf{Random} (R):  Seleciona aleatoriamente as heurísticas a serem aplicadas.
 			\item \textbf{Choice Function} (CF):  Função que leva em consideração o desempenho das heurísticas assim como quanto tempo se passou desde a última execução de uma heurística \cite{burke2013hyper}.
@@ -107,15 +106,13 @@
 			\item \textbf{Tabu Search Based} (TS): Utiliza uma lista tabu para evitar determinadas heurísticas que não apresentaram bom desempenho \cite{burke2013hyper}.
 			\item \textbf{Multi-Armed Bandit} (MAB): Utiliza uma função baseada em dois componentes: um mede a qualidade de uma determinada heurística e está relacionado à intensificação e outro utiliza um intervalo de confiança baseado no número de vezes que a heurística foi aplicada \cite{burke2013hyper}.
 		\end{itemize}
-	\end{block}
+
 }
 
 
 \subsection{Critérios de Aceitação}
 \frame{
-	\frametitle{}
-	
-	\begin{block}{Critérios de Aceitação}
+	\frametitle{Critérios de Aceitação}
 
 			\begin{itemize}
 				\item \textbf{All Moves} (AM): Aceita qualquer aplicação de heurísticas mesmo que seja sem melhora na solução \cite{burke2013hyper}.
@@ -123,32 +120,26 @@
 				\item \textbf{Monte Carlo} (MC): Aceita aplicações de heurísticas que melhoram uma solução e utiliza probabilidades para aceitar aplicações que não melhoram \cite{burke2013hyper}.
 				\item \textbf{Great Deluge} (GD): Esta estratégia estende o algoritmo \textit{Great Deluge} para decidir quando aceitar soluções geradas pelas heurísticas \cite{burke2013hyper}.				
 			\end{itemize}
-	\end{block}
 }
 
 
 
 \subsection{Hiper-heurísticas de Geração}
 \frame{
-	\frametitle{}
-	
-	\begin{block}{Hiper-heurísticas de Geração}
-		
+	\frametitle{Hiper-heurísticas de Geração}
+
 		\begin{itemize}
 			\item Estas hiper-heurísticas geram novas heurísticas combinando componentes de heurísticas.
 			\item Geralmente se utiliza algum tipo de programação genética (PG), como por exemplo: evolução gramatical (EG) ou programação gênica.
 		\end{itemize}
-	\end{block}
+
 }
 
 
 
-\subsection{Hiper-heurísticas de Geração}
+\subsection{Programação Genética (PG)}
 \frame{
-	\frametitle{}
-	
-	\begin{block}{Programação Genética (PG)}
-		
+	\frametitle{Programação Genética (PG)}
 		\begin{itemize}
 			\item É um ramo da síntese de programas que utiliza ideias oriundas
 			da teoria da evolução natural para produzir programas.
@@ -163,15 +154,15 @@
 			que compõem a população são representados utilizando estruturas de árvore.
 			\item Outras estruturas podem ser evoluídas.
 		\end{itemize}
-	\end{block}
+
 }
 
 
-\subsection{Hiper-heurísticas de Geração}
+\subsection{Evolução Gramatical (EG)}
 \frame{
-	\frametitle{}
+	\frametitle{Evolução Gramatical (EG)}
 	
-	\begin{block}{Evolução Gramatical (EG)}
+
 		
 		\begin{itemize}
 		\item Técnica relativamente nova de computação evolutiva, proposta por Ryan et al. \cite{ryan1998grammatical}, trata-se de um tipo de programação genética. 
@@ -182,14 +173,14 @@
 		conjunto de terminais (+, -, *, /)  e não terminais, que podem ser expandidos em um ou mais terminais e
 		não terminais.
 		\end{itemize}
-	\end{block}
+
 }
 
-\subsection{Hiper-heurísticas de Geração}
+\subsection{Gramática Exemplo}
 \frame{
-	\frametitle{}
+	\frametitle{Gramática Exemplo}
 	
-	\begin{block}{Gramática Exemplo}
+
 			\begin{figure}[!htb]
 				\centering
 				\includegraphics[scale=.8]{figuras/GramaticaExemplo.png}
@@ -197,15 +188,15 @@
 				\label{fig:gramaticaExemplo}
 			\end{figure}
 	
-	\end{block}
+
 }
 
 
 \subsection{Hiper-heurísticas de Geração}
 \frame{
-	\frametitle{}
+	\frametitle{Operadores para evolução gramatical}
 	
-	\begin{block}{Operadores para evolução gramatical}
+
 			 Além dos operadores tradicionais outros dois operadores \textit{Prune} e \textit{Duplicate} são peculiares à EG e serão descritos em seguida:
 			 
 			 \begin{itemize}
@@ -214,15 +205,15 @@
 			 \end{itemize}
 			 
 		
-	\end{block}
+
 }
 
 
-\subsection{Hiper-heurísticas de Geração}
+\subsection{Pseudocódigo da evolução gramatical}
 \frame{
-	\frametitle{}
+	\frametitle{Pseudocódigo da evolução gramatical}
 	
-	\begin{block}{Pseudocódigo da evolução gramatical}
+	
 
 				\begin{figure}[!htb]
 					\centering
@@ -232,6 +223,6 @@
 				\end{figure}
 				
 
-	\end{block}
+
 }
 
