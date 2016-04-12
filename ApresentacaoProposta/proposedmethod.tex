@@ -19,8 +19,6 @@
 
 }
 
-
-\subsection{Método Proposto}
 \frame{
 	\frametitle{Método Proposto}
 
@@ -159,7 +157,7 @@
 
 \subsection{Função de fitness para a evolução gramatical}
 \frame{
-	\frametitle{Função de fitness para a evolução gramatical}		
+	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
 
 Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o vetor de probabilidades de seleção dos indivíduos da EG. A retribuição para o $i-$ésimo indivíduo, caso tenha obtido uma melhoria, é calculada utilizando a equação \ref{eq:fitnessFunction1}.
 
@@ -182,10 +180,10 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 
 \subsection{Função de fitness para a evolução gramatical}
 \frame{
-	\frametitle{Função de fitness para a evolução gramatical}		
+	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
 	
 	Os demais indivíduos diferente de $i$ devem receber uma penalização. Suponha que $Nh$ seja o número de indivíduos a penalização é calculada utilizando a equação \ref{eq:fitnessPenalizeFunction1}.
-	\begin{block}{Função de \textit{fitness} para penalização aos outros indivíduos}
+	\begin{block}{Função de \textit{fitness} para penalização aos outros indivíduos $j$}
 		\begin{equation} {}
 		\label{eq:fitnessPenalizeFunction1}
 		Ph[j] = Ph[j] - (\sigma / (Nh - 1))
@@ -202,10 +200,10 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 
 \subsection{Função de fitness para a evolução gramatical}
 \frame{
-	\frametitle{Função de fitness para a evolução gramatical}		
+	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
 	
-	Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo utilizando a \autoref{eq:fitnessBadFunction1}.
-	\begin{block}{}
+	Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo utilizando a equação \autoref{eq:fitnessBadFunction1}.
+	\begin{block}{Função de \textit{fitness} para penalização do $i-$ésimo indivíduo}
 		\begin{equation} {}
 		\label{eq:fitnessBadFunction1}
 		Ph[i] = Ph[i] - |\sigma \times \alpha|
@@ -215,72 +213,120 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 		\begin{center}
 			$\alpha =$ iteração corrente $/$ número total de iterações.
 		\end{center} 
-	\end{block}
+	\end{block}	
+}
+
+
+\subsection{Função de fitness para a evolução gramatical}
+\frame{
+	\frametitle{Função de fitness para a evolução gramatical}		
 	
-	
-	
+	Os demais indivíduos $j \neq i$ recebem uma recompensa utilizando a \autoref{eq:fitnessOtherFunction} 
+
+	\begin{block}{Função de \textit{fitness} para retribuição dos outros indivíduos $j$}
+		\begin{equation} {}
+		\label{eq:fitnessOtherFunction}
+		 Ph[j] = Ph[j] + (|\sigma| \times \alpha / (Nh -1))
+		\end{equation}
+		
+		 Tal que: 
+		\begin{center}
+		 $j \in \{1, ..., Nh\} ~e~ j \neq i$
+		\end{center} 
+		
+		Onde:
+		\begin{center}
+		$Nh$ = número de indivíduos da EG \\ $\alpha =$ iteração corrente $/$ número total de iterações \\
+		 $\sigma = (f_i - f_b)/(f_i + f_b)$
+			
+			
+		\end{center}
+	\end{block}	
 }	
 
-
-
-\subsection{Objetivos}
+\subsection{Conjunto de heurísticas de baixo nível}
 \frame{
-	\frametitle{Objetivos}
+	\frametitle{Conjunto de heurísticas de baixo nível}		
+	\begin{itemize}
+		\item \textit{Two Points Crossover} (2X): 
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.7]{figuras/TwoPointsCrossover.png}
+			\caption{Exemplo de aplicação do operador 2x. Fonte Autoria Própria}
+			\label{fig:twopointscrossover}
+		\end{figure}
+		
+		
+		\item \textit{Multi Points Crossover} (MPX): 
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.7]{figuras/MultiPointsCrossover.png}
+			\caption{Exemplo de aplicação do operador MPX. Fonte Autoria Própria}
+			\label{fig:multipointscrossover}
+		\end{figure}
+		
+		
+	\end{itemize} 
 	
-	\begin{block}{Objetivos do trabalho}
-			\begin{itemize}
-				\item Texto;
-				\item Texto;
-				\item Texto;
-				\item Texto;
-				\item Texto.
-			\end{itemize}
-	\end{block}
 	
-	\begin{block}{Funções objetivas do trabalho}
-		\begin{itemize}
-			\item $ maxf_{i}(T)=pc(T) $
-			\item $ minf_{ii}(T)=\frac{custo(T)}{nº \; c \; de \; t} $
-			\item $ maxf_{iii}(T)=\frac{pref(T)}{nº \; c \; de \; t} $
-			\item $ maxf_{iv}(T)=escore(T) $
-			\item $ minf_{v}(T)=nCasos(T) $
-		\end{itemize}
-	\end{block}
 }
 
+
+
 \frame{
-	\frametitle{Funções objetivas do trabalho}
+	\frametitle{Conjunto de heurísticas de baixo nível}		
+	\begin{itemize}
+		
+		
 	
-	\begin{block}{Funções objetivas do trabalho}
-		\begin{itemize}
-			\item $ pc(T)=\frac{(nº \; de \; p \; c)}{(nº \; de \; p \; c)}  $
-			\item $ c(T)=\displaystyle\sum_{i=0}^{i<n} c(p_{i}) $
-			\item $ p(T)=\displaystyle\sum_{i=0}^{i<n} p(p_{i}) $	
-			\item $ score(T)=\frac{(nº \; de \; m \; m)}{(nº \; de \; m \; g + nº \; de \; m \; e)} $
-			\item $ nCasos(T)=\frac{(nº \; de \; c \; de \; t)}{(total \; de \; p)}  $
-		\end{itemize}
-	\end{block}
+		\item \textit{Segment Mutation} (SMUT): Altera um número aleatório (5 a 7) de genes consecutivos para direções distintas. 
+		
+		\begin{figure}[!htb]
+			\centering
+			\includegraphics[scale=0.8]{figuras/segmentMutation.png}
+			\caption{Exemplo de aplicação do operador SMUT. Fonte Autoria Própria}
+			\label{fig:segmentMutation}
+		\end{figure}
+		
+		
+		\item \textit {Exhaustive Search Mutation} (EMUT): Esta heurística seleciona um gene aleatório e testa todas as outras direções possíveis e irá manter a alteração que conseguir aumentar a qualidade da conformação.
+		
+	\end{itemize} 
+	
 }
 
-\frame{
-	\frametitle{\textit{Tabela}}
 
-	\begin{block}{\textit{Tabelas} utilizadas}
-	\begin{table}[!htb]
-		\renewcommand{\arraystretch}{1.5}
-		\fontsize{10pt}{12pt}\selectfont
+\frame{
+	\frametitle{Conjunto de heurísticas de baixo nível}		
+	\begin{itemize}
+		
+		
+		
+	\item \textit{Local Move Operator} (LM): Esta heurística troca direções entre dois genes aleatórios consecutivos.
+	
+	
+	\begin{figure}[!htb]
 		\centering
-		\scalebox{0.8}{
-			\begin{tabular}{c | c | c | c | c }
-				\toprule
-				\textbf{Matriz} & \textbf{Qtde de P} & \textbf{Qtde de M} & \textbf{Qtde de Pa} & \textbf{Qtde de C}\\ \midrule
-				texto1 & 450 & 227 & 183 & 21\\ \midrule
-				texto2 & 1152 & 394 & 202 & 22\\ \midrule
-				texto3 & 68 & 106 & 75 & 14\\ \midrule
-				texto4 & 504 & 357 & 195 & 22\\
-				\bottomrule
-			\end{tabular}
-		}
-	\end{table}
-	\end{block}
+		\includegraphics[scale=0.8]{figuras/LocalMoveOperator.png}
+		\caption{Exemplo de aplicação do operador LM. Fonte Autoria Própria}
+		\label{fig:localMoveOperator}
+	\end{figure}
+		
+		
+	\item \textit{Loop Move Operator} (LPM): Esta heurística troca direções entre dois genes que estão a 5 genes de distância na sequência, criando um movimento de \textit{loop}.
+	
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=0.8]{figuras/LoopMoveOperator.png}
+		\caption{Exemplo de aplicação do operador LPM. Fonte Autoria Própria}
+		\label{fig:loopMoveOperator}
+	\end{figure}	
+	\end{itemize} 
+	
 }
+
+
+
