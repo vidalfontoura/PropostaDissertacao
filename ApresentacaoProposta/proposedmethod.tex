@@ -330,3 +330,98 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 
 
 
+
+\begin{frame}[allowframebreaks]{Processo geral da EG proposta}	
+	
+	\begin{itemize}
+		\item Gerar população inicial de maneira aleatória e calcular o \textit{fitness} dos indivíduos inserindo-os no HyPDP e executando por um determinado número de iterações.
+		\item De maneira iterativa selecionar indivíduos pais e aplicar os operadores
+		de cruzamento, \textit{prune}, mutação, e \textit{duplicate} para gerar descendentes. Para avaliar os descendentes, os seguintes passos serão executados:
+		\begin{itemize}
+			\item Decodificar os indivíduos em heurísticas de alto nível.
+			\item Executar o mecanismo de seleção com objetivo de ordenar as heurísticas de baixo nível.
+			\item Selecionar de maneira aleatória uma solução do mecanismo de memória. Aplicar a heurística de baixo nível classificada com maior valor e calcular a qualidade da solução gerada.
+			\item Se a solução gerada tiver qualidade superior à atual, a atual é substituída. Caso contrário a expressão referente ao critério de aceitação será executada.A  solução gerada pela
+			heurística de baixo nível é aceita caso o exponencial natural do valor, retornado pelo
+			critério de aceitação, seja menor ou igual a 0.5
+			\item Aplicar a heurística de baixo nível, que foi selecionada pelo mecanismo de seleção,
+			repetidamente até que não ocorram mais melhorias.
+			\item Se não houverem mais melhorias, troca-se a heurística de baixo nível atual pela
+			segunda melhor classificada, baseando-se no valor retornado pelo mecanismo de
+			seleção.
+			\item Se a etapa anterior chegar fim da lista de heurísticas de baixo nível, é executado o
+			mecanismo de seleção novamente e a lista de heurísticas de baixo nível é reordenada.
+			A busca reinicia agora utilizando a heurística de baixo nível com maior valor para
+			a expressão referente ao mecanismo de seleção.
+			\item O HyPDP continuará utilizando as heurísticas de alto
+			nível por um tempo pré-determinado
+			de iterações.
+			\item A solução gerada ao final da busca será avaliada para
+			entrar ou não no mecanismo de memória.
+		\end{itemize}
+		\item O processo da EG só irá terminar quando o critério de parada for atingido e será retornado o indivíduo (heurística de alto nível) que possuir o maior \textit{fitness}. Também será retornada a solução do mecanismo de memória que tiver a maior qualidade.
+	\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Mecanismo de Memória}	
+	
+	\begin{itemize}
+		\item Baseado no trabalho de Sabar et al. \cite{sabar2015automatic} um mecanismo de memória será desenvolvido para o HyPDP para armazenar soluções de alta qualidade e diversificadas entre si.
+		\item A inicialização do mecanismo de memória será feita parte de maneira aleatória e parte utilizando uma estratégia de \textit{backtracking} para garantir que soluções válidas sejam geradas.
+		\item A atualização do mecanismo de memória irá ocorrer toda vez que o HyPDP terminar a busca. 
+		\item Para uma solução entrar no mecanismo de memória sua qualidade e sua diversidade irão ser avaliadas: a qualidade da solução é dada pela quantidade de iterações H-H multiplicada por -1.
+		\item  As soluções geradas que tiverem a qualidade maior que todas as soluções contidas no mecanismo de memória substituirão a solução que tiver menor similaridade segundo a distância de \textit{Hamming} \cite{hamming1950error}.
+		\item Se a qualidade de uma solução gerada não for maior que todas as soluções, mas melhor em relação a um sub-conjunto do mecanismo de memória, esta substituirá a solução que tiver menor qualidade e menor similaridade do sub-conjunto.
+		\item E
+		por fim se a qualidade da solução gerada for pior que todas contidas no mecanismo de
+		memória, esta é descartada
+		
+			
+	\end{itemize}
+	
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Avaliação da Abordagem Proposta}	
+	
+
+		
+		\begin{table}[!htb]
+			\scalefont{0.5}
+			\begin{center}		
+				\label{tab:sequences}
+				{$\begin{array}{c r r l}
+					\text{Id} & \text{Tamanho} &  \multicolumn{1}{c}{\text{Valor ótimo}} & \multicolumn{1}{c}{\text{Sequência}} \\ \hline
+					s1 &20 &-9 & HPHPPHHPHHPHPHHPPHPH \\
+					s2 &24 &-9 & HHPPHPPHPPHPPHPPHPPHPPHH \\
+					s3 &25 &-8 & PPHPPHHP^4HHP^4HHP^4HH \\
+					s4 &36 &-14 &  P^3HHPPHHP^5H^7PPHHP^4HHPPHPP\\
+					s5 &48 &-23 &  PPHPPHHPPHHP^5H^{10}P^6 \\
+					&   &    &  HHPPHHPPHPPH^5 \\
+					s6 &50 &-21 &  HHPHPHPHPH^4PHP^3HP^3HP^4 \\
+					&   &    & HP^3HP^3HPH^4{\{PH\}}^4H\\
+					s7 &60 &-36 &  PPH^3PH^8P^3H^{10}PHP^3\\
+					&   &    &  H^{12}P^4H^6PHHPHP\\
+					s8 &64 &-42 &   H^{12}PHPH{\{PPHH\}}^2PPH{\{PPHH\}}^2\\
+					&   &    &  PPH{\{PPHH\}}^2PPHPHPH^{12}\\
+					s9  &85   &-53  & H^4P^4H^{12}P^6 H^{12} P^3 H^{12} P^3 \\
+					&   &    &    H^{12} P^3  H P^2 H^2    P^2 H^2  P^2 H P H  \\
+					s10  &100  &-48  &  P^6HPH^{2}P^5H^{3}PH^5PH^{2} P^4 H^{2} \\
+					&   &    &   P^2  H^2 P  H^5  P H^{10} P H^{2} P H^{7}  \\
+					&   &    &  P^{11} H^{7} P^2  H P   H^3  P^{6} H P H \\
+					s11 &100  &-50  &  P^3H^{2}P^2H^{4}P^2H^{3}PH^{2} PH^{2}PH^{4} \\
+					&   &    & P^8 H^6 P^{2} H^{6} P^{9} H P H^{2} P  H^{11} P^2  \\
+					&   &    &H^3 P  H^{2} P H P^2  H P H^3 P^6 H^3\\ \hline
+					\end{array}$}
+			\end{center}
+				\caption{Sequências que serão utilizadas para avaliar e comparar os resultados obtidos pela abordagem proposta}
+		\end{table}
+
+	
+\end{frame}
+
+
