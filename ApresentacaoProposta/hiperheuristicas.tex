@@ -2,13 +2,12 @@
 \section{Hiper Heurísticas}
 
 %%========================Objetivo================================%%
-\subsection{Hiper Heurísticas}
 \frame{
 	\frametitle{Hiper Heurísticas}
 	
 
 		\begin{itemize}
-			\item   Apesar do sucesso de meta-heurísticas e outros métodos de busca ainda existem dificuldades de generalização destas estratégias. 
+			\item   Ainda existem dificuldades de generalização de métodos heurísticos. 
 			\item  Esta dificuldade surge  da necessidade de selecionar
 			os parâmetros e configurações mais adequados dos algoritmos para um problema ou instância.
 			\item  Questão: \textbf{É possível
@@ -31,8 +30,8 @@
 		\item Operam sobre o
 		espaço de busca de heurísticas que operam sobre o espaço de busca  de um determinado problema.
 		\item O objetivo
-		principal é tentar encontrar ou construir a heurística mais adequada para cada
-		situação.
+		principal é tentar selecionar ou gerar a heurística mais adequada para cada situação.
+		
 		\item Geralmente \textit{frameworks} hiper-heurísticos possuem dois níveis: Alto e Baixo.
 		\end{itemize}
 }
@@ -41,22 +40,15 @@
 	\frametitle{Hiper Heurísticas}
 		\begin{itemize}
 	\item \textbf{Heurísticas de alto nível}: Geralmente consistem em dois componentes: \textbf{mecanismo
-	de seleção}, que gerencia quais heurísticas de baixo nível devem ser aplicadas durante
-	a busca; um \textbf{critério de aceitação}, que tem a responsabilidade de decidir se irá aceitar
-	ou não uma solução gerada, a partir da aplicação de uma heurística de baixo nível.
-	\item \textbf{Heurísticas de baixo nível}:  Um conjunto de heurísticas de baixo nível específicas.
-	Estas heurísticas costumam diferir entre domínios de problemas. São exemplos: \textbf{operadores
-	de cruzamento, mutação e buscas locais}. Em alguns casos, \textbf{meta-heurísticas} também,
-	dependendo da modelagem do framework hiper-heurístico, podem assumir o papel de
+	de seleção} e um \textbf{critério de aceitação}.
+	\item \textbf{Heurísticas de baixo nível}:  Um conjunto de heurísticas de baixo nível específicas. São exemplos: \textbf{operadores
+	de cruzamento, mutação e buscas locais}. Em alguns casos, \textbf{meta-heurísticas} também  assumem o papel de
 	heurísticas de baixo nível.
 			\end{itemize}
 
 }
 
 
-
-
-\subsection{Framework Geral Hiper Heurísticas}
 \frame{
 	\frametitle{\textit{Framework} Geral Hiper Heurísticas}
 
@@ -69,19 +61,18 @@
 
 }
 
-\subsection{Classificação Hiper Heurísticas}
-\frame{
-	\frametitle{Classificação Hiper Heurísticas}
-	
-
-		\begin{figure}[!htb]
-			\centering
-			\includegraphics[scale=.5]{figuras/ClassificacaoHiperHeuristica.png}
-			\caption{Classificação Hiper Heurísticas}
-			\label{fig:classificacaoHH}
-		\end{figure}
-
-}
+%\frame{
+%	\frametitle{Classificação Hiper Heurísticas}
+%	
+%
+%		\begin{figure}[!htb]
+%			\centering
+%			\includegraphics[scale=.5]{figuras/ClassificacaoHiperHeuristica.png}
+%			\caption{Classificação Hiper Heurísticas}
+%			\label{fig:classificacaoHH}
+%		\end{figure}
+%
+%}
 
 
 \subsection{Hiper Heurísticas de Seleção}
@@ -94,13 +85,13 @@
 			\item \textbf{Choice Function} (CF):  Função que leva em consideração o desempenho das heurísticas assim como quanto tempo se passou desde a última execução de uma heurística \cite{burke2013hyper}.
 			\item \textbf{Greedy} (GR): Realiza as escolhas de maneira gulosa levando em consideração o desempenho das heurísticas \cite{burke2013hyper}.
 			\item \textbf{Tabu Search Based} (TS): Utiliza uma lista tabu para evitar determinadas heurísticas que não apresentaram bom desempenho \cite{burke2013hyper}.
-			\item \textbf{Multi-Armed Bandit} (MAB): Utiliza uma função baseada em dois componentes: um mede a qualidade de uma determinada heurística e está relacionado à intensificação e outro utiliza um intervalo de confiança baseado no número de vezes que a heurística foi aplicada \cite{burke2013hyper}.
+			\item \textbf{Multi-Armed Bandit} (MAB): Utiliza uma função baseada em dois componentes: um referente à qualidade e  um intervalo de confiança baseado no número de vezes que a heurística foi aplicada \cite{burke2013hyper}.
 		\end{itemize}
 
 }
 
 
-\subsection{Critérios de Aceitação}
+
 \frame{
 	\frametitle{Critérios de Aceitação}
 
@@ -119,7 +110,7 @@
 	\frametitle{Hiper-heurísticas de Geração}
 
 		\begin{itemize}
-			\item Estas hiper-heurísticas geram novas heurísticas combinando componentes de heurísticas.
+			\item Estas hiper-heurísticas geram novas heurísticas combinando componentes de heurísticas existentes.
 			\item Geralmente se utiliza algum tipo de programação genética (PG), como por exemplo: evolução gramatical (EG) ou programação gênica.
 		\end{itemize}
 
@@ -166,7 +157,6 @@
 
 }
 
-\subsection{Gramática Exemplo}
 \frame{
 	\frametitle{Gramática Exemplo}
 	
@@ -182,7 +172,6 @@
 }
 
 
-\subsection{Hiper-heurísticas de Geração}
 \frame{
 	\frametitle{Operadores para evolução gramatical}
 	
@@ -199,7 +188,6 @@
 }
 
 
-\subsection{Pseudocódigo da evolução gramatical}
 \frame{
 	\frametitle{Pseudocódigo da evolução gramatical}
 	

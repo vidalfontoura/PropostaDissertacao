@@ -1,6 +1,5 @@
 %%===================Método proposto==============%%
 \section{Método Proposto}
-\subsection{Método Proposto}
 \frame{
   \frametitle{Método Proposto}
    
@@ -13,7 +12,7 @@
       	   \begin{itemize}
 	      	 \item Heurísticas de alto nível consistem de um \textbf{mecanismo de seleção} e um \textbf{critério de aceitação}. 
 	      	 \item Heurísticas de baixo nível são compostas por um conjunto de heurísticas, selecionadas de
-	      	 estudos anteriores, um mecanismo de memória e uma função de \textit{fitness}.
+	      	 estudos anteriores, um mecanismo de memória e uma função para avaliar as soluções ao PDP.
       	   \end{itemize}
       	\end{itemize}
 
@@ -31,8 +30,6 @@
 
 }
 
-
-
 \subsection{Gramática Proposta}
 \frame{
 	\frametitle{Gramática Proposta}
@@ -48,42 +45,24 @@
 }
 
 
-\subsection{Terminais para gerar mecanismos de seleção}
-\frame{
-	\frametitle{Terminais para gerar mecanismos de seleção}
+\begin{frame}[allowframebreaks]{Terminais para gerar mecanismos de seleção}
 	
 
 		\begin{itemize}
-			\item RC (\textit{Reward Credit}): Recompensa que uma determinada heurística de baixo nível deve receber baseado no seu desempenho. O cálculo da melhoria é dado por: $M(i) = (|f1 -f2|/f1) *100$ se $f2 < f1$, onde $f1$ é a qualidade da solução corrente e $f2$ é a qualidade da solução resultante. 
-			A melhoria obtida é salva em uma janela deslizante (FIFO) de tamanho W. O crédito de qualquer heurística de baixo nível é então atribuído como o máximo valor na janela deslizante correspondente. 
+			\item RC (\textit{Reward Credit}): Recompensa que uma determinada heurística de baixo nível deve receber baseado no seu desempenho.
+			% O cálculo da melhoria é dado por: $M(i) = (|f1 -f2|/f1) *100$ se $f2 < f1$, onde $f1$ é a qualidade da solução corrente e $f2$ é a qualidade da solução resultante. 
+			%A melhoria obtida é salva em uma janela deslizante (FIFO) de tamanho W. O crédito de qualquer heurística de baixo nível é então atribuído como o máximo valor na janela deslizante correspondente. 
 			%A ideia por trás deste critério é: heurísticas de baixo nível que não são usadas com frequência mas que alteram a solução com grandes melhorias tendem a ter mais preferência do que aquelas que geram pequenas melhorias. Portanto as heurísticas que trazem frequentes, mas pequenas melhorias irão ter menos probabilidade de serem selecionadas.
-			\item \textbf{$C_{best}$}: Número de vezes que a i-ésima heurística de baixo nível atualizou a melhor solução conhecida. Este critério favorece as heurísticas de baixo nível que obtiveram êxito em melhorar a melhor solução conhecida até o momento. Este critério é útil para sistematicamente melhorar o atual mínimo local.
+			\item \textbf{$C_{best}$}: Número de vezes que a i-ésima heurística de baixo nível atualizou a melhor solução conhecida. %Este critério favorece as heurísticas de baixo nível que obtiveram êxito em melhorar a melhor solução conhecida até o momento. Este critério é útil para sistematicamente melhorar o atual mínimo local.
+			\item $C_{current}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a solução atual. % Este critério favorece as heurísticas de baixo nível que obtém êxito em atualizar a solução corrente. Este critério serve para deixar a busca concentrada próxima à solução corrente.
+			\item $C_{accept}$: Número de vezes que a solução gerada pela i-ésima heurística de baixo nível foi aceita pelo critério de aceitação. % Irá favorecer heurísticas de baixo nível que podem ajudar a escapar de um mínimo local.
+			\item $C_{ava}$: A média de melhorias anteriores da i-ésima heurística de baixo nível. %Este critério favorece heurísticas de baixo nível que realizaram grandes melhorias em média.
+			\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.
 		  
 		\end{itemize} 
+\end{frame}	
 		
-		
 
-}
-
-
-\subsection{Terminais para gerar mecanismos de seleção (cont.)}
-\frame{
-	\frametitle{Terminais para gerar mecanismos de seleção (cont.)}
-	
-
-		\begin{itemize}
-			\item $C_{current}$: Número de vezes que a i-ésima heurística de baixo nível atualizou a solução atual. Este critério favorece as heurísticas de baixo nível que obtém êxito em atualizar a solução corrente. Este critério serve para deixar a busca concentrada próxima à solução corrente.
-			\item $C_{accept}$: Número de vezes que a solução gerada pela i-ésima heurística de baixo nível foi aceita pelo critério de aceitação. Irá favorecer heurísticas de baixo nível que podem ajudar a escapar de um mínimo local.
-			\item $C_{ava}$: A média de melhorias anteriores da i-ésima heurística de baixo nível. Este critério favorece heurísticas de baixo nível que realizaram grandes melhorias em média.
-			\item $C_r$: O número de vezes que a i-ésima heurística de baixo nível foi classificada como primeira.
-			
-		\end{itemize} 
-			
-
-}
-
-
-\subsection{Terminais para gerar critérios de aceitação}
 \frame{
 	\frametitle{Terminais para gerar critérios de aceitação}
 
@@ -101,7 +80,6 @@
 
 
 
-\subsection{Funções matemáticas para gerar as heurísticas de alto nível}
 \frame{
 	\frametitle{Funções matemáticas para gerar as heurísticas de alto nível}
 
@@ -114,15 +92,16 @@
 
 }
 
-
 \subsection{EG para gerar heurísticas de alto nível}
 \frame{
-	\frametitle{Método Proposto}
+	\frametitle{EG para gerar heurísticas de alto nível}
 	
 
 		\begin{itemize}
 			\item Utilizando a gramática apresentada e vetores de inteiros é possível gerar heurísticas de alto
-			nível. Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de
+			nível.
+			
+			\item Os conjuntos terminais da gramática apresentam estatísticas sobre as heurísticas de
 			baixo nível e estas são a matéria-prima para a construção dos componentes das heurísticas
 			de alto nível para o HyPDP.
 			
@@ -135,16 +114,14 @@
 }
 
 
-\subsection{Função de fitness para a evolução gramatical}
-\frame{
+\begin{frame}[allowframebreaks]{Função de fitness para a EG}
 	\frametitle{Função de \textit{fitness} para a evolução gramatical}
 	
 			\begin{itemize}
-			\item Uma função de \textit{fitness} baseada na função proposta por Sabar et al. \cite{sabar2015automatic} foi desenvolvida para esta proposta.
+			\item Baseada na função proposta por Sabar et al. \cite{sabar2015automatic}.
 			
 			\item A probabilidade de selecionar indivíduos é alterada de acordo com a qualidade
-			da melhor solução retornada pela execução da plataforma  hiper-heurística HyPDP, utilizando
-			o mecanismo de seleção e critério de aceitação.
+			da melhor solução retornada pela execução da plataforma  hiper-heurística HyPDP, utilizando a heurística de alto nível.
 			
 			\item A
 			qualidade retornada pela solução pode ser pior ou melhor do que a solução utilizada como
@@ -152,14 +129,8 @@
 		
 			\end{itemize}
 		
-}
 
-
-\subsection{Função de fitness para a evolução gramatical}
-\frame{
-	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
-
-Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o vetor de probabilidades de seleção dos indivíduos da EG. A retribuição para o $i-$ésimo indivíduo, caso tenha obtido uma melhoria, é calculada utilizando a equação \ref{eq:fitnessFunction1}.
+Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da retornada e $Ph[]$ o vetor de probabilidades de seleção dos indivíduos da EG. A retribuição para o $i-$ésimo indivíduo, caso tenha obtido melhoria, será calculada utilizando a equação \ref{eq:fitnessFunction1}.
 
 	\begin{block}{Função de \textit{fitness} para retribuição ao $i-$ésimo indivíduo}
 		
@@ -172,17 +143,9 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 					 \sigma = (f_i - f_b)/(f_i + f_b). 
 		 \end{equation}		
 	\end{block}
-}
-
-
-
-
-
-\subsection{Função de fitness para a evolução gramatical}
-\frame{
-	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
+	\framebreak
 	
-	Os demais indivíduos diferente de $i$ devem receber uma penalização. Suponha que $Nh$ seja o número de indivíduos a penalização é calculada utilizando a equação \ref{eq:fitnessPenalizeFunction1}.
+	Os demais indivíduos diferentes de $i$ devem receber uma penalização. Suponha que $Nh$ seja o número de indivíduos a penalização é calculada utilizando a equação \ref{eq:fitnessPenalizeFunction1}.
 	\begin{block}{Função de \textit{fitness} para penalização aos outros indivíduos $j$}
 		\begin{equation} {}
 		\label{eq:fitnessPenalizeFunction1}
@@ -195,12 +158,8 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 		\end{equation}
 		
 	\end{block}
-}	
-
-
-\subsection{Função de fitness para a evolução gramatical}
-\frame{
-	\frametitle{Função de \textit{fitness} para a evolução gramatical}		
+	
+	\framebreak
 	
 	Caso contrário (se a solução retornada não for melhor que a utilizada como entrada), uma penalização é aplicada ao $i$-ésimo indivíduo utilizando a equação \autoref{eq:fitnessBadFunction1}.
 	\begin{block}{Função de \textit{fitness} para penalização do $i-$ésimo indivíduo}
@@ -214,12 +173,8 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 			$\alpha =$ iteração corrente $/$ número total de iterações.
 		\end{center} 
 	\end{block}	
-}
 
-
-\subsection{Função de fitness para a evolução gramatical}
-\frame{
-	\frametitle{Função de fitness para a evolução gramatical}		
+	
 	
 	Os demais indivíduos $j \neq i$ recebem uma recompensa utilizando a \autoref{eq:fitnessOtherFunction} 
 
@@ -242,7 +197,7 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 			
 		\end{center}
 	\end{block}	
-}	
+\end{frame}	
 
 \subsection{Conjunto de heurísticas de baixo nível}
 \frame{
@@ -338,7 +293,7 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 		\item De maneira iterativa selecionar indivíduos pais e aplicar os operadores
 		de cruzamento, \textit{prune}, mutação, e \textit{duplicate} para gerar descendentes. Para avaliar os descendentes, os seguintes passos serão executados:
 		\begin{itemize}
-			\item Decodificar os indivíduos em heurísticas de alto nível.
+			\item Decodificar um indivíduo em uma  heurística de alto nível.
 			\item Executar o mecanismo de seleção com objetivo de ordenar as heurísticas de baixo nível.
 			\item Selecionar de maneira aleatória uma solução do mecanismo de memória. Aplicar a heurística de baixo nível classificada com maior valor e calcular a qualidade da solução gerada.
 			\item Se a solução gerada tiver qualidade superior à atual, a atual é substituída. Caso contrário a expressão referente ao critério de aceitação será executada.A  solução gerada pela
@@ -351,8 +306,7 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 			seleção.
 			\item Se a etapa anterior chegar fim da lista de heurísticas de baixo nível, é executado o
 			mecanismo de seleção novamente e a lista de heurísticas de baixo nível é reordenada.
-			A busca reinicia agora utilizando a heurística de baixo nível com maior valor para
-			a expressão referente ao mecanismo de seleção.
+			A busca reinicia agora utilizando a heurística de baixo nível que obtiver o maior valor referente a expressão do mecanismo de seleção.
 			\item O HyPDP continuará utilizando as heurísticas de alto
 			nível por um tempo pré-determinado
 			de iterações.
