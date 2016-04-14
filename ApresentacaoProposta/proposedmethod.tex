@@ -326,12 +326,8 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 		\item Baseado no trabalho de Sabar et al. \cite{sabar2015automatic} um mecanismo de memória será desenvolvido para o HyPDP para armazenar soluções de alta qualidade e diversificadas entre si.
 		\item A inicialização do mecanismo de memória será feita parte de maneira aleatória e parte utilizando uma estratégia de \textit{backtracking} para garantir que soluções válidas sejam geradas.
 		\item A atualização do mecanismo de memória irá ocorrer toda vez que o HyPDP terminar a busca. 
-		\item Para uma solução entrar no mecanismo de memória sua qualidade e sua diversidade irão ser avaliadas: a qualidade da solução é dada pela quantidade de iterações H-H multiplicada por -1.
-		\item  As soluções geradas que tiverem a qualidade maior que todas as soluções contidas no mecanismo de memória substituirão a solução que tiver menor similaridade segundo a distância de \textit{Hamming} \cite{hamming1950error}.
-		\item Se a qualidade de uma solução gerada não for maior que todas as soluções, mas melhor em relação a um sub-conjunto do mecanismo de memória, esta substituirá a solução que tiver menor qualidade e menor similaridade do sub-conjunto.
-		\item E
-		por fim se a qualidade da solução gerada for pior que todas contidas no mecanismo de
-		memória, esta é descartada
+		\item Para uma solução entrar no mecanismo de memória sua qualidade e sua diversidade irão ser avaliadas: a qualidade da solução é dada pela quantidade de iterações H-H multiplicada por -1. \item Para avaliar a diversidade será utilizada a distancia de \textit{Hamming}.
+	
 		
 			
 	\end{itemize}
