@@ -30,19 +30,6 @@
 
 }
 
-\subsection{Gramática Proposta}
-\frame{
-	\frametitle{Gramática Proposta}
-
-		\begin{figure}[!htb]
-			\centering
-			\includegraphics[scale=.6]{figuras/ProposedGramatica.png}
-			\caption{Gramática para converter vetores de inteiros em heurísticas de alto nível.}
-			\label{fig:proposedGrammar}
-		\end{figure}
-		
-
-}
 
 
 \begin{frame}{Terminais para gerar mecanismos de seleção}
@@ -91,6 +78,22 @@
 		 \end{itemize}
 
 }
+
+
+\subsection{Gramática Proposta}
+\frame{
+	\frametitle{Gramática Proposta}
+	
+	\begin{figure}[!htb]
+		\centering
+		\includegraphics[scale=.6]{figuras/ProposedGramatica.png}
+		\caption{Gramática para converter vetores de inteiros em heurísticas de alto nível.}
+		\label{fig:proposedGrammar}
+	\end{figure}
+	
+	
+}
+
 
 \subsection{EG para gerar heurísticas de alto nível}
 \frame{
@@ -174,7 +177,7 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 		\end{center} 
 	\end{block}	
 
-	
+	\framebreak
 	
 	Os demais indivíduos $j \neq i$ recebem uma recompensa utilizando a \autoref{eq:fitnessOtherFunction} 
 
@@ -297,16 +300,13 @@ Suponha que $f_i$ e $f_b$ representem a qualidade da solução inicial e da reto
 			\item Executar o mecanismo de seleção com objetivo de ordenar as heurísticas de baixo nível.
 			\item Selecionar de maneira aleatória uma solução do mecanismo de memória. Aplicar a heurística de baixo nível classificada com maior valor e calcular a qualidade da solução gerada.
 			\item Se a solução gerada tiver qualidade superior à atual, a atual é substituída. Caso contrário a expressão referente ao critério de aceitação será executada.A  solução gerada pela
-			heurística de baixo nível é aceita caso o exponencial natural do valor, retornado pelo
-			critério de aceitação, seja menor ou igual a 0.5
-			\item Aplicar a heurística de baixo nível, que foi selecionada pelo mecanismo de seleção,
-			repetidamente até que não ocorram mais melhorias.
+			heurística de baixo nível é aceita baseada no valor retornado pelo critério de aceitação.
+			\item Continuar aplicando  a mesma heurística de baixo nível repetidamente até que não ocorram mais melhorias.
 			\item Se não houverem mais melhorias, troca-se a heurística de baixo nível atual pela
-			segunda melhor classificada, baseando-se no valor retornado pelo mecanismo de
-			seleção.
+			segunda melhor classificada.
 			\item Se a etapa anterior chegar ao fim da lista de heurísticas de baixo nível, é executado o
 			mecanismo de seleção novamente e a lista de heurísticas de baixo nível é reordenada.
-			A busca reinicia agora utilizando a heurística de baixo nível que obtiver o maior valor referente a expressão do mecanismo de seleção.
+			A busca reinicia agora utilizando a heurística de baixo nível melhor classificada.
 			\item O HyPDP continuará utilizando as heurísticas de alto
 			nível por um tempo pré-determinado
 			de iterações.

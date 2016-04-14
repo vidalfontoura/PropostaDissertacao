@@ -174,26 +174,31 @@
 \frame{
 	\frametitle{Exemplo de decodificação de cromossomo}
 	
-		Vetor exemplo: 10 27 10 14 12 23 16 20
+
+
+		[valor do vetor] mod [quantidade de opcoes] = indice da opcao
 		
+
+		Vetor exemplo: 24 27 10 14 12 23 16 20
+	
 		\begin{itemize}
-					\item 10 mod 4 = 0  $\to  \langle expr \rangle$  $\langle op \rangle$  $\langle expr \rangle$ 
+					\item 24 mod 4 = 0  $\to  \langle expr \rangle$  $\langle op \rangle$  $\langle expr \rangle$ 
 					\item 27    mod 4 = 3  $\to  \langle var\rangle$  $\langle op\rangle$  $\langle expr\rangle \to   X \langle op\rangle  \langle expr\rangle$ 
 					
-					\item 10  mod 4 = 2 $ \to X + \langle expr\rangle$
+					\item 10  mod 4 = 2 $ \to X / \langle expr\rangle$
 					
 					
-					\item 14  mod 4 = 1  $ \to  X + (\langle pre-op\rangle  \langle expr\rangle)$  
+					\item 14  mod 4 = 2  $ \to  X / (\langle pre-op\rangle  \langle expr\rangle)$  
 					
-					\item 12 	mod 4 = 0 $ \to  X + (Sin \langle expr\rangle )$
+					\item 12 	mod 4 = 0 $ \to  X / (Sin \langle expr\rangle )$
 					
 					
-					\item 23 	mod 4 = 3 $ \to X + (Sin \langle var\rangle ) \to X + (Sin X)$
+					\item 23 	mod 4 = 3 $ \to X / (Sin \langle var\rangle ) \to X / (Sin X)$
 					
 
 			
 		\end{itemize}
-							Expressão final: $X + (Sin X)$
+							Expressão final: $X / (Sin X)$
 	
 }
 
