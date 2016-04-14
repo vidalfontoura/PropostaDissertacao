@@ -1,9 +1,9 @@
 %%========================Introducao================================%%
-\section{Hiper Heurísticas}
+\section{Hiper-Heurísticas}
 
 %%========================Objetivo================================%%
 \frame{
-	\frametitle{Hiper Heurísticas}
+	\frametitle{Hiper-Heurísticas}
 	
 
 		\begin{itemize}
@@ -23,7 +23,7 @@
 
 
 \frame{
-	\frametitle{Hiper Heurísticas}
+	\frametitle{Hiper-Heurísticas}
 	
 
 		\begin{itemize}
@@ -37,7 +37,7 @@
 }
 
 \frame{
-	\frametitle{Hiper Heurísticas}
+	\frametitle{Hiper-Heurísticas}
 		\begin{itemize}
 	\item \textbf{Heurísticas de alto nível}: Geralmente consistem em dois componentes: \textbf{mecanismo
 	de seleção} e um \textbf{critério de aceitação}.
@@ -50,7 +50,7 @@
 
 
 \frame{
-	\frametitle{\textit{Framework} Geral Hiper Heurísticas}
+	\frametitle{\textit{Framework} Geral Hiper-Heurísticas}
 
 		\begin{figure}[!htb]
 			\centering
@@ -75,9 +75,9 @@
 %}
 
 
-\subsection{Hiper Heurísticas de Seleção}
+\subsection{Hiper-Heurísticas de Seleção}
 \frame{
-	\frametitle{Hiper Heurísticas de Seleção}
+	\frametitle{Hiper-Heurísticas de Seleção}
 	
 
 		\begin{itemize}
@@ -129,7 +129,7 @@
 			com objetivo de produzir novos programas de computador.
 			
 			\item Estes programas são avaliados
-			utilizando uma função de fitness que determina quais destes programas são mais
+			utilizando uma função de \textit{fitness} que determina quais destes programas são mais
 			suscetíveis a sobreviver para gerações futuras.
 			\item Os programas
 			que compõem a população são representados utilizando estruturas de árvore.
@@ -169,6 +169,32 @@
 			\end{figure}
 	
 
+}
+
+\frame{
+	\frametitle{Exemplo de decodificação de cromossomo}
+	
+		Vetor exemplo: 10 27 10 14 12 23 16 20
+		
+		\begin{itemize}
+					\item 10 mod 4 = 0  $\to  \langle expr \rangle$  $\langle op \rangle$  $\langle expr \rangle$ 
+					\item 27    mod 4 = 3  $\to  \langle var\rangle$  $\langle op\rangle$  $\langle expr\rangle \to   X \langle op\rangle  \langle expr\rangle$ 
+					
+					\item 10  mod 4 = 2 $ \to X + \langle expr\rangle$
+					
+					
+					\item 14  mod 4 = 1  $ \to  X + (\langle pre-op\rangle  \langle expr\rangle)$  
+					
+					\item 12 	mod 4 = 0 $ \to  X + (Sin \langle expr\rangle )$
+					
+					
+					\item 23 	mod 4 = 3 $ \to X + (Sin \langle var\rangle ) \to X + (Sin X)$
+					
+
+			
+		\end{itemize}
+							Expressão final: $X + (Sin X)$
+	
 }
 
 
