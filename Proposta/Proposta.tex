@@ -1,0 +1,182 @@
+\documentclass[12pt,a4paper]{ufpr2}
+
+%\usepackage{silence}
+%\WarningsOff
+%\WarningsOff[latex]
+
+
+\usepackage[brazil]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+
+\usepackage{pdflscape}
+\usepackage[shortcuts]{extdash}
+\usepackage[bottom]{footmisc}
+\usepackage{amssymb,amsmath}
+\usepackage{isolatin1}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage[hypcap]{caption}
+\usepackage{setspace}
+\usepackage{ps-macros}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage[table]{xcolor}
+\usepackage{float}
+
+\usepackage[nomain,nonumberlist,acronym]{glossaries}
+\loadglsentries[\acronymtype]{abreviacoes}
+%\makeglossaries
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{pdflscape}
+
+\usepackage{graphicx}
+\graphicspath{{./Imagens/}}
+\DeclareGraphicsExtensions{.png,.jpg}
+
+\usepackage[onelanguage,portuguese,algochapter,linesnumbered,ruled,inoutnumbered]{algorithm2e}
+\usepackage{algorithm2eportuguese}
+
+\usepackage{xcolor,colortbl}
+
+\usepackage{syntax}
+\grammarindent 80pt
+
+
+\usepackage{newfloat}
+% declare the floating environment {Grammar}
+% this will also define \listofGrammars:
+\DeclareFloatingEnvironment[
+% the file extension for the file used to create the list:
+fileext   = logr,% don't use log here!
+% the heading for the list:
+listname  = {List of Grammars},
+% the name used in captions:
+name      = Gramática,
+% the default floating parameters if the environment is used
+% without optional argument:
+placement = htp
+]{Grammar}
+
+
+
+
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\linespread{1.3}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\title{Aplicando projeto automático de heurísticas de alto nível no problema de dobramento de proteínas}
+\author{Vidal Daniel da Fontoura}
+\advisortitle{Orientadora} % ou Orientador
+\advisorname{Prof.$^a$ Dr.$^a$ Aurora Trinidad Ramirez Pozo }
+\advisorplace{Departamento de Informática, UFPR}  % departamento, instituicao
+
+%=========== Co-Orientador ===========
+% se usar o ufpr2.cls, presente no início do documento, utilizar as definições abaixo, caso contrário deve comentá-las
+\coadvisortitle{Co-orientador} % ou Orientador
+\coadvisorname{Prof. Dr. Roberto Santana Hermida}
+	\coadvisorplace{Departamento de Informática, UFPR}  % departamento, instituicao
+	%=========== Co-Orientador ===========
+	
+	
+
+
+\city{Curitiba - PR}
+\year{2016}
+
+
+
+%\banca        % nao insira o nome do orientador, ja eh feito automaticamente
+%:{Prof.$^a$ Me.$^a$ Thelma Elita Colanzi Lopes}{Departamento de Informática, UEM}
+%{Prof. Dr. Marcos Didonet Del Fabro}{Departamento de Informática, UFPR}
+{}{} % se nao houver deixe em branco {}{}
+{}{}    % se houver um quarto membro na banca, inserir nome e instituicao
+
+%\defesa{02 de agosto de 2014} % dia em que foi realizada a defesa da dissertacao
+
+%\makeglossary
+
+\begin{document}
+
+\pdfstringdefDisableCommands{
+	\let\MakeUppercase\relax
+}
+
+\makecapaproposta             % cria capa para proposta%
+%\makecapadissertacao           % cria capa para dissertacao de mestrado %
+%\makerosto                     % cria folha de rosto para versao final da UFPR %
+%\maketermo                     % cria folha com o termo de aprovacao da dissertacao%
+
+%\singlespacing           % espacamento 1 - capa UFPR%
+%\onehalfspacing          % espacamento 1/2 %
+\doublespacing            % espacamento 2 - UFPR %
+
+\pagestyle{headings}
+\pagenumbering{roman}
+
+\tableofcontents
+
+
+
+
+\input{Resumo.tex}
+\newpage
+
+%\chapter*{Abstract}
+%\addcontentsline{toc}{chapter}{\MakeUppercase{Abstract}}
+%%\input{abstract.tex}        % somente o texto
+%\newpage
+
+\addcontentsline{toc}{chapter}{LISTA DE FIGURAS}
+\listoffigures
+\newpage
+
+\addcontentsline{toc}{chapter}{LISTA DE TABELAS}
+\listoftables
+\newpage
+
+\addcontentsline{toc}{chapter}{GLOSSÁRIO}
+\newglossarystyle{mylist}{%
+	\glossarystyle{index}% base this style on the list style
+	\renewcommand{\glsgroupskip}{}% make nothing happen
+}
+\printglossary[type=\acronymtype,title=GLOSSÁRIO,style=mylist]
+\newpage
+
+% Capítulos
+\pagenumbering{arabic}
+
+%\input{aspectos}
+
+\input{Introducao}
+\input{ReferencialTeorico}
+\input{PSP-ProblemaPredicaoEstruturasProteinas}
+\input{TrabalhosRelacionados}
+\input{Metodologia}
+%\input{Resultados}
+\input{PropostaDeTrabalho}
+
+\newpage
+% Bibliografia
+\addcontentsline{toc}{chapter}{\MakeUppercase{Referências}}
+\bibliographystyle{brazil}
+\bibliography{bibliografia}
+
+\appendix
+
+\singlespacing
+\makecapadissertacao
+
+\end{document}
