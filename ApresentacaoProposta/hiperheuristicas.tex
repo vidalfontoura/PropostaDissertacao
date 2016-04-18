@@ -105,20 +105,7 @@
 
 
 
-\subsection{Hiper-heurísticas de Geração}
-\frame{
-	\frametitle{Hiper-heurísticas de Geração}
-
-		\begin{itemize}
-			\item Estas hiper-heurísticas geram novas heurísticas combinando componentes de heurísticas existentes.
-			\item Geralmente se utiliza algum tipo de programação genética (PG), como por exemplo: evolução gramatical (EG) ou programação gênica.
-		\end{itemize}
-
-}
-
-
-
-\subsection{Programação Genética (PG)}
+\section{Programação Genética (PG)}
 \frame{
 	\frametitle{Programação Genética (PG)}
 		\begin{itemize}
@@ -151,7 +138,7 @@
 		de um programa, que obtenha um bom valor de \textit{fitness} para o problema em questão.
 		\item Utiliza vetores de inteiros para representar seus indivíduos e uma gramática BNF específica para traduzir os indivíduos em programas de computador.
 		\item Uma gramática BNF possui um 
-		conjunto de terminais (+, -, *, /)  e não terminais, que podem ser expandidos em um ou mais terminais e
+		conjunto de terminais e não terminais, que podem ser expandidos em um ou mais terminais e
 		não terminais.
 		\end{itemize}
 
@@ -203,20 +190,17 @@
 }
 
 
-\frame{
-	\frametitle{Operadores para evolução gramatical}
-	
-
-			 Além dos operadores tradicionais outros dois operadores \textit{Prune} e \textit{Duplicate} são peculiares à EG e serão descritos em seguida:
-			 
-			 \begin{itemize}
-			 	\item \textbf{Duplicate}: Dada uma probabilidade realiza a cópia de alguns genes ao final do indivíduo. O número de genes a serem duplicados é selecionado de maneira aleatória. A motivação por trás deste operador é que ao duplicar genes ocorre um aumento da presença de genes que são potencialmente bons, pois pertencem a um indivíduo com boa aptidão selecionado pelo operador de seleção.
-			 	\item \textbf{Prune}: Leva em consideração que nem sempre todos os genes, de um cromossomo, são utilizados para decodificar um programa. Dessa maneira (dada uma probabilidade) realiza o truncamento de  cromossomos. O objetivo é diminuir a probabilidade que o operador de cruzamento opere em regiões dos cromossomos que não sejam utilizadas realmente.
-			 \end{itemize}
-			 
-		
-
-}
+%\frame{
+%	\frametitle{Operadores para evolução gramatical}
+%	
+%
+%			 Além dos operadores tradicionais outros dois operadores \textit{Prune} e \textit{Duplicate} são peculiares à EG e serão descritos em seguida:
+%			 
+%			 \begin{itemize}
+%			 	\item \textbf{Duplicate}: Dada uma probabilidade realiza a cópia de alguns genes ao final do indivíduo. O número de genes a serem duplicados é selecionado de maneira aleatória. A motivação por trás deste operador é que ao duplicar genes ocorre um aumento da presença de genes que são potencialmente bons, pois pertencem a um indivíduo com boa aptidão selecionado pelo operador de seleção.
+%			 	\item \textbf{Prune}: Leva em consideração que nem sempre todos os genes, de um cromossomo, são utilizados para decodificar um programa. Dessa maneira (dada uma probabilidade) realiza o truncamento de  cromossomos. O objetivo é diminuir a probabilidade que o operador de cruzamento opere em regiões dos cromossomos que não sejam utilizadas realmente.
+%			 \end{itemize}
+%}
 
 
 \frame{
