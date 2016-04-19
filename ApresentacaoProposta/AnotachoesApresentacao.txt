@@ -1,0 +1,40 @@
+	Proteínas
+		Estruturas compostas por uma ou mais cadeias de aminoácidos.
+		Exercem um papel fundamental na natureza.
+		Responsáveis por muitas funções importantes da células vivas.
+		São produtos de um processo chamado dobramento de proteínas.
+		Inicia a partir de uma cadeia de aminoácidos inicialmente desdobrada que será transformada em sua estrutura final/nativa.	
+	PDP
+		Preocupa-se em entender o processo de dobramento das proteínas.
+		Também trata da predição das estruturas de proteínas.
+		A predição das estruturas tem um amplo campo de aplicações:
+			Síntese de novas proteínas e dobramentos.
+			Síntese de novas drogas baseada nas estruturas.
+			Obtenção de estruturas a partir de dados
+			incompletos de ressonância magnética nuclear.
+		A determinação da estrutura nativa de proteínas é uma tarefa desafiadora até mesmo para modernos super computadores.
+		Trata-se de um problema $NP$-Completo.
+		Muitos minimos locais e restrições.
+	Modelos de Representação de Proteínas
+		Diferentes modelos para representar proteínas existem.
+		Modelos extremamente detalhados são computacionalmente caros.
+		Modelos simplificados são largamente utilizados por pesquisadores por conta de sua simplicidade em representar as proteínas.
+		Modelo Hidrofóbico-Polar (HP).
+	Modelo Hidrofóbico-Polar 
+		Generaliza os aminoácidos que compõem as proteínas em apenas dois aminoácidos: hidrofóbicos H ou polares P.
+		Utiliza um \textit{grid} 2d ou um cubo 3d para representar as possíveis conformações de uma proteína.
+		No modelo HP existem 3 interações entre os aminoácidos H-P, P-P e H-H.
+		Para calcular a energia de uma conformação no modelo HP é necessário avaliar a quantidade de interações hidrofóbicas (H-H) entre aminoácidos não consecutivos na sequência.
+	Representação do Problema
+		Existem várias maneiras de representar as conformações no modelo HP.
+		Coordenadas relativas: O conjunto de movimentos possíveis para a grade 2D é definido por $\{F,E,D\}$, que correspondem aos movimentos:
+			frente (continuar no mesmo sentido do aminoácido anterior), à esquerda e à direita. 
+		Geralmente se utiliza uma codificação utilizando números inteiros, como por exemplo:  F$->$0, E$->$1 e D$->$2
+		Diversos metodos heurísticos já foram propostos mas em geral com o aumento de tamanho das sequencias ainda existe dificuldade destes metodos em
+			obterem bons resultados.
+	
+		
+
+	
+
+}
